@@ -1,0 +1,7 @@
+{
+  "name": "SaspreMobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

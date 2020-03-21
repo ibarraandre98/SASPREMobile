@@ -1,0 +1,28 @@
+.color-header {
+    --background: rgb(138, 195, 51);
+    --color: white;
+    text-align: center;
+}
+
+.fondo {
+    --background: url(../../../assets/icon/menuprin.png) no-repeat center center / cover;
+}
+
+.my-custom-menu {
+    --width: 500px;
+}
+
+.textoCentro {
+    text-align: center;
+    color: white;
+}
+
+ion-item:hover {
+    --background: green;
+    color: white;
+    --ion-icon-color: red;
+}
+
+ion-item:hover ion-icon {
+    color: white;
+}

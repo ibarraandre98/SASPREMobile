@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true" class="fondo">
+
+    <div id="container" class="ion-padding ">
+        <div class="logo">
+            <h2 class="letras-logo">BIENVENIDO</h2>
+            <ion-img class="tamaño-logo" [src]="image.src"></ion-img>
+            <h2 class="letras-logo">SASPRE</h2>
+        </div>
+        <ion-item class="fondo-negro ">
+            <ion-label class="text-green" position="floating" color="light">Usuario</ion-label>
+            <ion-input type="text" color="light" [(ngModel)]="user.usuario"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item class="fondo-negro">
+            <ion-label class="text-green" position="floating" color="light">Contraseña</ion-label>
+            <ion-input type="text" color="light" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+        <hr>
+        <hr>
+        <ion-button shape="round" (click)="login()">Iniciar sesión</ion-button>
+        <br>
+        <ion-button shape="round" color="light">Recuperar cuenta</ion-button>
+    </div>
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>
