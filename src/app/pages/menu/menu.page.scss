@@ -1,4 +1,24 @@
-.relative {
-    position: relative;
-    top: 40px;
+.color-header {
+    --background: rgb(138, 195, 51);
+    --color: white;
+    text-align: center;
+}
+
+.my-custom-menu {
+    --width: 500px;
+}
+
+.textoCentro {
+    text-align: center;
+    color: black;
+}
+
+ion-item:hover {
+    --background: green;
+    color: white;
+    --ion-icon-color: red;
+}
+
+ion-item:hover ion-icon {
+    color: white;
 }

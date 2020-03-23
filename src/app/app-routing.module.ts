@@ -8,6 +8,10 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'administrar-cultivos',
+    loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
   }
 ];
 
