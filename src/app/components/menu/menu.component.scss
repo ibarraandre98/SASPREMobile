@@ -4,17 +4,13 @@
     text-align: center;
 }
 
-.fondo {
-    --background: url(../../../assets/icon/menuprin.png) no-repeat center center / cover;
-}
-
 .my-custom-menu {
     --width: 500px;
 }
 
 .textoCentro {
     text-align: center;
-    color: white;
+    color: black;
 }
 
 ion-item:hover {

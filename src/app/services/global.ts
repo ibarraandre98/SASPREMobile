@@ -1,3 +1,3 @@
 export var global = {
-    url: "http://localhost/phpSaspre/"
+    url: "http://saspre.com/phpSaspre/"
 };
