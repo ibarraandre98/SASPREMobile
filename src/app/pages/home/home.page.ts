@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomePage {
   user: User;
   constructor(
     public userService:UserService,
-    private router:Router
+    private router:Router,
+    private alertController:AlertController,
   ) {
     this.image.src = "../../assets/icon/logo.png";
     this.user = new User('','');
@@ -33,6 +35,7 @@ export class HomePage {
         let datosUsuario = data.data;
         if(data.result == 'failed'){
           console.log('Error contraseña o usuario incorrecto');
+          this.showAlert('Error','Usuario o contraseña incorrecta');
         }else if(data.result=='success'){
           console.log('Login exitoso');
           environment.idUsuario = datosUsuario.idUsuario;
@@ -46,7 +49,19 @@ export class HomePage {
           this.router.navigateByUrl('/menu');
         }
       }
-    );
+    ).catch(error =>{
+      this.showAlert('Error',JSON.stringify(error));
+    });
   }
   
+
+  async showAlert(title: string, content: string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: content,
+      buttons: ["Ok"],
+    });
+
+    await alert.present();
+  }
 }
