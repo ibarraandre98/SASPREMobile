@@ -1,0 +1,23 @@
+<ion-header no-border>
+  <ion-toolbar class="color-header">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="primerMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Alarmas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="textoCentro form-group">
+    <ion-item>
+      <ion-input type="text" placeholder="Buscar alarma" [(ngModel)]="Buscar_alarma"></ion-input>
+    </ion-item>
+
+    <ion-list class="ListaAlarma">
+      <ion-item >
+        <ion-label>Alarma</ion-label>
+        <ion-label>Usuario</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
