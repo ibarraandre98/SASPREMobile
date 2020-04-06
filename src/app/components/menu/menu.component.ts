@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-})
+}) 
 export class MenuComponent implements OnInit {
 
   constructor(
@@ -36,6 +36,14 @@ export class MenuComponent implements OnInit {
 
   openCostos() {
     this.router.navigate(['/costos']);
+  }
+
+  cosechas()
+    {
+      this.router.navigateByUrl('/administrar-cosechas');
+  }
+  usuarios(){
+    this.router.navigateByUrl('/administrar-usuarios');
   }
 
 }

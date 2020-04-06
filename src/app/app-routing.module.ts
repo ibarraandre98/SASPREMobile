@@ -14,6 +14,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
   },
   {
+    path: 'administrar-cosechas',
+    loadChildren: () => import('./pages/administrar-cosechas/administrar-cosechas.module').then( m => m.AdministrarCosechasPageModule)
+  },
+  {
+    path: 'administrar-almacen',
+    loadChildren: () => import('./pages/administrar-almacen/administrar-almacen.module').then( m => m.AdministrarAlmacenPageModule)
+  },
+  {
+    path: 'administrar-cultivos',
+    loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
+  },
+  {
     path: 'fertilizaciones',
     loadChildren: () => import('./pages/fertilizaciones/fertilizaciones.module').then( m => m.FertilizacionesPageModule)
   },
@@ -41,7 +53,10 @@ const routes: Routes = [
   {
     path: 'alarma-detalles',
     loadChildren: () => import('./pages/alarma-detalles/alarma-detalles.module').then( m => m.AlarmaDetallesPageModule)
-  }
+  },
+{path: 'administrar-usuarios',
+loadChildren: () => import('./pages/administrar-usuarios/administrar-usuarios.module').then( m => m.AdministrarUsuariosPageModule)
+}
 
 ];
 
