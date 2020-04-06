@@ -15,7 +15,7 @@ export class MostrarUsuariosService {
    }
 
    mostrarUsuarios():Promise<any>{
-    return this.http.post(this.url+"usuarios.php",{},{});
+    return this.http.post(this.url+"usuario.php",{},{});
   }
 
 

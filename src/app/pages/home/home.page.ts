@@ -1,28 +1,29 @@
 import { environment } from './../../../environments/environment';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   providers: [UserService]
 })
-export class HomePage {
+export class HomePage  {
   image = new Image();
   user: User;
+  clima;
+  Temperatura;
   constructor(
     public userService:UserService,
     private router:Router,
-    private alertController:AlertController,
+    private alertController:AlertController
   ) {
     this.image.src = "../../assets/icon/logo.png";
     this.user = new User('','');
   }
-
+ 
   login(){
     this.userService.login(this.user)
     .then(response => {
