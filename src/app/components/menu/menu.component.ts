@@ -14,8 +14,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() { }
 
-<<<<<<< HEAD
-
   fertilizaciones() {
     this.router.navigate(['/fertilizaciones']);
   }
@@ -28,7 +26,6 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/mapa']);
   }
 
-=======
   openAlarmas() {
     this.router.navigate(['/alarmas']);
   }
@@ -40,5 +37,5 @@ export class MenuComponent implements OnInit {
   openCostos() {
     this.router.navigate(['/costos']);
   }
->>>>>>> origin/OsielV1
+
 }
