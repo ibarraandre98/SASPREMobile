@@ -12,7 +12,8 @@ const routes: Routes = [
   {
     path: 'administrar-cultivos',
     loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
-  },  {
+  },
+  {
     path: 'fertilizaciones',
     loadChildren: () => import('./pages/fertilizaciones/fertilizaciones.module').then( m => m.FertilizacionesPageModule)
   },
@@ -21,8 +22,25 @@ const routes: Routes = [
     loadChildren: () => import('./pages/fertilizantes/fertilizantes.module').then( m => m.FertilizantesPageModule)
   },
   {
+    path: 'alarmas',
+    loadChildren: () => import('./pages/alarmas/alarmas.module').then( m => m.AlarmasPageModule)
+  },
+  {
     path: 'mapa',
     loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
+
+  },
+  {
+    path: 'calendario-actividades',
+    loadChildren: () => import('./pages/calendario-actividades/calendario-actividades.module').then( m => m.CalendarioActividadesPageModule)
+  },
+  {
+    path: 'costos',
+    loadChildren: () => import('./pages/costos/costos.module').then( m => m.CostosPageModule)
+  },
+  {
+    path: 'alarma-detalles',
+    loadChildren: () => import('./pages/alarma-detalles/alarma-detalles.module').then( m => m.AlarmaDetallesPageModule)
   }
 
 ];

@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
 
-import { MenuPageRoutingModule } from './menu-routing.module';
-
-import { MenuPage } from './menu.page';
+import { AlarmasPage } from './alarmas.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuPageRoutingModule,
-    
+    RouterModule.forChild([
+      {
+      path:'',
+      component: AlarmasPage
+      }
+    ])
   ],
-  declarations: [MenuPage,]
+  declarations: [AlarmasPage]
 })
-export class MenuPageModule {}
+export class AlarmasPageModule {}

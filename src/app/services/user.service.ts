@@ -2,7 +2,6 @@ import { global } from './global';
 import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 
-
 @Injectable({
   providedIn: 'root'
 })
