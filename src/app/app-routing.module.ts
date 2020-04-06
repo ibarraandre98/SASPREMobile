@@ -12,7 +12,19 @@ const routes: Routes = [
   {
     path: 'administrar-cultivos',
     loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
+  },  {
+    path: 'fertilizaciones',
+    loadChildren: () => import('./pages/fertilizaciones/fertilizaciones.module').then( m => m.FertilizacionesPageModule)
+  },
+  {
+    path: 'fertilizantes',
+    loadChildren: () => import('./pages/fertilizantes/fertilizantes.module').then( m => m.FertilizantesPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
   }
+
 ];
 
 @NgModule({
