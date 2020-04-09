@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  idUsuario:0,
-  idCargo:0,
-  idEmpresa:0,
+  idUsuario:'',
+  idCargo:'',
+  idEmpresa:'',
   nombre:'',
   apellidos:'',
   nombreUsuario:'',

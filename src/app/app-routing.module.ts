@@ -56,7 +56,15 @@ const routes: Routes = [
   },
 {path: 'administrar-usuarios',
 loadChildren: () => import('./pages/administrar-usuarios/administrar-usuarios.module').then( m => m.AdministrarUsuariosPageModule)
-}
+},
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'recuperar-pass',
+    loadChildren: () => import('./pages/recuperar-pass/recuperar-pass.module').then( m => m.RecuperarPassPageModule)
+  }
 
 ];
 

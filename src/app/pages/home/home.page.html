@@ -1,28 +1,52 @@
-<ion-content [fullscreen]="true" class="fondo">
-
-    <div id="container" class="ion-padding ">
-        <div class="logo">
-            <h2 class="letras-logo">BIENVENIDO</h2>
+<ion-content [fullscreen]="true">
+    <div id="contaier">
+        <div class="logo background">
             <ion-img class="tamaño-logo" [src]="image.src"></ion-img>
-            <h2 class="letras-logo">SASPRE</h2>
         </div>
-        <ion-item class="fondo-negro ">
-            <ion-label class="text-green" position="floating" color="light">Usuario</ion-label>
-            <ion-input type="text" color="light" [(ngModel)]="user.usuario"></ion-input>
-        </ion-item>
-        <hr>
-        <ion-item class="fondo-negro">
-            <ion-label class="text-green" position="floating" color="light">Contraseña</ion-label>
-            <ion-input type="text" color="light" [(ngModel)]="user.password"></ion-input>
-        </ion-item>
-        <hr>
-        <hr>
-        <ion-button shape="round" (click)="login()">Iniciar sesión</ion-button>
-        <br>
-        <ion-button shape="round" color="light">Recuperar cuenta</ion-button>
+        <div class="plato ion-padding">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <h1>Iniciar sesión</h1>
+                <div class="login">
+                    <div class="fondo">
+                        <ion-item class="fondo-item">
+                            <ion-label class="text-green" position="floating">
+                                <ion-icon name="person-outline"></ion-icon>&nbsp; Usuario</ion-label>
+                            <ion-input type="text" formControlName="usuario"></ion-input>
+                        </ion-item>
+                        <div class="error" *ngFor="let error of errorMessages.usuario">
+                            <ng-container *ngIf="usuario.hasError(error.type) && (usuario.dirty || usuario.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="fondo">
+                        <ion-item class="fondo-item">
+                            <ion-label class="text-green" position="floating">
+                                <ion-icon name="lock-closed-outline"></ion-icon> &nbsp; Contraseña</ion-label>
+                            <ion-input type="password" formControlName="password"></ion-input>
+                        </ion-item>
+                        <div class="error" *ngFor="let error of errorMessages.password">
+                            <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-registro">
+                    <ion-button [disabled]="!loginForm.valid" type="submit" expand="block" shape="undefined" class="boton-login">INICIAR SESIÓN</ion-button>
+                </div>
+            </form>
+            <ion-text (click)="irRecuperarPassword()">
+                <h6>¿Olvidaste tu contraseña?</h6>
+            </ion-text>
+            <br>
+            <ion-text>
+                <h6>¿No tienes cuenta?<em style="color:rgb(24, 161, 8);" (click)="irRegistro()"> Registrate</em></h6>
+            </ion-text>
+        </div>
+
     </div>
 </ion-content>
-
 <ion-footer>
 
 </ion-footer>

@@ -1,5 +1,9 @@
+import { AppComponent } from './../../app.component';
+import { User } from './../../models/user';
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu',
@@ -7,10 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 }) 
 export class MenuComponent implements OnInit {
-
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private appComponent:AppComponent,
+  ){
+     
+   }
 
   ngOnInit() { }
 
@@ -44,6 +50,22 @@ export class MenuComponent implements OnInit {
   }
   usuarios(){
     this.router.navigateByUrl('/administrar-usuarios');
+  }
+
+  irLogin(){
+    this.appComponent.menuActivo = false;
+    this.limpiarEnvironment();
+    this.router.navigateByUrl('/home');
+  }
+
+  limpiarEnvironment(){
+    environment.nombreUsuario = '';
+    environment.idUsuario = '';
+    environment.idCargo = '';
+    environment.idEmpresa = '';
+    environment.nombre = '';
+    environment.apellidos = '';
+    environment.correo = '';
   }
 
 }

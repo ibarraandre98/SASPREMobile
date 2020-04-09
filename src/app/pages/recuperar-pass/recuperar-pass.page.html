@@ -1,0 +1,40 @@
+<ion-header class="absoluta ion-no-border">
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div id="contaier">
+        <div class="logo background">
+            <ion-img class="tamaño-logo" [src]="image.src"></ion-img>
+        </div>
+        <div class="plato ion-padding">
+            <form [formGroup]="recoverForm" (ngSubmit)="recuperar()">
+                <h1>Contraseña olvidada</h1>
+                <div class="login">
+                    <div class="fondo">
+                        <ion-item class="fondo-item">
+                            <ion-label class="text-green" position="floating">
+                                <ion-icon name="mail-outline"></ion-icon>&nbsp; Correo</ion-label>
+                            <ion-input formControlName="correo" type="email"></ion-input>
+                        </ion-item>
+                        <div class="error" *ngFor="let error of errorMessages.correo">
+                            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-registro">
+                    <ion-button [disabled]="!recoverForm.valid" type="submit" expand="block" shape="undefined" class="boton-login">RECUPERAR CONTRASEÑA</ion-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+
+</ion-footer>

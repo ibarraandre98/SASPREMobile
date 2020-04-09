@@ -18,5 +18,22 @@ export class UserService {
     return this.http.post(this.url+"login.php",user,{});
   }
 
+  correoDisponible(user:any):Promise<any>{
+    console.log(user);
+    return this.http.post(this.url+"correoDisponible.php",user,{});
+  }
+
+  usuarioDisponible(user:any):Promise<any>{
+    return this.http.post(this.url+"usuarioDisponible.php",user,{});
+  }
+
+  registro(user:any):Promise<any>{
+    return this.http.post(this.url+'registro.php',user,{});
+  }
+
+  recuperarContraseña(email:any):Promise<any>{
+    return this.http.post(this.url+'mail.php',email,{});
+  }
+
 
 }

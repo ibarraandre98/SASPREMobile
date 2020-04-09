@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+    <div id="contaier">
+        <div class="logo background">
+            <ion-img class="tamaño-logo" [src]="image.src"></ion-img>
+        </div>
+        <div class="plato ion-padding">
+            <h1>Registrarse</h1>
+            <div class="login">
+                <ion-item class="fondo-item">
+                    <ion-label class="text-green" position="floating">
+                        <ion-icon name="mail-outline"></ion-icon>&nbsp; Correo</ion-label>
+                    <ion-input type="email" [(ngModel)]="user.correo"></ion-input>
+                </ion-item>
+                <ion-item class="fondo-item">
+                    <ion-label class="text-green" position="floating">
+                        <ion-icon name="person-outline"></ion-icon>&nbsp; Usuario</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.usuario"></ion-input>
+                </ion-item>
+                <ion-item class="fondo-item">
+                    <ion-label class="text-green" position="floating">
+                        <ion-icon name="lock-closed-outline"></ion-icon> &nbsp; Contraseña</ion-label>
+                    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+                </ion-item>
+                <ion-item class="fondo-item">
+                    <ion-label class="text-green" position="floating">
+                        <ion-icon name="lock-closed-outline"></ion-icon> &nbsp; Confirmar contraseña</ion-label>
+                    <ion-input type="password" [(ngModel)]="confirmarContrasena"></ion-input>
+                </ion-item>
+            </div>
+            <div class="login-registro">
+                <ion-button expand="block" shape="undefined" class="boton-login" (click)="onSubmitCorreo()">REGISTRARSE</ion-button>
+                <ion-text>
+                    <h6>¿Ya tienes cuenta?<em style="color:rgb(24, 161, 8)" (click)="irLogin()"> Inicia sesión</em></h6>
+                </ion-text>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+
+</ion-footer>

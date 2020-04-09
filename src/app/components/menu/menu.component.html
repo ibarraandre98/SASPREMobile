@@ -1,8 +1,6 @@
-
-
 <ion-menu side="start" menuId="primerMenu" contentId="principal">
     <ion-header>
-        <ion-toolbar class="color-header">
+        <ion-toolbar color="primary">
             <ion-title>Menú</ion-title>
         </ion-toolbar>
     </ion-header>
@@ -19,14 +17,13 @@
             <ion-item (click)="cosechas()">
                 <ion-icon name="leaf" slot="start"></ion-icon>
                 <ion-label>Administrar cosechas</ion-label>
-                
             </ion-item>
             <ion-item (click)="usuarios()">
                 <ion-icon name="person" slot="start"></ion-icon>
                 <ion-label>Administrar usuarios</ion-label>
             </ion-item>
             <hr>
-            <ion-item (click)="openAlarmas()"> 
+            <ion-item (click)="openAlarmas()">
                 <ion-icon name="alarm" slot="start"></ion-icon>
                 <ion-label>Alarmas</ion-label>
             </ion-item>
@@ -59,11 +56,10 @@
                 <ion-label>Insecticidas</ion-label>
             </ion-item>
             <hr>
-            <ion-item>
+            <ion-item (click)="irLogin()">
                 <ion-icon name="exit" slot="start"></ion-icon>
                 <ion-label>Cerrar sesión</ion-label>
             </ion-item>
-
         </ion-list>
     </ion-content>
 </ion-menu>
