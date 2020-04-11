@@ -9,17 +9,20 @@ import { Router } from '@angular/router';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-}) 
+})
 export class MenuComponent implements OnInit {
   constructor(
     private router: Router,
-    private appComponent:AppComponent,
-  ){
-     
-   }
+    private appComponent: AppComponent,
+  ) {
+
+  }
 
   ngOnInit() { }
 
+  menu() {
+    this.router.navigate(['/menu']);
+  }
   fertilizaciones() {
     this.router.navigate(['/fertilizaciones']);
   }
@@ -44,21 +47,20 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/costos']);
   }
 
-  cosechas()
-    {
-      this.router.navigateByUrl('/administrar-cosechas');
+  cosechas() {
+    this.router.navigateByUrl('/administrar-cosechas');
   }
-  usuarios(){
+  usuarios() {
     this.router.navigateByUrl('/administrar-usuarios');
   }
 
-  irLogin(){
+  irLogin() {
     this.appComponent.menuActivo = false;
     this.limpiarEnvironment();
     this.router.navigateByUrl('/home');
   }
 
-  limpiarEnvironment(){
+  limpiarEnvironment() {
     environment.nombreUsuario = '';
     environment.idUsuario = '';
     environment.idCargo = '';
