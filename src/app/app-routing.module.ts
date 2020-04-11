@@ -12,7 +12,15 @@ const routes: Routes = [
   {
     path: 'administrar-cultivos',
     loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
+  },  {
+    path: 'insecticidas',
+    loadChildren: () => import('./pages/insecticidas/insecticidas.module').then( m => m.InsecticidasPageModule)
+  },
+  {
+    path: 'historialplagas',
+    loadChildren: () => import('./pages/historialplagas/historialplagas.module').then( m => m.HistorialplagasPageModule)
   }
+
 ];
 
 @NgModule({
