@@ -15,9 +15,18 @@ export class CostosService {
   }
 
   mostrarCostos(): Promise<any> {
-    //let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
-    return this.http.post(this.url+"costos.php",{},{});
-    
-    //return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+    return this.http.post(this.url + "costos.php", {}, {});
+  }
+
+  insertCostos(datos: any): Promise<any> {
+    return this.http.post(this.url + 'costos-insert.php', datos, {});
+  }
+
+  updateCostos(datos: any): Promise<any> {
+    return this.http.post(this.url + 'costos-update.php', datos, {});
+  }
+
+  deleteCostos(datos: any): Promise<any> {
+    return this.http.post(this.url + 'costos-delete.php', datos, {});
   }
 }

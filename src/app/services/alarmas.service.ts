@@ -15,11 +15,19 @@ export class AlarmasService {
   }
 
   mostrarAlarmas(): Promise<any> {
-    //let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
-    return this.http.post(this.url+"alarma.php",{},{});
-    
-    //return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+    return this.http.post(this.url + "alarma.php", {}, {});
   }
 
+  insertAlarma(datos: any): Promise<any> {
+    return this.http.post(this.url + 'alarma-insert.php', datos, {});
+  }
+
+  updateAlarma(datos: any): Promise<any> {
+    return this.http.post(this.url + 'alarma-update.php', datos, {});
+  }
+
+  deleteAlarma(datos: any): Promise<any> {
+    return this.http.post(this.url + 'alarma-delete.php', datos, {});
+  }
 }
 
