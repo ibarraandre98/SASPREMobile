@@ -13,11 +13,20 @@ export class InsecticidasService {
     this.url = global.url;
   }
 
-  mostrarInsecticidas(): Promise<any> {
-    //let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+  selectInsecticidas(): Promise<any> {
     return this.http.post(this.url+"insecticidas.php",{},{});
     
-    //return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
   }
 
+  insertInsecticidas(datos: any): Promise<any> {
+    return this.http.post(this.url + 'insecticidas-insert.php', datos, {});
+  }
+
+  updateInsecticidas(datos: any): Promise<any> {
+    return this.http.post(this.url + 'insecticidas-update.php', datos, {});
+  }
+
+  deleteInsecticidas(datos: any): Promise<any> {
+    return this.http.post(this.url + 'insecticidas-delete.php', datos, {});
+  }
 }

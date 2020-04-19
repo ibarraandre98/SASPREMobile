@@ -13,13 +13,93 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialplagasPage implements OnInit {
 
-  constructor( public historialplagasServices:HistorialplagasService,
+  constructor( 
+    public historialplagasServices:HistorialplagasService,
     private router: Router,
     private alertController:AlertController) { }
+    
+    private datos = {
+      idHistorialCultivo: '3',
+      idCultivos: '3',
+      idPlagas: '4',
+      fechaprediccion: '2020-03-03'
+    }
+    /*$idCultivos = $_POST['idCultivos'];
+$idPlagas = $_POST['idPlagas'];
+$fechaprediccion = $_POST['fechaprediccion']; */
+
+insertInsecticidas() {
+  this.historialplagasServices.insertHistorialplagas(this.datos)
+    .then(response => {
+      console.log(response);
+      let data = JSON.parse(response.data);
+
+      if (data.result == 'success') {
+        this.datos.idCultivos = '';
+        this.datos.idPlagas = '';
+        this.datos.fechaprediccion = '';
+
+       // this.alertas.toast('Exito', 'Alerta registrada con exito');
+        this.router.navigateByUrl('/menu');
+      } else {
+        console.log(data.message);
+      }
+    }
+    )
+    .catch(error => {
+    //  this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
+    })
+}
+
+
+updateInsecticidas() {
+  this.historialplagasServices.updateHistorialplagas(this.datos)
+    .then(response => {
+      console.log(response);
+      let data = JSON.parse(response.data);
+
+      if (data.result == 'success') {
+        this.datos.idHistorialCultivo = '';
+        this.datos.idCultivos = '';
+        this.datos.idPlagas = '';
+        this.datos.fechaprediccion = '';
+
+       // this.alertas.toast('Exito', 'Alerta actualizada con exito');
+        this.router.navigateByUrl('/menu');
+      } else {
+        console.log(data.message);
+      }
+    }
+    )
+    .catch(error => {
+    //  this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
+    })
+}
+
+deleteInsecticidas() {
+  this.historialplagasServices.deleteHistorialplagas(this.datos)
+    .then(response => {
+      console.log(response);
+      let data = JSON.parse(response.data);
+
+      if (data.result == 'success') {
+        this.datos.idHistorialCultivo = '';
+
+       // this.alertas.toast('Exito', 'Alerta eliminada con exito');
+        this.router.navigateByUrl('/menu');
+      } else {
+        console.log(data.message);
+      }
+    }
+    )
+    .catch(error => {
+   //   this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
+    })
+}
 
     mostrarHistorialplagas() {
     console.log('uno');
-    this.historialplagasServices.mostrarHistorialplagas()
+    this.historialplagasServices.historialplagasSelect()
       .then(response => {
         console.log('dos');
         console.log('Response recived');
@@ -38,7 +118,7 @@ export class HistorialplagasPage implements OnInit {
         this.showAlert('Error', JSON.stringify(error));
       });
   }
-
+ 
 
   ngOnInit() {
     this.mostrarHistorialplagas();

@@ -14,11 +14,20 @@ export class HistorialplagasService {
     this.url = global.url;
   }
 
-  mostrarHistorialplagas(): Promise<any> {
-    //let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
-    return this.http.post(this.url+"historialplagas.php",{},{});
+  historialplagasSelect(): Promise<any> {
+    return this.http.post(this.url+"historialplagas-select.php",{},{});
     
-    //return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+  insertHistorialplagas(datos: any): Promise<any> {
+    return this.http.post(this.url + 'insecticidas-insert.php', datos, {});
+  }
+
+  updateHistorialplagas(datos: any): Promise<any> {
+    return this.http.post(this.url + 'insecticidas-update.php', datos, {});
+  }
+
+  deleteHistorialplagas(datos: any): Promise<any> {
+    return this.http.post(this.url + 'insecticidas-delete.php', datos, {});
   }
 
 }
