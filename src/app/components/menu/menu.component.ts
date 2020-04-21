@@ -2,9 +2,13 @@ import { AppComponent } from './../../app.component';
 import { User } from './../../models/user';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
 
 
+=======
+import {Router} from '@angular/router';
+>>>>>>> origin/OscarV3
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -54,6 +58,7 @@ export class MenuComponent implements OnInit {
     this.router.navigateByUrl('/administrar-usuarios');
   }
 
+<<<<<<< HEAD
   irLogin() {
     this.appComponent.menuActivo = false;
     this.limpiarEnvironment();
@@ -70,4 +75,15 @@ export class MenuComponent implements OnInit {
     environment.correo = '';
   }
 
+=======
+  constructor(private router:Router) { }
+
+  ngOnInit() {}
+openInsecticidas(){
+  this.router.navigate(['/insecticidas']);
+}
+openHistorialplagas(){
+  this.router.navigate(['/historialplagas']);
+}
+>>>>>>> origin/OscarV3
 }
