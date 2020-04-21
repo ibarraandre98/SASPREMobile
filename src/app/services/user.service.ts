@@ -14,12 +14,10 @@ export class UserService {
    }
 
    login(user:any):Promise<any>{
-    console.log(user);
     return this.http.post(this.url+"login.php",user,{});
   }
 
   correoDisponible(user:any):Promise<any>{
-    console.log(user);
     return this.http.post(this.url+"correoDisponible.php",user,{});
   }
 

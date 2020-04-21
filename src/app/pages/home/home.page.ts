@@ -61,7 +61,6 @@ export class HomePage  {
   }
  
   login(){
-    console.log('Hola');
     this.user.usuario = this.loginForm.value.usuario;
     this.user.password = this.loginForm.value.password;
     if(this.user.usuario==''){
