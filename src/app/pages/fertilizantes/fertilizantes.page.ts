@@ -36,6 +36,63 @@ export class FertilizantesPage implements OnInit {
       });
   }
 
+  insertarFertilizantes() {
+    this.fertilizantesService.insertarFertilizantes()
+      .then(response => {
+        console.log('Response recived');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('fertilizantes no mostradas');
+          this.showAlert('Error', 'fertilizantes no mostradas');
+        } else if (data.result=='success'){
+          console.log('fertilizantes mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+  borrarFertilizantes() {
+    this.fertilizantesService.borrarFertilizantes()
+      .then(response => {
+        console.log('Response recived');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('fertilizantes no mostradas');
+          this.showAlert('Error', 'fertilizantes no mostradas');
+        } else if (data.result=='success'){
+          console.log('fertilizantes mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+  editarFertilizantes() {
+    this.fertilizantesService.editarFertilizantes()
+      .then(response => {
+        console.log('Response recived');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('fertilizantes no mostradas');
+          this.showAlert('Error', 'fertilizantes no mostradas');
+        } else if (data.result=='success'){
+          console.log('fertilizantes mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
   ngOnInit() {
     this.mostrarFertilizantes();
   }

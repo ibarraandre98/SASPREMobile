@@ -19,4 +19,27 @@ export class MostrarFertilizantesService {
     return this.http.post(this.url + 'fertilizantes.php', {}, {});
 
     // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
-}}
+  }
+
+  insertarFertilizantes(): Promise<any> {
+    // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+    return this.http.post(this.url + 'fertilizantes-insert.php', {}, {});
+
+    // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+
+  borrarFertilizantes(): Promise<any> {
+    // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+    return this.http.post(this.url + 'fertilizantes-delete.php', {}, {});
+
+    // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+
+  editarFertilizantes(): Promise<any> {
+    // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+    return this.http.post(this.url + 'fertilizantes-update.php', {}, {});
+
+    // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+
+}
