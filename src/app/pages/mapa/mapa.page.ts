@@ -36,6 +36,63 @@ export class MapaPage implements OnInit {
       });
   }
 
+  insertarMapa(){
+    this.mapaService.insertarMapa()
+      .then(response => {
+        console.log('Response recived');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('Mapa no mostradas');
+          this.showAlert('Error', 'Mapa no mostradas');
+        } else if (data.result=='success'){
+          console.log('Mapa mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+  editarMapa(){
+    this.mapaService.editarMapa()
+      .then(response => {
+        console.log('Response recived');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('Mapa no mostradas');
+          this.showAlert('Error', 'Mapa no mostradas');
+        } else if (data.result=='success'){
+          console.log('Mapa mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+  borrarMapa(){
+    this.mapaService.borrarMapa()
+      .then(response => {
+        console.log('Response recived');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('Mapa no mostradas');
+          this.showAlert('Error', 'Mapa no mostradas');
+        } else if (data.result=='success'){
+          console.log('Mapa mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
   ngOnInit() {
     this.mostrarMapa();
   }

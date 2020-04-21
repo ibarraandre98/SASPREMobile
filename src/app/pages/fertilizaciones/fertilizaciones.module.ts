@@ -8,11 +8,14 @@ import { FertilizacionesPageRoutingModule } from './fertilizaciones-routing.modu
 
 import { FertilizacionesPage } from './fertilizaciones.page';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     FertilizacionesPageRoutingModule
   ],
   declarations: [FertilizacionesPage]

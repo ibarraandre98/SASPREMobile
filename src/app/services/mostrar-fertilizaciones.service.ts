@@ -19,4 +19,31 @@ export class MostrarFertilizacionesService {
     return this.http.post(this.url + 'fertilizaciones.php', {}, {});
 
     // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
-}}
+  }
+
+  insertarFertilizaciones(): Promise<any> {
+    // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+    return this.http.post(this.url + 'fertilizaciones-insert.php', {}, {});
+
+    // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+
+
+  borrarFertilizaciones(): Promise<any> {
+    // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+    return this.http.post(this.url + 'fertilizaciones-delete.php', {}, {});
+
+    // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+
+
+  editarFertilizaciones(): Promise<any> {
+    // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
+    return this.http.post(this.url + 'fertilizaciones-update.php', {}, {});
+
+    // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
+  }
+
+
+
+}

@@ -38,6 +38,70 @@ export class FertilizacionesPage implements OnInit {
       });
   }
 
+  insertarFertilizaciones() {
+    this.fertilizacionesService.insertarFertilizaciones()
+      .then(response => {
+        console.log('dos');
+        console.log('Response recived');
+        console.log('tres');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('Fertilizaciones no mostradas');
+          this.showAlert('Error', 'Fertilizaciones no mostradas');
+        } else if (data.result=='success'){
+          console.log('Fertilizaciones mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+  editarFertilizaciones() {
+    this.fertilizacionesService.editarFertilizaciones()
+      .then(response => {
+        console.log('dos');
+        console.log('Response recived');
+        console.log('tres');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('Fertilizaciones no mostradas');
+          this.showAlert('Error', 'Fertilizaciones no mostradas');
+        } else if (data.result=='success'){
+          console.log('Fertilizaciones mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+  borrarFertilizaciones() {
+    this.fertilizacionesService.borrarFertilizaciones()
+      .then(response => {
+        console.log('dos');
+        console.log('Response recived');
+        console.log('tres');
+        console.log(response);
+
+        let data = JSON.parse(response.data);
+        if (data.result == 'failed'){
+          console.log('Fertilizaciones no mostradas');
+          this.showAlert('Error', 'Fertilizaciones no mostradas');
+        } else if (data.result=='success'){
+          console.log('Fertilizaciones mostradas');
+        }
+      }
+      ).catch(error => {
+        this.showAlert('Error', JSON.stringify(error));
+      });
+  }
+
+
   ngOnInit() {
     this.mostrarFertilizaciones();
   }
