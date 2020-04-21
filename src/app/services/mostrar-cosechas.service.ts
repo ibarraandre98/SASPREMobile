@@ -18,5 +18,21 @@ export class MostrarCosechasService {
     return this.http.post(this.url+"cosecha.php",{},{});
   }
 
+  private cosechas = {
+    idCosecha:'',
+    idCultivos:'',
+  }
+  insertcosechas(cosechas:any):Promise<any>{
+    return this.http.post(this.url+"cosechas-insert.php",cosechas,{});
+  }
+
+  updateCosechas(cosechas: any): Promise<any> {
+    return this.http.post(this.url + 'cosechas-update.php', cosechas, {});
+  }
+
+  deleteCosechas(cosechas: any): Promise<any> {
+    return this.http.post(this.url + 'cosechas-delete.php', cosechas, {});
+  }
+
 
 }
