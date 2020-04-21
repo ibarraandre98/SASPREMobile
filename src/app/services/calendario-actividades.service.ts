@@ -17,4 +17,16 @@ export class CalendarioActividadesService {
   mostrarCalendarioActividades(): Promise<any>{
     return this.http.post(this.url+"calendario-actividades.php",{},{});
   }
+
+  insertCalendarioActividades(datos: any): Promise<any> {
+    return this.http.post(this.url + 'calendario-actividades-insert.php', datos, {});
+  }
+
+  updateCalendarioActividades(datos: any): Promise<any> {
+    return this.http.post(this.url + 'calendario-actividades-update.php', datos, {});
+  }
+
+  deleteCalendarioActividades(datos: any): Promise<any> {
+    return this.http.post(this.url + 'calendario-actividades-delete.php', datos, {});
+  }
 }

@@ -12,12 +12,9 @@
     <ion-item>
       <ion-input type="text" placeholder="Buscar alarma" [(ngModel)]="Buscar_alarma"></ion-input>
     </ion-item>
-
-    <ion-list class="ListaAlarma">
-      <ion-item >
-        <ion-label>Alarma</ion-label>
-        <ion-label>Usuario</ion-label>
-      </ion-item>
-    </ion-list>
   </div>
+  <ion-button expand="full" (click)="insertAlarma()">Registro</ion-button>
+  <ion-button expand="full" (click)="updateAlarma()">Modificar</ion-button>
+  <ion-button expand="full" (click)="deleteAlarma()">Eliminar</ion-button>
+
 </ion-content>
