@@ -62,4 +62,78 @@ export class AdministrarCosechasPage  {
   }
 
 
+  private datosinsert={
+    idCultivos:''
+  }
+
+  private datosupdate={
+    idCosechas:'',
+    idCultivos:''
+  }
+  private datosdelete={
+    idCosechas:''
+  }
+
+  insertCosechas() {
+    this.mostrarCosechasService.insertcosechas(this.datosinsert)
+      .then(response => {
+        console.log(response);
+        let data = JSON.parse(response.data);
+
+        if (data.result == 'success') {
+          this.datosinsert.idCultivos='';
+
+          this.router.navigateByUrl('/menu');
+        } else {
+          console.log(data.message);
+        }
+      }
+      )
+      .catch(error => {
+        this.showAlert('Error', 'Ha ocurrido un error ' + error);
+      })
+  }
+
+  updateCosechas() {
+    this.mostrarCosechasService.updateCosechas(this.datosupdate)
+      .then(response => {
+        console.log(response);
+        let data = JSON.parse(response.data);
+
+        if (data.result == 'success') {
+         this.datosupdate.idCosechas='';
+         this.datosupdate.idCultivos='';
+
+          this.router.navigateByUrl('/menu');
+        } else {
+          console.log(data.message);
+        }
+      }
+      )
+      .catch(error => {
+        this.showAlert('Error', 'Ha ocurrido un error ' + error);
+      })
+  }
+
+  deleteCosechas() {
+    this.mostrarCosechasService.deleteCosechas(this.datosdelete)
+      .then(response => {
+        console.log(response);
+        let data = JSON.parse(response.data);
+
+        if (data.result == 'success') {
+          this.datosdelete.idCosechas = '';
+
+          this.router.navigateByUrl('/menu');
+        } else {
+          console.log(data.message);
+        }
+      }
+      )
+      .catch(error => {
+        this.showAlert('Error', 'Ha ocurrido un error ' + error);
+      })
+  }
+
+
   }

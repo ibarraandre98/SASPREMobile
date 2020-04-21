@@ -19,4 +19,28 @@ export class MostrarUsuariosService {
   }
 
 
+  private usuarios={
+    idUSuario:'',
+    idCargo:'',
+    idEmpresa:'',
+    nombre:'',
+    apellidos:'',
+    contra:'',
+    nickname:'',
+    correo:'',
+  }
+
+  insertusuarios(usuarios:any):Promise<any>{
+    return this.http.post(this.url+"usuarios-insert.php",usuarios,{});
+  }
+
+  updateUsuarios(usuarios: any): Promise<any> {
+    return this.http.post(this.url + 'usuarios-update.php', usuarios, {});
+  }
+
+  deleteUsuarios(usuarios: any): Promise<any> {
+    return this.http.post(this.url + 'usuarios-delete.php', usuarios, {});
+  }
+
+
 }
