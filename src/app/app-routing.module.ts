@@ -12,12 +12,12 @@ const routes: Routes = [
   {
     path: 'administrar-cultivos',
     loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
-  },  {
+  },
+  {
     path: 'insecticidas',
     loadChildren: () => import('./pages/insecticidas/insecticidas.module').then( m => m.InsecticidasPageModule)
   },
   {
-<<<<<<< HEAD
     path: 'administrar-cultivos',
     loadChildren: () => import('./pages/administrar-cultivos/administrar-cultivos.module').then( m => m.AdministrarCultivosPageModule)
   },
@@ -72,14 +72,11 @@ loadChildren: () => import('./pages/administrar-usuarios/administrar-usuarios.mo
   {
     path: 'recuperar-pass',
     loadChildren: () => import('./pages/recuperar-pass/recuperar-pass.module').then( m => m.RecuperarPassPageModule)
-  }
-
-];
-=======
+  },
+  {
     path: 'historialplagas',
     loadChildren: () => import('./pages/historialplagas/historialplagas.module').then( m => m.HistorialplagasPageModule)
   }
->>>>>>> origin/OscarV3
 
 ];
 
