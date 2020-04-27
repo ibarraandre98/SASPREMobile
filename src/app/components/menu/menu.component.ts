@@ -11,11 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+  image = new Image();
+  imgPerfil = new Image();
   constructor(
     private router: Router,
     private appComponent: AppComponent,
-  ) {
-
+  ) 
+  {
+    this.image.src = '../../assets/icon/logo.png';
+    this.imgPerfil.src = '../../assets/icon/user.svg';
   }
 
   ngOnInit() { }
