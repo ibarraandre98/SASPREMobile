@@ -8,7 +8,37 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="full" (click)="insertCostos()">Registro</ion-button>
-  <ion-button expand="full" (click)="updateCostos()">Modificar</ion-button>
-  <ion-button expand="full" (click)="deleteCostos()">Eliminar</ion-button>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="/resources/maiz.jpg">
+      </ion-avatar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div>
+              <ion-label>
+                <p class="label1">Maíz</p>
+                <p class="label2">costo: $50</p>
+              </ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-buttons slot="end">
+        <ion-button (click)="presentPopover($event)">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+
+
+  </ion-list>
+
+
 </ion-content>
