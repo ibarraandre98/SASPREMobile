@@ -114,8 +114,8 @@ export class InsecticidasPage implements OnInit {
 
 
   ngOnInit() {
-    //this.mostrarInsecticidas();
-    this.updateInsecticidas();
+    this.mostrarInsecticidas();
+    //this.updateInsecticidas();
   }
 
   async showAlert(title: string, content: string) {
