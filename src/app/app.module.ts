@@ -13,7 +13,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, ],
+  declarations: [AppComponent, MenuComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
   providers: [

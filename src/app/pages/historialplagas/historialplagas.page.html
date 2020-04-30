@@ -1,9 +1,46 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>historialplagas</ion-title>
+<ion-header no-border>
+  <ion-toolbar class="color-header">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="primerMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Historial de plagas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  </ion-toolbar>
 
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="/resources/maiz.jpg">
+      </ion-avatar>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-label>
+                <p class="label1">Maiz</p>
+                <p class="label2">Plaga: Gusano muy quemador...</p>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-label>
+                <p class="label3">24/04/20</p>
+              </ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-buttons slot="end">
+        <ion-button (click)="presentPopover($event)">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
 </ion-content>
