@@ -13,6 +13,7 @@ export class InsecticidasNuevoPage implements OnInit {
       /*Para enviar datos del padre al hijo (modal) */
       @Input() nombre;
       @Input() precio;
+      @Input() descripcion;
 
   ngOnInit() {
   }
@@ -24,7 +25,8 @@ export class InsecticidasNuevoPage implements OnInit {
   salirConArgumentos(){
     this.modalCtrl.dismiss({
       nombre:'nombre desde hijo',
-      precio:'precio desde hijo'
+      precio:'precio desde hijo',
+      descripcion:'descripcion desde hijo'
     });
   }
 
