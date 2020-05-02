@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { InsecticidasNuevoPage } from '../insecticidas-nuevo/insecticidas-nuevo.page';
 import { InsecticidasEditarPage } from '../insecticidas-editar/insecticidas-editar.page';
 import { PopInsecticidasComponent } from 'src/app/components/pop-insecticidas/pop-insecticidas.component';
+import { PopInfoInsecticidasComponent } from 'src/app/components/pop-info-insecticidas/pop-info-insecticidas.component';
 
 @Component({
   selector: 'app-insecticidas',
@@ -104,6 +105,18 @@ export class InsecticidasPage implements OnInit {
     const {data} = await modal.onDidDismiss();
 
     console.log("Retorno del modal", data);
+  }
+
+  async mostrarPopInfo() {
+    const popover = await this.popCtrl.create({
+      component: PopInfoInsecticidasComponent,
+      mode: 'ios',
+      backdropDismiss: true,
+      translucent: true
+    });
+    return await popover.present();
+
+
   }
 
   clickFab(){

@@ -14,12 +14,14 @@ import { InsecticidasNuevoPageModule } from '../insecticidas-nuevo/insecticidas-
 import { PopInsecticidasComponent } from 'src/app/components/pop-insecticidas/pop-insecticidas.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { PopInfoInsecticidasComponent } from 'src/app/components/pop-info-insecticidas/pop-info-insecticidas.component';
 
 @NgModule({
   entryComponents:[ //Aquí va todos los modals y pop -Cualquier comp de forma dinamica
     InsecticidasNuevoPage, 
     InsecticidasEditarPage,
-    PopInsecticidasComponent
+    PopInsecticidasComponent,
+    PopInfoInsecticidasComponent
   ],
   imports: [
     CommonModule,
