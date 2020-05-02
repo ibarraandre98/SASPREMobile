@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+    <div class="sp-header">
+        <h4 class="sp-title">Información personal</h4>
+    </div>
+    <div class="sp-body ion-padding">
+        <span class="sp-instruccion">Ingrese la siguiente información para continuar</span>
+        <form [formGroup]="infoForm" (ngSubmit)="registrar()">
+            <div class="sp-form">
+                <div class="sp-fondo">
+                    <ion-item class="fondo-item">
+                        <ion-label class="text-green" position="floating">
+                            <ion-icon name="person-outline"></ion-icon>&nbsp; Nombre</ion-label>
+                        <ion-input type="text" formControlName="nombre"></ion-input>
+                    </ion-item>
+                    <div class="error" *ngFor="let error of errorMessages.nombre">
+                        <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                </div>
+                <ion-item class="fondo-item">
+                    <ion-label class="text-green" position="floating">
+                        <ion-icon name="person-outline"></ion-icon>&nbsp; Apellidos</ion-label>
+                    <ion-input type="text" formControlName="apellidos"></ion-input>
+                </ion-item>
+                <div class="error" *ngFor="let error of errorMessages.apellidos">
+                    <ng-container *ngIf="apellidos.hasError(error.type) && (apellidos.dirty || apellidos.touched)">
+                        <small class="error-message">{{error.message}}</small>
+                    </ng-container>
+                </div>
+            </div>
+            <ion-button [disabled]="!infoForm.valid" class="sp-boton" type="submit" expand="block">Confirmar</ion-button>
+        </form>
+    </div>
+</ion-content>

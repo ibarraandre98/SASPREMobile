@@ -76,6 +76,10 @@ loadChildren: () => import('./pages/administrar-usuarios/administrar-usuarios.mo
   {
     path: 'historialplagas',
     loadChildren: () => import('./pages/historialplagas/historialplagas.module').then( m => m.HistorialplagasPageModule)
+  },
+  {
+    path: 'info-registro',
+    loadChildren: () => import('./pages/info-registro/info-registro.module').then( m => m.InfoRegistroPageModule)
   }
 
 ];

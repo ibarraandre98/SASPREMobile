@@ -12,7 +12,7 @@ export class Alerts{
         duration: 2000,
         position:'top',
         animated:true,
-        color:'primary',
+        color:'light',
         buttons: [
           {
             text: 'Cerrar',

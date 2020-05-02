@@ -1,9 +1,12 @@
+import { HomePage } from './../../pages/home/home.page';
 import { AppComponent } from './../../app.component';
 import { User } from './../../models/user';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {Location} from '@angular/common';
+import {NavController} from '@ionic/angular';
+import {MenuController} from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -13,13 +16,17 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   image = new Image();
   imgPerfil = new Image();
+  homePage:HomePage;
   constructor(
     private router: Router,
     private appComponent: AppComponent,
+    private location:Location,
+    public menuController:MenuController,
   ) 
   {
     this.image.src = '../../assets/icon/logo.png';
     this.imgPerfil.src = '../../assets/icon/user.svg';
+    
   }
 
   ngOnInit() { }
@@ -59,9 +66,13 @@ export class MenuComponent implements OnInit {
   }
 
   irLogin() {
-    this.appComponent.menuActivo = false;
+    this.menuController.close();
+    setTimeout(() => 
+      {
+        this.appComponent.menuActivo = false;
+        this.router.navigateByUrl('/home');
+      },1000);
     this.limpiarEnvironment();
-    this.router.navigateByUrl('/home');
   }
 
   limpiarEnvironment() {
