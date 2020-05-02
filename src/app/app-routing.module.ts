@@ -77,6 +77,8 @@ loadChildren: () => import('./pages/administrar-usuarios/administrar-usuarios.mo
     path: 'historialplagas',
     loadChildren: () => import('./pages/historialplagas/historialplagas.module').then( m => m.HistorialplagasPageModule)
   },
+  
+
 ];
 
 @NgModule({

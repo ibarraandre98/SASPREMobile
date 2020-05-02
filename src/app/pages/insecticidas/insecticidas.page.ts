@@ -2,8 +2,11 @@ import { environment } from './../../../environments/environment';
 import { InsecticidasService } from '../../services/insecticidas.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController, PopoverController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { InsecticidasNuevoPage } from '../insecticidas-nuevo/insecticidas-nuevo.page';
+import { InsecticidasEditarPage } from '../insecticidas-editar/insecticidas-editar.page';
+import { PopInsecticidasComponent } from 'src/app/components/pop-insecticidas/pop-insecticidas.component';
 
 @Component({
   selector: 'app-insecticidas',
@@ -13,10 +16,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InsecticidasPage implements OnInit {
 
+
+
   constructor(
     public insecticidasService: InsecticidasService,
     private router: Router,
-    private alertController:AlertController ) { }
+    private alertController:AlertController,
+    private modalCtrl:ModalController,
+    private popCtrl:PopoverController) { }
 
   private datos = {
     idInsecticidas: '3',
@@ -24,6 +31,90 @@ export class InsecticidasPage implements OnInit {
     precio: '200',
     descripcion: 'te mueres'
   }
+
+  async mostrarPop( evento ) {
+    const popover = await this.popCtrl.create({
+      component: PopInsecticidasComponent,
+      event: evento,
+      mode: 'ios',
+      backdropDismiss: true,
+      translucent: true
+    });
+    await popover.present();
+
+    const {data} = await popover.onDidDismiss(); //Para recibir los datos cuando se cierre el pop
+    // const {data} = await popover.onWillDismiss();  Para que se dispare rápido sin esperar que e cierre el pop
+
+    for (var clave in data){
+      // Controlando que json realmente tenga esa propiedad
+      if (data.hasOwnProperty(clave)) {
+        // Mostrando en pantalla la clave junto a su valor
+        console.log("La clave es " + clave+ " y el valor es " + data[clave]);
+
+        if( data[clave] ==  "Editar"){
+          this.editarInsecticida();
+        }else if( data [clave] == "Borrar"){
+          this.borrarInsecticida();
+        }
+
+      }
+
+    }
+
+    console.log('Padre:', data);
+
+
+  }
+
+  borrarInsecticida(){
+    console.log("Se borro insecticidad");
+  }
+
+  async nuevoInsecticida(){
+      const modal = await this.modalCtrl.create({
+        component: InsecticidasNuevoPage,
+        componentProps:{
+          nombre: 'nombre',
+          precio: 100,
+          descripcion: 'descripcion'
+        }
+      });
+
+      await modal.present();
+  }
+
+  async editarInsecticida(){
+
+    const modal = await this.modalCtrl.create({
+      component: InsecticidasEditarPage,
+      componentProps:{
+        nombre: 'nombre',
+        precio: 100
+      }
+    });
+
+    await modal.present();
+
+
+    const {data} = await modal.onDidDismiss();
+
+    console.log("Retorno del modal", data);
+  }
+
+  clickFab(){
+    this.nuevoInsecticida();
+  }
+
+  //textoBuscar = '';
+
+  buscar( event ){
+    //this.textoBuscar = evento.detail.value;
+    console.log('Se esta buscando en el filtro:');
+    console.log(event.detail.value);
+  }
+
+
+
   insertInsecticidas() {
     this.insecticidasService.insertInsecticidas(this.datos)
       .then(response => {
@@ -47,6 +138,7 @@ export class InsecticidasPage implements OnInit {
       //  this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
       })
   }
+
   deleteInsecticidas() {
     this.insecticidasService.deleteInsecticidas(this.datos)
       .then(response => {
@@ -67,6 +159,7 @@ export class InsecticidasPage implements OnInit {
      //   this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
       })
   }
+
   updateInsecticidas() {
     this.insecticidasService.updateInsecticidas(this.datos)
       .then(response => {
@@ -90,6 +183,7 @@ export class InsecticidasPage implements OnInit {
       //  this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
       })
   }
+
   mostrarInsecticidas() {
     console.log('uno');
     this.insecticidasService.selectInsecticidas()
