@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
   </ion-toolbar>
 
   <ion-list>
@@ -21,7 +21,7 @@
         <ion-row>
           <ion-col>
             <div>
-              <ion-label>
+              <ion-label (click)="mostrarPopInfo()">
                 <p class="label1">Osiel Alejandro Treto Cedillo</p>
                 <p class="label2">OsielTreto</p>
               </ion-label>
@@ -45,7 +45,7 @@
         </ion-row>
       </ion-grid>
       <ion-buttons slot="end">
-        <ion-button (click)="presentPopover($event)">
+        <ion-button (click)="mostrarPop($event)">
           <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
         </ion-button>
       </ion-buttons>

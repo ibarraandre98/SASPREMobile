@@ -16,6 +16,7 @@ import { PipesModule } from './pipes/pipes.module';
 import { PopInfoInsecticidasComponent } from './components/pop-info-insecticidas/pop-info-insecticidas.component';
 import { PopInsecticidasComponent } from './components/pop-insecticidas/pop-insecticidas.component';
 
+
 @NgModule({
   declarations: [AppComponent, MenuComponent],
   exports: [],
