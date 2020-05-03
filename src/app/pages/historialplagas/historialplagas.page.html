@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
   </ion-toolbar>
 
   <ion-list>
@@ -21,7 +21,7 @@
         <ion-row>
           <ion-col>
             <div>
-              <ion-label>
+              <ion-label (click)="mostrarPopHistorial()">
                 <p class="label1">Maiz</p>
                 <p class="label2">Plaga: Gusano muy quemador...</p>
               </ion-label>
@@ -36,6 +36,9 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!--
+        
+      -->
       <ion-buttons slot="end">
         <ion-button (click)="presentPopover($event)">
           <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>

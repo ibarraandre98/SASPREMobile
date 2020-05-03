@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 import { AlertController, PopoverController } from "@ionic/angular";
 import { MostrarCosechasService } from "src/app/services/mostrar-cosechas.service";
 import { async } from "@angular/core/testing";
+import { PopCosechasComponent } from 'src/app/components/pop-cosechas/pop-cosechas.component';
+import { PopInfoCosechasComponent } from 'src/app/components/pop-info-cosechas/pop-info-cosechas.component';
 
 @Component({
   selector: "app-administrar-cosechas",
@@ -18,7 +20,7 @@ export class AdministrarCosechasPage {
     public mostrarCosechasService: MostrarCosechasService,
     private router: Router,
     private alertController: AlertController,
-    public popoverController: PopoverController
+    private popCtrl: PopoverController
   ) {}
 
 
@@ -69,6 +71,56 @@ export class AdministrarCosechasPage {
   private datosdelete = {
     idCosechas: "",
   };
+
+  buscar( event ){
+    //this.textoBuscar = evento.detail.value;
+    console.log('Se esta buscando en el filtro:');
+    console.log(event.detail.value);
+  }
+
+
+  async mostrarPop( evento ){
+    const popover = await this.popCtrl.create({
+      component: PopCosechasComponent,
+      event: evento,
+      mode: 'ios',
+      backdropDismiss: true,
+      translucent: true
+    });
+    return await popover.present();
+
+    const {data} = await popover.onDidDismiss(); //Para recibir los datos cuando se cierre el pop
+    // const {data} = await popover.onWillDismiss();  Para que se dispare rápido sin esperar que e cierre el pop
+
+    for (var clave in data){
+      // Controlando que json realmente tenga esa propiedad
+      if (data.hasOwnProperty(clave)) {
+        // Mostrando en pantalla la clave junto a su valor
+        console.log("La clave es " + clave+ " y el valor es " + data[clave]);
+
+        if( data[clave] ==  "Editar"){
+          console.log("Se oprimio eliminar")
+        }
+          
+
+      }
+
+    }
+
+    console.log('Padre:', data);
+
+  }
+
+
+  async mostrarPopInfo() {
+    const popover = await this.popCtrl.create({
+      component: PopInfoCosechasComponent,
+      mode: 'ios',
+      backdropDismiss: true,
+      translucent: true
+    });
+    return await popover.present();
+  }
 
   insertCosechas() {
     this.mostrarCosechasService
