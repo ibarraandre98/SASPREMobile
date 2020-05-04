@@ -62,7 +62,7 @@ export class AdministrarUsuariosPage  {
    async mostrarPopInfo() {
     const popover = await this.popCtrl.create({
       component: PopUsuariosComponent,
-      mode: 'ios',
+      mode: 'md',
       backdropDismiss: true,
       translucent: true
     });

@@ -115,9 +115,10 @@ export class AdministrarCosechasPage {
   async mostrarPopInfo() {
     const popover = await this.popCtrl.create({
       component: PopInfoCosechasComponent,
-      mode: 'ios',
+      mode: 'md',
       backdropDismiss: true,
       translucent: true
+      
     });
     return await popover.present();
   }

@@ -13,15 +13,15 @@
   </ion-toolbar>
 
   <ion-list>
-    <ion-item>
-      <ion-avatar slot="start">
+    <ion-item >
+      <ion-avatar slot="start" (click)="mostrarPopInfo()">
         <img src="/resources/user.jpg">
       </ion-avatar>
-      <ion-grid>
+      <ion-grid (click)="mostrarPopInfo()">
         <ion-row>
           <ion-col>
             <div>
-              <ion-label (click)="mostrarPopInfo()">
+              <ion-label >
                 <p class="label1">Osiel Alejandro Treto Cedillo</p>
                 <p class="label2">OsielTreto</p>
               </ion-label>

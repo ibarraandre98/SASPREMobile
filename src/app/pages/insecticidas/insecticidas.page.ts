@@ -110,7 +110,7 @@ export class InsecticidasPage implements OnInit {
   async mostrarPopInfo() {
     const popover = await this.popCtrl.create({
       component: PopInfoInsecticidasComponent,
-      mode: 'ios',
+      mode: 'md',
       backdropDismiss: true,
       translucent: true
     });

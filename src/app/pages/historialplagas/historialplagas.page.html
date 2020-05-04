@@ -13,15 +13,15 @@
   </ion-toolbar>
 
   <ion-list>
-    <ion-item>
-      <ion-avatar slot="start">
+    <ion-item >
+      <ion-avatar slot="start" (click)="mostrarPopHistorial()">
         <img src="/resources/maiz.jpg">
       </ion-avatar>
-      <ion-grid>
+      <ion-grid (click)="mostrarPopHistorial()">
         <ion-row>
           <ion-col>
             <div>
-              <ion-label (click)="mostrarPopHistorial()">
+              <ion-label>
                 <p class="label1">Maiz</p>
                 <p class="label2">Plaga: Gusano muy quemador...</p>
               </ion-label>
@@ -39,11 +39,7 @@
       <!--
         
       -->
-      <ion-buttons slot="end">
-        <ion-button (click)="presentPopover($event)">
-          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      
     </ion-item>
   </ion-list>
 </ion-content>

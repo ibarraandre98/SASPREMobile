@@ -33,7 +33,7 @@ $fechaprediccion = $_POST['fechaprediccion']; */
 async mostrarPopHistorial(){
   const popover = await this.popCtrl.create({
     component: PopInfoHistorialComponent,
-    mode: 'ios',
+    mode: 'md',
     backdropDismiss: true,
     translucent: true
   });
