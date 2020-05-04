@@ -2,8 +2,9 @@ import { environment } from './../../../environments/environment';
 import { HistorialplagasService } from '../../services/historialplagas.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { PopInfoHistorialComponent } from 'src/app/components/pop-info-historial/pop-info-historial.component';
 
 @Component({
   selector: 'app-historialplagas',
@@ -16,7 +17,8 @@ export class HistorialplagasPage implements OnInit {
   constructor( 
     public historialplagasServices:HistorialplagasService,
     private router: Router,
-    private alertController:AlertController) { }
+    private alertController:AlertController,
+    private popCtrl:PopoverController) { }
     
     private datos = {
       idHistorialCultivo: '3',
@@ -27,6 +29,27 @@ export class HistorialplagasPage implements OnInit {
     /*$idCultivos = $_POST['idCultivos'];
 $idPlagas = $_POST['idPlagas'];
 $fechaprediccion = $_POST['fechaprediccion']; */
+
+async mostrarPopHistorial(){
+  const popover = await this.popCtrl.create({
+    component: PopInfoHistorialComponent,
+    mode: 'md',
+    backdropDismiss: true,
+    translucent: true
+  });
+  return await popover.present();
+}
+
+
+
+//Este es el search bar
+buscar( event ){
+  //this.textoBuscar = evento.detail.value;
+  console.log('Se esta buscando en el filtro:');
+  console.log(event.detail.value);
+}
+
+
 
 insertInsecticidas() {
   this.historialplagasServices.insertHistorialplagas(this.datos)

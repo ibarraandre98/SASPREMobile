@@ -1,0 +1,60 @@
+<ion-content>
+  <div class="background">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-buttons class="boton" (click)="salirSinArgumentos()">
+            <ion-back-button defaultHref="/"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="4">
+          <ion-label>
+            <p class="titulo_principal">Editar insecticida</p>
+          </ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
+            <ion-button>Guardar</ion-button>
+          </ion-buttons>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div class="plato">
+    <ion-label>
+      <p class="titulo_">Edite la siguiente información para continuar</p>
+    </ion-label>
+
+    <ion-label>
+      <p class="titulo">Nombre del insecticida</p>
+    </ion-label>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese el nombre del insecticida"></ion-input>
+
+    <ion-label>
+      <p class="titulo">Precio</p>
+    </ion-label>
+    <ion-input class="subtitulo" type="number" placeholder="Ingrese precio del insecticida"></ion-input>
+
+    <ion-label>
+      <p class="titulo">Descripcion</p>
+    </ion-label>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese descripción del insecticida"></ion-input>
+
+  </div>
+
+
+  <!-- 
+  <ion-button color="primary" expand="full">
+    Salir sin argumentos
+  </ion-button>
+
+
+  <ion-button color="secondary" expand="full">
+    Salir con argumentos
+  </ion-button>
+ -->
+
+</ion-content>

@@ -3,8 +3,11 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController, ModalController } from '@ionic/angular';
 import { MostrarUsuariosService } from 'src/app/services/mostrar-usuarios-service';
+import { PopUsuariosComponent } from 'src/app/components/pop-usuarios/pop-usuarios.component';
+import { PopInsecticidasComponent } from 'src/app/components/pop-insecticidas/pop-insecticidas.component';
+import { AdministrarUsuariosEditarPage } from '../administrar-usuarios-editar/administrar-usuarios-editar.page';
 
 
 @Component({
@@ -19,6 +22,8 @@ export class AdministrarUsuariosPage  {
     public mostrarCosechasService:MostrarUsuariosService,
     private router:Router,
     private alertController:AlertController,
+    private popCtrl: PopoverController,
+    private modalCtrl: ModalController
   ) {
 
   }
@@ -51,6 +56,19 @@ export class AdministrarUsuariosPage  {
 
   private usuariodelete={
     idUsuario:'6'   
+  }
+
+
+   async mostrarPopInfo() {
+    const popover = await this.popCtrl.create({
+      component: PopUsuariosComponent,
+      mode: 'md',
+      backdropDismiss: true,
+      translucent: true
+    });
+    return await popover.present();
+
+
   }
 
   mostrarUsuarios(){
@@ -101,6 +119,72 @@ export class AdministrarUsuariosPage  {
       .catch(error => {
         this.showAlert('Error', 'Ha ocurrido un error ' + error);
       })
+  }
+
+  buscar( event ){
+    //this.textoBuscar = evento.detail.value;
+    console.log('Se esta buscando en el filtro:');
+    console.log(event.detail.value);
+  }
+
+  async mostrarPop( evento ) {
+    const popover = await this.popCtrl.create({
+      component: PopInsecticidasComponent,
+      event: evento,
+      mode: 'ios',
+      backdropDismiss: true,
+      translucent: true
+    });
+    await popover.present();
+
+    const {data} = await popover.onDidDismiss(); //Para recibir los datos cuando se cierre el pop
+    // const {data} = await popover.onWillDismiss();  Para que se dispare rápido sin esperar que e cierre el pop
+
+    for (var clave in data){
+      // Controlando que json realmente tenga esa propiedad
+      if (data.hasOwnProperty(clave)) {
+        // Mostrando en pantalla la clave junto a su valor
+        console.log("La clave es " + clave+ " y el valor es " + data[clave]);
+
+        if( data[clave] ==  "Editar"){
+          this.editarUsuario();
+        }else if( data [clave] == "Borrar"){
+          this.borrarUsuario();
+        }
+
+      }
+
+    }
+
+    console.log('Padre:', data);
+
+  }
+
+
+  async editarUsuario(){
+    const modal = await this.modalCtrl.create({
+      component: AdministrarUsuariosEditarPage,
+      componentProps:{
+        nombre: 'nombre',
+        apellidos: 'apellidos',
+        usuario: 'usuario',
+        correo: 'correo',
+        contraseña:'contraseña',
+        cargo:'cargo',
+        empresa: 'empresa'
+      }
+    });
+
+    await modal.present();
+
+
+    const {data} = await modal.onDidDismiss();
+
+    console.log("Retorno del modal", data);
+  }
+
+  borrarUsuario(){
+    console.log("Se ha borrado un usuario");
   }
 
   updateCostos() {
