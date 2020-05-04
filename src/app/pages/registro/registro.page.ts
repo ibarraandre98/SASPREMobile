@@ -20,6 +20,7 @@ export class RegistroPage implements OnInit {
   alertas:Alerts;
   confirmarContrasena:string;
   regexp:RegExp;
+
   registerForm = this.formBuilder.group({
     correo:['',[
       Validators.required,
@@ -165,6 +166,7 @@ export class RegistroPage implements OnInit {
         serchfind = this.regexp.test(search);
         return serchfind
     }
+
 
   onSubmitCorreo(){
     this.user.correo = this.registerForm.value.correo;
