@@ -1,33 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Input } from "@angular/core";
+import { ModalController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-insecticidas-nuevo',
-  templateUrl: './insecticidas-nuevo.page.html',
-  styleUrls: ['./insecticidas-nuevo.page.scss'],
+  selector: "app-insecticidas-nuevo",
+  templateUrl: "./insecticidas-nuevo.page.html",
+  styleUrls: ["./insecticidas-nuevo.page.scss"],
 })
 export class InsecticidasNuevoPage implements OnInit {
+  constructor(private modalCtrl: ModalController) {}
 
-  constructor(private modalCtrl:ModalController) { }
+  /*Para enviar datos del padre al hijo (modal) */
+  @Input() nombre;
+  @Input() precio;
+  @Input() descripcion;
 
-      /*Para enviar datos del padre al hijo (modal) */
-      @Input() nombre;
-      @Input() precio;
-      @Input() descripcion;
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  salirSinArgumentos(){
+  salirSinArgumentos() {
     this.modalCtrl.dismiss();
   }
 
-  salirConArgumentos(){
+  salirConArgumentos() {
     this.modalCtrl.dismiss({
-      nombre:'nombre desde hijo',
-      precio:'precio desde hijo',
-      descripcion:'descripcion desde hijo'
+      nombre: "nombre desde hijo",
+      precio: "precio desde hijo",
+      descripcion: "descripcion desde hijo",
     });
   }
-
 }

@@ -1,0 +1,66 @@
+<ion-content>
+  <div class="background">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-buttons class="boton" (click)="salirSinArgumentos()">
+            <ion-back-button defaultHref="/"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="4">
+          <ion-label>
+            <p class="titulo_principal">Editar actividad</p>
+          </ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
+            <ion-button>Agregar</ion-button>
+          </ion-buttons>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div class="plato">
+    <ion-label>
+      <p class="titulo_">Edite la siguiente información para continuar</p>
+    </ion-label>
+
+    <ion-label>
+      <p class="titulo">Nombre de la actividad</p>
+    </ion-label>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre de de la actividad"></ion-input>
+
+    <ion-label>
+      <p class="titulo">Descripcion</p>
+    </ion-label>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese descripción de la actividad"></ion-input>
+
+    <ion-label>
+      <p class="titulo">Fecha de inicio</p>
+    </ion-label>
+    <ion-datetime value="1990-02-19" placeholder="Seleccione la fecha de inicio de la actividad "></ion-datetime>
+
+    <ion-label>
+      <p class="titulo">Fecha de fin</p>
+    </ion-label>
+    <ion-datetime value="1990-02-19" placeholder="Seleccione la fecha de fin de la actividad "></ion-datetime>
+
+
+  </div>
+
+
+  <!-- 
+  <ion-button color="primary" expand="full">
+    Salir sin argumentos
+  </ion-button>
+
+
+  <ion-button color="secondary" expand="full">
+    Salir con argumentos
+  </ion-button>
+ -->
+
+</ion-content>

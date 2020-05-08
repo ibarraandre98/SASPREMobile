@@ -7,12 +7,21 @@ import { PopInfoHistorialComponent } from './pop-info-historial/pop-info-histori
 import { PopCosechasComponent } from './pop-cosechas/pop-cosechas.component';
 import { PopInfoCosechasComponent } from './pop-info-cosechas/pop-info-cosechas.component';
 import { PopUsuariosComponent } from './pop-usuarios/pop-usuarios.component';
+import { PopAlarmasComponent } from './pop-alarmas/pop-alarmas.component';
+import { PopInfoAlarmasComponent } from './pop-info-alarmas/pop-info-alarmas.component';
+import { PopCalendarioActividadesComponent } from './pop-calendario-actividades/pop-calendario-actividades.component';
+import { PopInfoCalendarioActividadesComponent } from './pop-info-calendario-actividades/pop-info-calendario-actividades.component';
+import { PopCostosComponent } from './pop-costos/pop-costos.component';
+import { PopInfoCostosComponent } from './pop-info-costos/pop-info-costos.component';
+
 
 
 
 @NgModule({
-  declarations: [PopInsecticidasComponent, PopInfoInsecticidasComponent,PopInfoHistorialComponent,PopCosechasComponent,PopInfoCosechasComponent,PopUsuariosComponent],
-  exports:[PopInsecticidasComponent, PopInfoInsecticidasComponent,PopInfoHistorialComponent,PopCosechasComponent,PopInfoCosechasComponent,PopUsuariosComponent],
+  declarations: [PopInsecticidasComponent, PopInfoInsecticidasComponent,PopInfoHistorialComponent,PopCosechasComponent,PopInfoCosechasComponent,PopUsuariosComponent,
+    PopAlarmasComponent,PopInfoAlarmasComponent, PopCalendarioActividadesComponent, PopInfoCalendarioActividadesComponent, PopCostosComponent, PopInfoCostosComponent],
+  exports:[PopInsecticidasComponent, PopInfoInsecticidasComponent,PopInfoHistorialComponent,PopCosechasComponent,PopInfoCosechasComponent,PopUsuariosComponent,
+    PopAlarmasComponent, PopInfoAlarmasComponent, PopCalendarioActividadesComponent, PopInfoCalendarioActividadesComponent, PopCostosComponent, PopInfoCostosComponent],
   imports: [
     CommonModule,
     IonicModule

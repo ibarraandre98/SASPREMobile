@@ -1,9 +1,13 @@
 import { CostosService } from '../../services/costos.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController, ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Alerts } from './../../models/alerts';
 import { ToastController } from '@ionic/angular';
+import { PopCostosComponent } from 'src/app/components/pop-costos/pop-costos.component';
+import { PopInfoCostosComponent } from 'src/app/components/pop-info-costos/pop-info-costos.component';
+import { CostosEditarPage } from '../costos-editar/costos-editar.page';
+import { CostosAgregarPage } from '../costos-agregar/costos-agregar.page';
 
 @Component({
   selector: 'app-costos',
@@ -19,7 +23,9 @@ export class CostosPage implements OnInit {
     public costosService: CostosService,
     private router: Router,
     private alertController: AlertController,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private popCtrl: PopoverController,
+    private modalCtrl: ModalController
 
   ) {
     this.alertas = new Alerts(toastController, alertController);
@@ -145,5 +151,92 @@ export class CostosPage implements OnInit {
     });
     await alert.present();
 
+  }
+
+  async mostrarPop( evento ) {
+    const popover = await this.popCtrl.create({
+      component: PopCostosComponent,
+      event: evento,
+      mode: 'ios',
+      backdropDismiss: true,
+      translucent: true
+    });
+    await popover.present();
+
+    const {data} = await popover.onDidDismiss(); //Para recibir los datos cuando se cierre el pop
+    // const {data} = await popover.onWillDismiss();  Para que se dispare rápido sin esperar que e cierre el pop
+
+    for (var clave in data){
+      // Controlando que json realmente tenga esa propiedad
+      if (data.hasOwnProperty(clave)) {
+        // Mostrando en pantalla la clave junto a su valor
+        console.log("La clave es " + clave+ " y el valor es " + data[clave]);
+
+        if( data[clave] ==  "Editar"){
+          this.editarCosto();
+        }else if( data [clave] == "Borrar"){
+          this.borrarCosto();
+        }
+
+      }
+
+    }
+
+    console.log('Padre:', data);
+
+
+  }
+
+  borrarCosto(){
+    console.log("Se borro costo");
+  }
+
+  async nuevoCosto(){
+      const modal = await this.modalCtrl.create({
+        component: CostosAgregarPage,
+        componentProps:{
+          semilla: 'maiz',
+          descripcion: 'descripcion',
+        }
+      });
+
+      await modal.present();
+
+      const {data} = await modal.onDidDismiss();
+
+      console.log("Retorno del modal", data);
+
+  }
+
+  async editarCosto(){
+
+    const modal = await this.modalCtrl.create({
+      component: CostosEditarPage,
+      componentProps:{
+        semilla: 'maiz',
+        descripcion: 'descripcion',
+      }
+    });
+
+    await modal.present();
+
+
+    const {data} = await modal.onDidDismiss();
+
+    console.log("Retorno del modal", data);
+  }
+
+  clickFab(){
+    this.nuevoCosto();
+  }
+
+  async mostrarPopInfo() {
+    const popover = await this.popCtrl.create({
+      component: PopInfoCostosComponent,
+      mode: "md",
+      backdropDismiss: true,
+      translucent: true,
+    });
+    return await popover.present();
   }
 }
