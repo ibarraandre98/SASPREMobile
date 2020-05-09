@@ -34,6 +34,7 @@ export class MenuPage implements OnInit {
     this.obtenerDatosClima();
   }
 
+
   kelvin_celsius(entrada) {
     var temp_entrada=Math.round(parseFloat(entrada)-273.15);
     return temp_entrada;

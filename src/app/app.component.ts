@@ -19,7 +19,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
-    this.menuActivo = true;
+    this.menuActivo = false;
   }
   DatosAtmosfericos(){
     return this.WheaterService.getWeather( );

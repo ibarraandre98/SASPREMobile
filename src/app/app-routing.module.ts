@@ -126,6 +126,11 @@ const routes: Routes = [
         (m) => m.HistorialplagasPageModule
       ),
   },
+  {
+    path: 'info-registro',
+    loadChildren: () => import('./pages/info-registro/info-registro.module').then( m => m.InfoRegistroPageModule)
+  }
+
 ];
 
 @NgModule({

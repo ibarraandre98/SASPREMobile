@@ -29,8 +29,9 @@ export class HomePage  {
     ]],
   });
 
+  
   constructor(
-    public userService:UserService,
+    private userService:UserService,
     private router:Router,
     private appComponent:AppComponent,
     private alertController:AlertController,
@@ -51,13 +52,14 @@ export class HomePage  {
   }
 
   public errorMessages = {
-    usuario:[ 
-      {type:'required',message:'El usuario es requerido'}
-    ],
-    password:[
-      {type:'required',message:'La contraseña es requerida'}
-    ]
-    
+    usuario:[{
+        type:'required',
+        message:'El usuario es requerido'
+      }],
+    password:[{
+      type:'required',
+      message:'La contraseña es requerida'
+    }],
   }
  
   login(){
@@ -71,6 +73,7 @@ export class HomePage  {
       this.alertas.toast('Campo vacío','Ingrese su contraseña');
       return;
     }
+    console.log(this.user);
     this.userService.login(this.user)
     .then(response => {
 
@@ -92,8 +95,15 @@ export class HomePage  {
           environment.nombreUsuario = datosUsuario.nickname;
           environment.correo = datosUsuario.correo;
           this.limpiarUsuario();
-          this.appComponent.menuActivo = true;
-          this.router.navigateByUrl('/menu');
+          if(environment.idCargo == null 
+            || environment.idEmpresa == null 
+            || environment.nombre == null 
+            || environment.apellidos == null){
+            this.router.navigateByUrl('/info-registro');
+          }else{
+            this.appComponent.menuActivo = true;
+            this.router.navigateByUrl('/menu');
+          }
         }
       }
     ).catch(error =>{
@@ -106,7 +116,14 @@ export class HomePage  {
     this.router.navigateByUrl('/registro');
   }
   limpiarUsuario(){
-    this.user.usuario='';
+    this.loginForm.reset({
+      'usuario':'',
+      'password':'',
+    }
+    );
+    this.loginForm.value.usuario = '';
+    this.loginForm.value.password = '';
+    this.user.usuario = '';
     this.user.password='';
     this.user.correo='';
   }
