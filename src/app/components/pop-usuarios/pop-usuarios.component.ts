@@ -1,3 +1,4 @@
+import { NavParams } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopUsuariosComponent implements OnInit {
 
-  constructor() { }
+  usuario:any;
 
-  ngOnInit() {}
+  constructor(
+    private navParams:NavParams,
+  ) { }
+
+  ngOnInit() {
+    this.usuario = this.navParams.get('usuario');
+  }
 
 }

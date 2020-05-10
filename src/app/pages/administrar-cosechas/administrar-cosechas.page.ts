@@ -16,16 +16,20 @@ import { PopInfoCosechasComponent } from 'src/app/components/pop-info-cosechas/p
   providers: [MostrarCosechasService],
 })
 export class AdministrarCosechasPage {
+
+  arrayCosechas:any;
+
   constructor(
     public mostrarCosechasService: MostrarCosechasService,
     private router: Router,
     private alertController: AlertController,
     private popCtrl: PopoverController
-  ) {}
-
+  ) {
+    this.mostrarCosechas();
+  }
 
   ngOnInit() {
-    this.mostrarCosechas();
+
   }
 
   mostrarCosechas() {
@@ -37,12 +41,12 @@ export class AdministrarCosechasPage {
 
         let data = JSON.parse(response.data);
         console.log(data);
-        let datosUsuario = data.data;
-        if (data.result == "failed") {
+        let datosCosecha = data.data;
+        if (data.resultado == "failed") {
           console.log("Cosechas no mostradas");
           this.showAlert("Error", "Cosechas no mostradas");
-        } else if (data.result == "success") {
-          console.log("Cosechas mostradas");
+        } else if (data.resultado == "success") {
+          this.arrayCosechas = datosCosecha;
         }
       })
       .catch((error) => {
@@ -112,9 +116,12 @@ export class AdministrarCosechasPage {
   }
 
 
-  async mostrarPopInfo() {
+  async mostrarPopInfo(cosecha:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoCosechasComponent,
+      componentProps:{
+        cosecha,
+      },
       mode: 'md',
       backdropDismiss: true,
       translucent: true

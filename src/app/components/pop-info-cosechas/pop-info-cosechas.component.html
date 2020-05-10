@@ -1,32 +1,32 @@
 <ion-content>
-  <div id="contaier">
-    <div class="plato">
-      <ion-label>
-        <h1 class="titulo_principal">Cosecha</h1>
-        <h2 class="subtitulo">Maíz</h2>
-      </ion-label>
+    <div id="contaier">
+        <div class="plato">
+            <ion-label>
+                <h1 class="titulo_principal">Cosecha</h1>
+                <h2 class="subtitulo">{{cosecha.nombreSemilla}}</h2>
+            </ion-label>
+        </div>
+
+        <div class="info">
+            <div class="imagen">
+                <ion-avatar class="borde">
+                    <img src="/resources/maiz.jpg">
+                </ion-avatar>
+            </div>
+
+            <ion-label>
+                <p class="titulo">Cantidad</p>
+                <p class="descripcion">{{cosecha.cantidad}}</p>
+
+                <p class="titulo">Usuario</p>
+                <p class="descripcion">{{cosecha.nickname}}</p>
+
+                <p class="titulo">Fecha de cultivo</p>
+                <p class="descripcion">{{cosecha.fechaPlantado}}</p>
+
+                <p class="titulo">Fecha de cosecha</p>
+                <p style="border-bottom: 50px;" class="descripcion">{{cosecha.fechaCosechado}}</p>
+            </ion-label>
+        </div>
     </div>
-
-    <div class="info">
-      <div class="imagen">
-        <ion-avatar class="borde">
-          <img src="/resources/maiz.jpg">
-        </ion-avatar>
-      </div>
-
-      <ion-label>
-        <p class="titulo">Cantidad</p>
-        <p class="descripcion">50</p>
-
-        <p class="titulo">Usuario</p>
-        <p class="descripcion">André Ibarra Pérez</p>
-
-        <p class="titulo">Fecha de cultivo</p>
-        <p class="descripcion">24 de abril de 2020</p>
-
-        <p class="titulo">Fecha de cosecha</p>
-        <p style="border-bottom: 50px;" class="descripcion">24 de diciembre de 2020</p>
-      </ion-label>
-    </div>
-  </div>
 </ion-content>

@@ -17,14 +17,16 @@ import { PopInfoInsecticidasComponent } from 'src/app/components/pop-info-insect
 })
 export class InsecticidasPage implements OnInit {
 
-
+  arrayInsecticidas:any;
 
   constructor(
     public insecticidasService: InsecticidasService,
     private router: Router,
     private alertController:AlertController,
     private modalCtrl:ModalController,
-    private popCtrl:PopoverController) { }
+    private popCtrl:PopoverController) {
+      this.mostrarInsecticidas();
+     }
 
   private datos = {
     idInsecticidas: '3',
@@ -107,9 +109,12 @@ export class InsecticidasPage implements OnInit {
     console.log("Retorno del modal", data);
   }
 
-  async mostrarPopInfo() {
+  async mostrarPopInfo(insecticida:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoInsecticidasComponent,
+      componentProps:{
+        insecticida,
+      },
       mode: 'md',
       backdropDismiss: true,
       translucent: true
@@ -206,17 +211,15 @@ export class InsecticidasPage implements OnInit {
     console.log('uno');
     this.insecticidasService.selectInsecticidas()
       .then(response => {
-        console.log('dos');
-        console.log('Response recived');
-        console.log('tres');
         console.log(response);
 
         let data = JSON.parse(response.data);
-        if(data.result == 'failed'){
+        if(data.resultado == 'failed'){
           console.log('insecticidas no mostrados');
           this.showAlert('Error', 'insecticidas no mostrados');
-        }else if(data.result=='success'){
-          console.log('insecticidas mostrados');
+        }else if(data.resultado =='success'){
+          let datosInsecticidas = data.data;
+          this.arrayInsecticidas = datosInsecticidas;
         }
       }
       ).catch(error => {

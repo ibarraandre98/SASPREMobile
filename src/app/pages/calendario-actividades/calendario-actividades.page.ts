@@ -16,7 +16,9 @@ import { CalendarioActividadesEditarPage } from '../calendario-actividades-edita
   providers: [CalendarioActividadesService],
 })
 export class CalendarioActividadesPage implements OnInit {
+  
   alertas: Alerts;
+  arrayCalendario:any;
 
   constructor(
     public calendarioActividadesService: CalendarioActividadesService,
@@ -27,6 +29,7 @@ export class CalendarioActividadesPage implements OnInit {
     private modalCtrl:ModalController,
   ) {
     this.alertas = new Alerts(toastController, alertController);
+    this.mostrarCalendarioActividades();
   }
 
   mostrarCalendarioActividades() {
@@ -34,17 +37,14 @@ export class CalendarioActividadesPage implements OnInit {
     this.calendarioActividadesService
       .mostrarCalendarioActividades()
       .then((response) => {
-        console.log("dos");
-        console.log("Response recived");
-        console.log("tres");
         console.log(response);
-
         let data = JSON.parse(response.data);
-        if (data.result == "failed") {
+        if (data.resultado == "failed") {
           console.log("Calendario Actividades no mostradas");
           this.showAlert("Error", "Calendario Actividades no mostradas");
-        } else if (data.result == "success") {
-          console.log("Calendario Actividades mostradas");
+        } else if (data.resultado == "success") {
+          let datosCalendario = data.data;
+          this.arrayCalendario = datosCalendario;
         }
       })
       .catch((error) => {
@@ -245,9 +245,12 @@ export class CalendarioActividadesPage implements OnInit {
     this.nuevoCalendarioActividades();
   }
 
-  async mostrarPopInfo() {
+  async mostrarPopInfo(actividad:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoCalendarioActividadesComponent,
+      componentProps:{
+        actividad,
+      },
       mode: "md",
       backdropDismiss: true,
       translucent: true,

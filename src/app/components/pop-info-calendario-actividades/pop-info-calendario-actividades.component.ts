@@ -1,4 +1,6 @@
+import { NavParams } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-pop-info-calendario-actividades',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopInfoCalendarioActividadesComponent implements OnInit {
 
-  constructor() { }
+  actividad:any;
+
+  constructor(
+    private navParams:NavParams,
+  ) {
+    this.actividad = this.navParams.get('actividad');
+   }
 
   ngOnInit() {}
 

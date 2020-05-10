@@ -59,8 +59,18 @@ export class MenuPage implements OnInit {
      }
      if(this.descripcion=='broken clouds' || this.descripcion == 'overcast clouds')
       this.logoIcono.src = "../../assets/icon/vectores/nubladoBlanco.png";
-     if(this.descripcion == 'scattered clouds')
+     if(this.descripcion == 'scattered clouds' || this.descripcion=='few clouds')
       this.logoIcono.src = "../../assets/icon/vectores/parcialmenteNubladoBlanco.png";
+     if(this.descripcion=='clear sky')
+      this.logoIcono.src = "../../assets/icon/vectores/soleadoBlanco.png";
+     if(this.descripcion=='light rain' || this.descripcion=='moderate rain')
+      this.logoIcono.src = "../../assets/icon/vectores/lluviosoBlanco.png";
+     if(this.descripcion=='shower rain' || this.descripcion=='rain')
+      this.logoIcono.src = "../../assets/icon/vectores/lloviznaBlanca.png";
+     if(this.descripcion=='thunderstorm')
+      this.logoIcono.src = "../../assets/icon/vectores/tormentaBlanco.png";
+     if(this.descripcion=='mist')
+      this.logoIcono.src = "../../assets/icon/vectores/soleadoVientoBlanco.png";
    },
    err => console.log(err));
    }

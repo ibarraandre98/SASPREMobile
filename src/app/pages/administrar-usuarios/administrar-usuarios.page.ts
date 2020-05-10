@@ -18,6 +18,8 @@ import { AdministrarUsuariosEditarPage } from '../administrar-usuarios-editar/ad
 })
 export class AdministrarUsuariosPage  {
 
+  arrayUsuarios:any;
+
   constructor(
     public mostrarCosechasService:MostrarUsuariosService,
     private router:Router,
@@ -25,11 +27,11 @@ export class AdministrarUsuariosPage  {
     private popCtrl: PopoverController,
     private modalCtrl: ModalController
   ) {
-
+    this.mostrarUsuarios();
   }
   ngOnInit()
    {
-    this.mostrarUsuarios();
+
   }
 
   private usuario={
@@ -59,9 +61,12 @@ export class AdministrarUsuariosPage  {
   }
 
 
-   async mostrarPopInfo() {
+   async mostrarPopInfo(usuario:any) {
     const popover = await this.popCtrl.create({
       component: PopUsuariosComponent,
+      componentProps:{
+        usuario,
+      },
       mode: 'md',
       backdropDismiss: true,
       translucent: true
@@ -81,11 +86,11 @@ export class AdministrarUsuariosPage  {
         let data = JSON.parse(response.data)
         console.log(data);
         let datosUsuario = data.data;
-        if(data.result == 'failed'){
+        if(data.resultado == 'failed'){
           console.log('Cosechas no mostradas');
           this.showAlert('Error','Cosechas no mostradas');
-        }else if(data.result=='success'){
-          console.log('Cosechas mostradas');
+        }else if(data.resultado =='success'){
+          this.arrayUsuarios = datosUsuario;
         }
       }
     ).catch(error =>{

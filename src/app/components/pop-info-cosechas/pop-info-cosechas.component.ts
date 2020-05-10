@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavParams} from '@ionic/angular';
 
 @Component({
   selector: 'app-pop-info-cosechas',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopInfoCosechasComponent implements OnInit {
 
-  constructor() { }
+  cosecha:any;
 
-  ngOnInit() {}
+  constructor(
+    private navParams:NavParams,
+  ) { }
+    
+  ngOnInit() {
+    this.cosecha = this.navParams.get('cosecha');
+  }
 
 }

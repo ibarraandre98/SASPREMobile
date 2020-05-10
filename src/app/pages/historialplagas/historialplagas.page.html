@@ -1,45 +1,41 @@
 <ion-header no-border>
-  <ion-toolbar class="color-header">
-    <ion-buttons slot="start">
-      <ion-menu-button menu="primerMenu"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Historial de plagas</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="color-header">
+        <ion-buttons slot="start">
+            <ion-menu-button menu="primerMenu"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Historial de plagas</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-toolbar>
-    <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
+    </ion-toolbar>
 
-  <ion-list>
-    <ion-item >
-      <ion-avatar slot="start" (click)="mostrarPopHistorial()">
-        <img src="/resources/maiz.jpg">
-      </ion-avatar>
-      <ion-grid (click)="mostrarPopHistorial()">
-        <ion-row>
-          <ion-col>
-            <div>
-              <ion-label>
-                <p class="label1">Maiz</p>
-                <p class="label2">Plaga: Gusano muy quemador...</p>
-              </ion-label>
-            </div>
-          </ion-col>
-          <ion-col>
-            <div>
-              <ion-label>
-                <p class="label3">24/04/20</p>
-              </ion-label>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!--
-        
-      -->
-      
-    </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item *ngFor="let item of arrayHistorial">
+            <ion-avatar slot="start" (click)="mostrarPopHistorial(item)">
+                <img src="/resources/maiz.jpg">
+            </ion-avatar>
+            <ion-grid (click)="mostrarPopHistorial(item)">
+                <ion-row>
+                    <ion-col>
+                        <div>
+                            <ion-label>
+                                <p class="label1">{{item.nombreSemilla}}</p>
+                                <p class="label2">Plaga: {{item.nombrePlaga}}</p>
+                            </ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div>
+                            <ion-label>
+                                <p class="label3">{{item.fechaprediccion}}</p>
+                            </ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -14,11 +14,15 @@ import { PopInfoHistorialComponent } from 'src/app/components/pop-info-historial
 })
 export class HistorialplagasPage implements OnInit {
 
+  arrayHistorial:any;
+
   constructor( 
     public historialplagasServices:HistorialplagasService,
     private router: Router,
     private alertController:AlertController,
-    private popCtrl:PopoverController) { }
+    private popCtrl:PopoverController) {
+      this.mostrarHistorialplagas();
+     }
     
     private datos = {
       idHistorialCultivo: '3',
@@ -30,9 +34,12 @@ export class HistorialplagasPage implements OnInit {
 $idPlagas = $_POST['idPlagas'];
 $fechaprediccion = $_POST['fechaprediccion']; */
 
-async mostrarPopHistorial(){
+async mostrarPopHistorial(plaga:any){
   const popover = await this.popCtrl.create({
     component: PopInfoHistorialComponent,
+    componentProps:{
+      plaga,
+    },
     mode: 'md',
     backdropDismiss: true,
     translucent: true
@@ -48,8 +55,6 @@ buscar( event ){
   console.log('Se esta buscando en el filtro:');
   console.log(event.detail.value);
 }
-
-
 
 insertInsecticidas() {
   this.historialplagasServices.insertHistorialplagas(this.datos)
@@ -124,17 +129,15 @@ deleteInsecticidas() {
     console.log('uno');
     this.historialplagasServices.historialplagasSelect()
       .then(response => {
-        console.log('dos');
-        console.log('Response recived');
-        console.log('tres');
         console.log(response);
 
         let data = JSON.parse(response.data);
-        if(data.result == 'failed'){
+        if(data.resultado == 'failed'){
           console.log('plagas no mostradas');
           this.showAlert('Error', 'plagas no mostradas');
-        }else if(data.result=='success'){
-          console.log('plagas mostradas');
+        }else if(data.resultado =='success'){
+          let datosHistorial = data.data;
+          this.arrayHistorial = datosHistorial;
         }
       }
       ).catch(error => {
@@ -144,7 +147,7 @@ deleteInsecticidas() {
  
 
   ngOnInit() {
-    this.mostrarHistorialplagas();
+    
   }
 
   async showAlert(title: string, content: string) {

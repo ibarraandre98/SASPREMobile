@@ -1,29 +1,29 @@
 <ion-content>
-  <div id="contaier">
-    <div class="plato">
-      <ion-label>
-        <h1 class="titulo_principal">Usuario</h1>
-        <h2 class="subtitulo">Leizo</h2>
-      </ion-label>
+    <div id="contaier">
+        <div class="plato">
+            <ion-label>
+                <h1 class="titulo_principal">Usuario</h1>
+                <h2 class="subtitulo">{{usuario.nickname}}</h2>
+            </ion-label>
+        </div>
+
+        <div class="info">
+            <div class="imagen">
+                <ion-avatar class="borde">
+                    <img src="/resources/user.jpg">
+                </ion-avatar>
+            </div>
+
+            <ion-label>
+                <p class="titulo">Nombre</p>
+                <p class="descripcion">{{usuario.nombre}} {{usuario.apellidos}}</p>
+
+                <p class="titulo">Correo</p>
+                <p class="descripcion">{{usuario.correo}}</p>
+
+                <p class="titulo">Cargo</p>
+                <p style="border-bottom: 50px;" class="descripcion">{{usuario.nombreCargo}}</p>
+            </ion-label>
+        </div>
     </div>
-
-    <div class="info">
-      <div class="imagen">
-        <ion-avatar class="borde">
-          <img src="/resources/user.jpg">
-        </ion-avatar>
-      </div>
-
-      <ion-label>
-        <p class="titulo">Nombre</p>
-        <p class="descripcion">Osiel Alejandro Treto Cedillo</p>
-
-        <p class="titulo">Correo</p>
-        <p class="descripcion">osiel194treto@gmail.com</p>
-
-        <p class="titulo">Cargo</p>
-        <p style="border-bottom: 50px;" class="descripcion">Usuario</p>
-      </ion-label>
-    </div>
-  </div>
 </ion-content>

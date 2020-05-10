@@ -18,6 +18,7 @@ import { CostosAgregarPage } from '../costos-agregar/costos-agregar.page';
 })
 export class CostosPage implements OnInit {
   alertas: Alerts;
+  arrayCostos:any;
 
   constructor(
     public costosService: CostosService,
@@ -29,24 +30,22 @@ export class CostosPage implements OnInit {
 
   ) {
     this.alertas = new Alerts(toastController, alertController);
-
+    this.mostrarCostos();
   }
 
   mostrarCostos() {
     console.log('uno');
     this.costosService.mostrarCostos()
       .then(response => {
-        console.log('dos');
-        console.log('Response recived');
-        console.log('tres');
         console.log(response);
 
         let data = JSON.parse(response.data);
-        if (data.result == 'failed') {
+        if (data.resultado == 'failed') {
           console.log('Costos no mostrados');
           this.showAlert('Error', 'Costos no mostrados');
-        } else if (data.result == 'success') {
-          console.log('Costos mostrados');
+        } else if (data.resultado == 'success') {
+          let datosCostos = data.data;
+          this.arrayCostos = datosCostos;
         }
       }
       ).catch(error => {
@@ -140,7 +139,6 @@ export class CostosPage implements OnInit {
   }
   
   ngOnInit() {
-    this.mostrarCostos();
   }
 
   async showAlert(title: string, content: string) {
@@ -230,13 +228,22 @@ export class CostosPage implements OnInit {
     this.nuevoCosto();
   }
 
-  async mostrarPopInfo() {
+  async mostrarPopInfo(costo:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoCostosComponent,
+      componentProps:{
+        costo,
+      },
       mode: "md",
       backdropDismiss: true,
       translucent: true,
     });
     return await popover.present();
+  }
+
+  buscar( event ){
+    //this.textoBuscar = evento.detail.value;
+    console.log('Se esta buscando en el filtro:');
+    console.log(event.detail.value);
   }
 }

@@ -1,22 +1,21 @@
 <ion-content>
-  <div id="contaier">
-    <div class="plato">
-      <ion-label>
-        <h1 class="titulo_principal">Insecticida</h1>
-        <h2 class="subtitulo">Carbofurán</h2>
-      </ion-label>
+    <div id="contaier">
+        <div class="plato">
+            <ion-label>
+                <h1 class="titulo_principal">Insecticida</h1>
+                <h2 class="subtitulo">{{insecticida.nombreInsecticida}}</h2>
+            </ion-label>
+        </div>
+
+        <div class="info">
+
+            <ion-label>
+                <p class="titulo">Precio</p>
+                <p class="descripcion">${{insecticida.precio}}</p>
+
+                <p class="titulo">Descripción</p>
+                <p style="border-bottom: 50px;" class="descripcion">{{insecticida.descripcion}}</p>
+            </ion-label>
+        </div>
     </div>
-
-    <div class="info">
-
-      <ion-label>
-        <p class="titulo">Precio</p>
-        <p class="descripcion">$757</p>
-
-        <p class="titulo">Descripción</p>
-        <p style="border-bottom: 50px;" class="descripcion">Tenemos que regar los cultivos
-          de la zona A a la B</p>
-      </ion-label>
-    </div>
-  </div>
 </ion-content>

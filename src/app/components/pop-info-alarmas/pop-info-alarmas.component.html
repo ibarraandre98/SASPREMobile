@@ -1,35 +1,35 @@
 <ion-content>
-  <div id="contaier">
-    <div class="plato">
-      <ion-label>
-        <h1 class="titulo_principal">Alarma</h1>
-        <h2 class="subtitulo">Alarma1</h2>
-      </ion-label>
+    <div id="contaier">
+        <div class="plato">
+            <ion-label>
+                <h1 class="titulo_principal">Alarma</h1>
+                <h2 class="subtitulo">{{alarma.nombreAlarma}}</h2>
+            </ion-label>
+        </div>
+
+        <div class="info">
+            <div class="imagen">
+                <ion-avatar class="borde">
+                    <img src="/resources/maiz.jpg">
+                </ion-avatar>
+            </div>
+
+            <ion-label>
+                <p class="titulo">Cultivo</p>
+                <p class="descripcion">{{alarma.nombreSemilla}}</p>
+
+                <p class="titulo">Descripción</p>
+                <p class="descripcion">{{alarma.descripcion}}</p>
+
+                <p class="titulo">Lapso de días</p>
+                <p class="descripcion">{{alarma.lapsoDias}}</p>
+
+                <p class="titulo">Temperatura minima</p>
+                <p class="descripcion">{{alarma.tempMinAlarma}}°</p>
+
+                <p class="titulo">Temperatura maxima</p>
+                <p style="border-bottom: 50px;" class="descripcion">{{alarma.tempMaxAlarma}}°</p>
+            </ion-label>
+        </div>
     </div>
-
-    <div class="info">
-      <div class="imagen">
-        <ion-avatar class="borde">
-          <img src="/resources/maiz.jpg">
-        </ion-avatar>
-      </div>
-
-      <ion-label>
-        <p class="titulo">Cultivo</p>
-        <p class="descripcion">Maíz</p>
-
-        <p class="titulo">Descripción</p>
-        <p class="descripcion">Lorem ipsum dolor sit amet velit</p>
-
-        <p class="titulo">Lapso de días</p>
-        <p class="descripcion">2</p>
-
-        <p class="titulo">Temperatura minima</p>
-        <p class="descripcion">15°</p>
-
-        <p class="titulo">Temperatura maxima</p>
-        <p style="border-bottom: 50px;" class="descripcion">25°</p>
-      </ion-label>
-    </div>
-  </div>
 </ion-content>

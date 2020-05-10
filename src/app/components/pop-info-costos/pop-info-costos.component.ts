@@ -1,3 +1,4 @@
+import { NavParams } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopInfoCostosComponent implements OnInit {
 
-  constructor() { }
+  costo:any;
+
+  constructor(
+    private navParams:NavParams,
+  ) {
+    this.costo = navParams.get('costo');
+   }
 
   ngOnInit() {}
 

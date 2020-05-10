@@ -17,6 +17,7 @@ import { AlarmasEditarPage } from '../alarmas-editar/alarmas-editar.page';
 })
 export class AlarmasPage implements OnInit {
   alertas: Alerts;
+  arrayAlarmas:any;
 
   constructor(
     public alarmasService: AlarmasService,
@@ -27,6 +28,7 @@ export class AlarmasPage implements OnInit {
     private modalCtrl:ModalController,
   ) {
     this.alertas = new Alerts(toastController, alertController);
+    this.mostrarAlarmas();
   }
 
   mostrarAlarmas() {
@@ -34,17 +36,14 @@ export class AlarmasPage implements OnInit {
     this.alarmasService
       .mostrarAlarmas()
       .then((response) => {
-        console.log("dos");
-        console.log("Response recived");
-        console.log("tres");
         console.log(response);
-
         let data = JSON.parse(response.data);
-        if (data.result == "failed") {
+        if (data.resultado == "failed") {
           console.log("Alarmas no mostradas");
           this.showAlert("Error", "Alarmas no mostradas");
-        } else if (data.result == "success") {
-          console.log("Alarmas mostradas");
+        } else if (data.resultado == "success") {
+          let datosAlarmas = data.data;
+          this.arrayAlarmas = datosAlarmas;
         }
       })
       .catch((error) => {
@@ -230,9 +229,12 @@ export class AlarmasPage implements OnInit {
     console.log("Retorno del modal", data);
   }
 
-  async mostrarPopInfo() {
+  async mostrarPopInfo(alarma:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoAlarmasComponent,
+      componentProps:{
+        alarma,
+      },
       mode: "md",
       backdropDismiss: true,
       translucent: true,
@@ -241,8 +243,6 @@ export class AlarmasPage implements OnInit {
   }
 
   ngOnInit() {
-
-    this.mostrarAlarmas();
   }
 
   async showAlert(title: string, content: string) {
