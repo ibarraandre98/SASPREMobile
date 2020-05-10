@@ -14,7 +14,7 @@
         </ion-col>
         <ion-col size="4">
           <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
-            <ion-button>Agregar</ion-button>
+            <ion-button>Agregarr</ion-button>
           </ion-buttons>
         </ion-col>
 
@@ -24,25 +24,47 @@
   </div>
 
   <div class="plato">
-    <ion-label>
-      <p class="titulo_">Ingrese la siguiente información para continuar</p>
-    </ion-label>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitInsecticida()">
+      
+      <ion-label>
+        <p class="titulo_">Ingrese la siguiente información para continuar</p>
+      </ion-label>
 
-    <ion-label>
-      <p class="titulo">Nombre del insecticida</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre del insecticida"></ion-input>
-
-    <ion-label>
-      <p class="titulo">Precio</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese el precio del insecticida"></ion-input>
-
-    <ion-label>
-      <p class="titulo">Descripción</p>
-    </ion-label>
-    <ion-input class="subtitulo" placeholder="Ingrese descripción del insecticida"></ion-input>
-
+      
+      <ion-label>
+        <p class="titulo">Nombre del insecticida</p>
+      </ion-label>
+      <ion-input formControlName="nombree" class="subtitulo" type="text" placeholder="Ingrese nombre del insecticida"></ion-input>
+      <div class="error" *ngFor="let error of errorMessages.nombree">
+        <ng-container *ngIf="nombree.hasError(error.type) && (nombree.dirty || nombree.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+       </div>
+     
+      
+      <ion-label>
+        <p class="titulo">Precio</p>
+      </ion-label>
+      <ion-input formControlName="precioo"  class="subtitulo" type="text" placeholder="Ingrese el precio del insecticida"></ion-input>
+      <div class="error" *ngFor="let error of errorMessages.precioo">
+        <ng-container *ngIf="precioo.hasError(error.type) && (precioo.dirty || precioo.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+       </div>
+    
+     
+      <ion-label>
+        <p class="titulo">Descripción</p>
+      </ion-label>
+      <ion-input formControlName="descripcionn" class="subtitulo" placeholder="Ingrese descripción del insecticida"></ion-input>
+      <div class="error" *ngFor="let error of errorMessages.descripcionn">
+        <ng-container *ngIf="descripcionn.hasError(error.type) && (descripcionn.dirty || descripcionn.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+       </div>
+       <ion-button  [disabled]="!registerForm.valid" type="submit" expand="block" shape="undefined" class="boton-login">Agregarr</ion-button>
+    </form>
+    
   </div>
 
 
