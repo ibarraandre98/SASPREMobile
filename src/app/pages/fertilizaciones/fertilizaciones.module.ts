@@ -9,14 +9,32 @@ import { FertilizacionesPageRoutingModule } from './fertilizaciones-routing.modu
 import { FertilizacionesPage } from './fertilizaciones.page';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../../components/components.module';
+import { PipesModule } from '../../pipes/pipes.module';
+import { FertilizacionesAgregarPage } from '../fertilizaciones-agregar/fertilizaciones-agregar.page';
+import { FertilizacionesEditarPage } from '../fertilizaciones-editar/fertilizaciones-editar.page';
+import { PopInfoFertilizacionesComponent } from '../../components/pop-info-fertilizaciones/pop-info-fertilizaciones.component';
+import { PopOpcionesFertilizacionesComponent } from '../../components/pop-opciones-fertilizaciones/pop-opciones-fertilizaciones.component';
+import { FertilizacionesAgregarPageModule } from '../fertilizaciones-agregar/fertilizaciones-agregar.module';
+import { FertilizacionesEditarPageModule } from '../fertilizaciones-editar/fertilizaciones-editar.module';
 
 @NgModule({
+  entryComponents:[
+    FertilizacionesAgregarPage,
+    FertilizacionesEditarPage,
+    PopInfoFertilizacionesComponent,
+    PopOpcionesFertilizacionesComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    FertilizacionesPageRoutingModule
+    FertilizacionesPageRoutingModule,
+    ComponentsModule,
+    FertilizacionesAgregarPageModule,
+    FertilizacionesEditarPageModule,
+    PipesModule
   ],
   declarations: [FertilizacionesPage]
 })

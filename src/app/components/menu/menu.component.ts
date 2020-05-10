@@ -33,36 +33,45 @@ export class MenuComponent implements OnInit {
 
   menu() {
     this.router.navigate(['/menu']);
+    this.closeMenu();
   }
   fertilizaciones() {
     this.router.navigate(['/fertilizaciones']);
+    this.closeMenu();
   }
 
   fertilizantes() {
     this.router.navigate(['/fertilizantes']);
+    this.closeMenu();
   }
 
   mapa() {
     this.router.navigate(['/mapa']);
+    this.closeMenu();
   }
 
   openAlarmas() {
     this.router.navigate(['/alarmas']);
+    this.closeMenu();
   }
 
   openCalendarioActividades() {
     this.router.navigate(['/calendario-actividades']);
+    this.closeMenu();
   }
 
   openCostos() {
     this.router.navigate(['/costos']);
+    this.closeMenu();
   }
 
   cosechas() {
     this.router.navigateByUrl('/administrar-cosechas');
+    this.closeMenu();
   }
   usuarios() {
     this.router.navigateByUrl('/administrar-usuarios');
+    this.closeMenu();
   }
 
   irLogin() {
@@ -87,8 +96,14 @@ export class MenuComponent implements OnInit {
 
   openInsecticidas(){
   this.router.navigate(['/insecticidas']);
+  this.closeMenu();
   }
   openHistorialplagas(){
   this.router.navigate(['/historialplagas']);
+  this.closeMenu();
+  }
+
+  closeMenu(){
+    this.menuController.close();
   }
 }

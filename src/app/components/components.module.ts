@@ -13,15 +13,49 @@ import { PopCalendarioActividadesComponent } from './pop-calendario-actividades/
 import { PopInfoCalendarioActividadesComponent } from './pop-info-calendario-actividades/pop-info-calendario-actividades.component';
 import { PopCostosComponent } from './pop-costos/pop-costos.component';
 import { PopInfoCostosComponent } from './pop-info-costos/pop-info-costos.component';
+import { PopInfoFertilizacionesComponent } from './pop-info-fertilizaciones/pop-info-fertilizaciones.component';
+import { PopInfoFertilizanteComponent } from './pop-info-fertilizante/pop-info-fertilizante.component';
+import { PopOpcionesFertilizacionesComponent } from './pop-opciones-fertilizaciones/pop-opciones-fertilizaciones.component';
+import { PopOpcionesFertilizanteComponent } from './pop-opciones-fertilizante/pop-opciones-fertilizante.component';
 
 
 
 
 @NgModule({
-  declarations: [PopInsecticidasComponent, PopInfoInsecticidasComponent,PopInfoHistorialComponent,PopCosechasComponent,PopInfoCosechasComponent,PopUsuariosComponent,
-    PopAlarmasComponent,PopInfoAlarmasComponent, PopCalendarioActividadesComponent, PopInfoCalendarioActividadesComponent, PopCostosComponent, PopInfoCostosComponent],
-  exports:[PopInsecticidasComponent, PopInfoInsecticidasComponent,PopInfoHistorialComponent,PopCosechasComponent,PopInfoCosechasComponent,PopUsuariosComponent,
-    PopAlarmasComponent, PopInfoAlarmasComponent, PopCalendarioActividadesComponent, PopInfoCalendarioActividadesComponent, PopCostosComponent, PopInfoCostosComponent],
+  declarations: [
+    PopInsecticidasComponent,
+    PopInfoInsecticidasComponent,
+    PopInfoHistorialComponent,
+    PopCosechasComponent,
+    PopInfoCosechasComponent,
+    PopUsuariosComponent,
+    PopAlarmasComponent,
+    PopInfoAlarmasComponent,
+    PopCalendarioActividadesComponent,
+    PopInfoCalendarioActividadesComponent,
+    PopCostosComponent,
+    PopInfoCostosComponent,
+    PopInfoFertilizacionesComponent,
+    PopInfoFertilizanteComponent,
+    PopOpcionesFertilizacionesComponent,
+    PopOpcionesFertilizanteComponent],
+  exports: [
+    PopInsecticidasComponent,
+    PopInfoInsecticidasComponent,
+    PopInfoHistorialComponent,
+    PopCosechasComponent,
+    PopInfoCosechasComponent,
+    PopUsuariosComponent,
+    PopAlarmasComponent,
+    PopInfoAlarmasComponent,
+    PopCalendarioActividadesComponent,
+    PopInfoCalendarioActividadesComponent,
+    PopCostosComponent,
+    PopInfoCostosComponent,
+    PopInfoFertilizacionesComponent,
+    PopInfoFertilizanteComponent,
+    PopOpcionesFertilizacionesComponent,
+    PopOpcionesFertilizanteComponent],
   imports: [
     CommonModule,
     IonicModule
