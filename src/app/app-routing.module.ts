@@ -129,8 +129,7 @@ const routes: Routes = [
   {
     path: 'info-registro',
     loadChildren: () => import('./pages/info-registro/info-registro.module').then( m => m.InfoRegistroPageModule)
-  }
-
+  },
 ];
 
 @NgModule({

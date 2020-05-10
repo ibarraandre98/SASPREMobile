@@ -68,6 +68,58 @@
     --ion-color-light-shade: #d7d8da;
     --ion-color-light-tint: #f5f6f9;
     /** **/
+
+
+
+    /** Color primario de SASPRE - Color Verde**/
+    --ion-color-saspre: #18A108;
+    --ion-color-saspre-rgb: 24,161,8;
+    --ion-color-saspre-contrast: #ffffff;
+    --ion-color-saspre-contrast-rgb: 255,255,255;
+    --ion-color-saspre-shade: #158e07;
+    --ion-color-saspre-tint: #2faa21;
+  
+    .ion-color-saspre {
+        --ion-color-base: var(--ion-color-saspre) !important;
+        --ion-color-base-rgb: var(--ion-color-saspre-rgb) !important;
+        --ion-color-contrast: var(--ion-color-saspre-contrast) !important;
+        --ion-color-contrast-rgb: var(--ion-color-saspre-contrast-rgb) !important;
+        --ion-color-shade: var(--ion-color-saspre-shade) !important;
+        --ion-color-tint: var(--ion-color-saspre-tint) !important;
+    }
+
+    /** Color secundario de SASPRE - Color blanco**/
+    --ion-color-blanco: #ffffff;
+    --ion-color-blanco-rgb: 255,255,255;
+    --ion-color-blanco-contrast: #000000;
+    --ion-color-blanco-contrast-rgb: 0,0,0;
+    --ion-color-blanco-shade: #e0e0e0;
+    --ion-color-blanco-tint: #ffffff;
+  
+    .ion-color-blanco {
+        --ion-color-base: var(--ion-color-blanco) !important;
+        --ion-color-base-rgb: var(--ion-color-blanco-rgb) !important;
+        --ion-color-contrast: var(--ion-color-blanco-contrast) !important;
+        --ion-color-contrast-rgb: var(--ion-color-blanco-contrast-rgb) !important;
+        --ion-color-shade: var(--ion-color-blanco-shade) !important;
+        --ion-color-tint: var(--ion-color-blanco-tint) !important;
+    }
+    /** Color terciario de SASPRE - Color negro**/
+    --ion-color-negro: #000000;
+    --ion-color-negro-rgb: 0,0,0;
+    --ion-color-negro-contrast: #ffffff;
+    --ion-color-negro-contrast-rgb: 255,255,255;
+    --ion-color-negro-shade: #000000;
+    --ion-color-negro-tint: #1a1a1a;
+
+    .ion-color-negro {
+        --ion-color-base: var(--ion-color-negro) !important;
+        --ion-color-base-rgb: var(--ion-color-negro-rgb) !important;
+        --ion-color-contrast: var(--ion-color-negro-contrast) !important;
+        --ion-color-contrast-rgb: var(--ion-color-negro-contrast-rgb) !important;
+        --ion-color-shade: var(--ion-color-negro-shade) !important;
+        --ion-color-tint: var(--ion-color-negro-tint) !important;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
