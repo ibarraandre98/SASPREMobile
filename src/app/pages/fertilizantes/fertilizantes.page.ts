@@ -113,12 +113,12 @@ export class FertilizantesPage implements OnInit {
     const {data} = await modal.onDidDismiss();
 
     console.log("Retorno del modal", data);
+
   }
 
   mostrarFertilizantes() {
     this.fertilizantesService.mostrarFertilizantes()
       .then(response => {
-        console.log('Response recived');
         console.log(response);
 
         let data = JSON.parse(response.data);
@@ -135,9 +135,8 @@ export class FertilizantesPage implements OnInit {
   }
 
   insertarFertilizantes() {
-    this.fertilizantesService.insertarFertilizantes()
+    this.fertilizantesService.insertarFertilizantes( null )
       .then(response => {
-        console.log('Response recived');
         console.log(response);
 
         let data = JSON.parse(response.data);

@@ -21,9 +21,10 @@ export class MostrarFertilizantesService {
     // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
   }
 
-  insertarFertilizantes(): Promise<any> {
+  insertarFertilizantes( fertilizantes:any): Promise<any> {
     // let headers = new HttpHeaders().set('Content-Type', 'applicaction/x-www-form-urllencoded');
-    return this.http.post(this.url + 'fertilizantes-insert.php', {}, {});
+
+    return this.http.post(this.url + 'fertilizantes-insert.php', fertilizantes, {});
 
     // return this.http.post(this.url + "alarmas.php", {}, { headers: headers });
   }

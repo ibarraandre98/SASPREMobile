@@ -34,7 +34,8 @@ import { FertilizacionesEditarPageModule } from '../fertilizaciones-editar/ferti
     ComponentsModule,
     FertilizacionesAgregarPageModule,
     FertilizacionesEditarPageModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule
   ],
   declarations: [FertilizacionesPage]
 })

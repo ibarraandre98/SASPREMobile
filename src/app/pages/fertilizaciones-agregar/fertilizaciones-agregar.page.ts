@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-fertilizaciones-agregar',
@@ -8,7 +10,9 @@ import { ModalController } from '@ionic/angular';
 })
 export class FertilizacionesAgregarPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(
+    private modalCtrl: ModalController
+    ) { }
 
   ngOnInit() {
   }
