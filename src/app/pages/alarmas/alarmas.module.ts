@@ -21,8 +21,6 @@ import { AlarmasPageRoutingModule } from './alarmas-routing.module';
     AlarmasEditarPage,
     PopAlarmasComponent,
     PopInfoAlarmasComponent
-    
-    
   ],
   imports: [
     CommonModule,

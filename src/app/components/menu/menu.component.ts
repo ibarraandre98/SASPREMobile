@@ -35,17 +35,17 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/menu']);
     this.closeMenu();
   }
-  fertilizaciones() {
+  openFertilizaciones() {
     this.router.navigate(['/fertilizaciones']);
     this.closeMenu();
   }
 
-  fertilizantes() {
+  openFertilizantes() {
     this.router.navigate(['/fertilizantes']);
     this.closeMenu();
   }
 
-  mapa() {
+  openMapa() {
     this.router.navigate(['/mapa']);
     this.closeMenu();
   }
@@ -65,12 +65,12 @@ export class MenuComponent implements OnInit {
     this.closeMenu();
   }
 
-  cosechas() {
-    this.router.navigateByUrl('/administrar-cosechas');
+  openCosechas() {
+    this.router.navigate(['/administrar-cosechas']);
     this.closeMenu();
   }
-  usuarios() {
-    this.router.navigateByUrl('/administrar-usuarios');
+  openUsuarios() {
+    this.router.navigate(['/administrar-usuarios']);
     this.closeMenu();
   }
 
@@ -79,7 +79,7 @@ export class MenuComponent implements OnInit {
     setTimeout(() => 
       {
         this.appComponent.menuActivo = false;
-        this.router.navigateByUrl('/home');
+        this.router.navigate(['/home']);
       },1000);
     this.limpiarEnvironment();
   }
@@ -101,6 +101,11 @@ export class MenuComponent implements OnInit {
   openHistorialplagas(){
   this.router.navigate(['/historialplagas']);
   this.closeMenu();
+  }
+
+  openCultivos(){
+    this.router.navigate(['/administrar-cultivos']);
+    this.closeMenu();
   }
 
   closeMenu(){
