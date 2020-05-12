@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { FertilizacionesPage } from './fertilizaciones.page';
 
 const routes: Routes = [

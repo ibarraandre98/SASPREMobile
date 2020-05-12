@@ -13,8 +13,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule} from '@angular/common/http';
 import { ComponentsModule } from './components/components.module';
 import { PipesModule } from './pipes/pipes.module';
-import { PopInfoInsecticidasComponent } from './components/pop-info-insecticidas/pop-info-insecticidas.component';
-import { PopInsecticidasComponent } from './components/pop-insecticidas/pop-insecticidas.component';
+
+ 
 
 
 @NgModule({

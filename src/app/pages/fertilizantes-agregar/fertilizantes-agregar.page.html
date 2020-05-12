@@ -13,8 +13,8 @@
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
-            <ion-button>Agregar</ion-button>
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitFertilizantes()" >
+            <ion-button [disabled]="formulario.invalid" type="submit">Agregar</ion-button>
           </ion-buttons>
         </ion-col>
 
@@ -28,34 +28,53 @@
       <p class="titulo_">Ingrese la siguiente información para continuar</p>
     </ion-label>
 
-    <ion-label>
-      <p class="titulo">Nombre del fertilizante</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre del fertilizante"></ion-input>
+    <form #formulario="ngForm" (ngSubmit)="onSubmitFertilizantes()">
 
-    <ion-label>
-      <p class="titulo">Dosis</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"></ion-input>
+      
+    <ion-list>
 
-    <ion-label>
-      <p class="titulo">Descripción</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"></ion-input>
+      <ion-item>
+        <ion-label position="floating">
+          Nombre del fertilizante
+        </ion-label>
+        <ion-input
+           [(ngModel)]="fertilizante.nombreFertilizante"
+           type="text"
+           name="nombreFertilizante"
+           required
+           >
+        </ion-input>
+      </ion-item>
 
+      <ion-item>
 
+        <ion-label position="floating">
+          Dosis
+        </ion-label>
+        <ion-input
+         type="text"
+          name="dosis"
+          required
+          [(ngModel)]="fertilizante.dosis"
+        ></ion-input>
+    
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">
+          Descripción
+        </ion-label>
+        <ion-input
+         type="text"
+          name="descripcionAplicacion"
+          required
+          [(ngModel)]="fertilizante.descripcionAplicacion"
+          ></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    </form>
   </div>
-
-
-  <!-- 
-  <ion-button color="primary" expand="full">
-    Salir sin argumentos
-  </ion-button>
-
-
-  <ion-button color="secondary" expand="full">
-    Salir con argumentos
-  </ion-button>
- -->
 
 </ion-content>

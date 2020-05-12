@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { MostrarFertilizacionesService } from '../../services/mostrar-fertilizaciones.service';
+
 
 @Component({
   selector: 'app-fertilizaciones-agregar',
@@ -8,7 +10,30 @@ import { ModalController } from '@ionic/angular';
 })
 export class FertilizacionesAgregarPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private serviceShared: MostrarFertilizacionesService) { }
+
+    
+  fertilizaciones = {
+    idCultivos: '',
+    idFertilizantes:'',
+    idUsuario:'SUPER',
+    fecha: Date
+  };
+
+  onSubmitFertilizantes(){
+    this.serviceShared.insertarFertilizaciones(this.fertilizaciones).then( Response => {
+      let data = JSON.parse(Response.data);
+      let datosFertilizaciones = data.result;
+      if( datosFertilizaciones == 'success'){
+        console.log("Se ha insertado con exito");
+      }else{
+        console.log("No se ha insertado con exito");
+      }
+    });
+    this.salirSinArgumentos();
+  }
 
   ngOnInit() {
   }
@@ -19,10 +44,6 @@ export class FertilizacionesAgregarPage implements OnInit {
 
   salirConArgumentos() {
     this.modalCtrl.dismiss({
-      nombre: "ac1",
-      descripcion: "dasdbnawbn",
-      fecha_inicio: "23 04 2020",
-      fecha_fin: "25 05 2020",
     });
   }
 

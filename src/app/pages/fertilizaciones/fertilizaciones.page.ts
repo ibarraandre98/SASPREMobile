@@ -6,6 +6,8 @@ import { PopInfoFertilizacionesComponent } from '../../components/pop-info-ferti
 import { PopOpcionesFertilizacionesComponent } from '../../components/pop-opciones-fertilizaciones/pop-opciones-fertilizaciones.component';
 import { FertilizacionesEditarPage } from '../fertilizaciones-editar/fertilizaciones-editar.page';
 import { FertilizacionesAgregarPage } from '../fertilizaciones-agregar/fertilizaciones-agregar.page';
+import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-fertilizaciones',
@@ -22,10 +24,26 @@ export class FertilizacionesPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private popCtrl: PopoverController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private fB: FormBuilder
   ) {
     this.mostrarFertilizaciones();
    }
+
+  insertarForm = this.fB.group({
+    idFertilizaciones:[''],
+    idCultivos:[''],
+    idFertilizantes:[''],
+    idUsuario:[''],
+    fecha:[''],
+  });
+
+
+  public submit(){
+    console.log(this.insertarForm.value);
+  }
+
+  
 
   buscar( event ){
     //this.textoBuscar = evento.detail.value;
@@ -142,11 +160,9 @@ export class FertilizacionesPage implements OnInit {
   }
 
   insertarFertilizaciones() {
-    this.fertilizacionesService.insertarFertilizaciones()
+    this.fertilizacionesService.insertarFertilizaciones( null )
       .then(response => {
-        console.log('dos');
-        console.log('Response recived');
-        console.log('tres');
+
         console.log(response);
 
         let data = JSON.parse(response.data);
@@ -165,9 +181,6 @@ export class FertilizacionesPage implements OnInit {
   editarFertilizaciones() {
     this.fertilizacionesService.editarFertilizaciones()
       .then(response => {
-        console.log('dos');
-        console.log('Response recived');
-        console.log('tres');
         console.log(response);
 
         let data = JSON.parse(response.data);
@@ -186,9 +199,7 @@ export class FertilizacionesPage implements OnInit {
   borrarFertilizaciones() {
     this.fertilizacionesService.borrarFertilizaciones()
       .then(response => {
-        console.log('dos');
-        console.log('Response recived');
-        console.log('tres');
+
         console.log(response);
 
         let data = JSON.parse(response.data);
