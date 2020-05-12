@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
+import { CalendarioActividadesService } from "src/app/services/calendario-actividades.service";
 
 @Component({
   selector: "app-calendario-actividades-agregar",
@@ -7,14 +8,32 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["./calendario-actividades-agregar.page.scss"],
 })
 export class CalendarioActividadesAgregarPage implements OnInit {
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController,
+    public calendarioActividadesService: CalendarioActividadesService,
+  ) { }
 
-  @Input() nombre;
-  @Input() descripcion;
-  @Input() fecha_inicio;
-  @Input() fecha_fin;
+  datos = {
+    idUsuario: '',
+    nombreActividad: '',
+    descripcion: '',
+    fechaInicio: '',
+    fechaFin: '',
+  };
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  onSubmitCalendarioActividades() {
+    this.calendarioActividadesService.insertCalendarioActividades(this.datos).then(Response => {
+      let data = JSON.parse(Response.data);
+      let datosCalendarioActividades = data.result;
+      if (datosCalendarioActividades == 'success') {
+        console.log("Se ha insertado con exito");
+      } else {
+        console.log("No se ha insertado con exito");
+      }
+    });
+    this.salirSinArgumentos();
+  }
 
   salirSinArgumentos() {
     this.modalCtrl.dismiss();
@@ -22,10 +41,10 @@ export class CalendarioActividadesAgregarPage implements OnInit {
 
   salirConArgumentos() {
     this.modalCtrl.dismiss({
-      nombre: "nombre desde hijo",
-      descripcion: "descripcion desde hijo",
-      fecha_inicio: "fecha inicio desde hijo",
-      fecha_fin: "fecha fin desde hijo",
+      nombre: this.datos.nombreActividad,
+      descripcion: this.datos.descripcion,
+      fecha_inicio: this.datos.fechaInicio,
+      fecha_fin: this.datos.fechaFin,
     });
   }
 }
