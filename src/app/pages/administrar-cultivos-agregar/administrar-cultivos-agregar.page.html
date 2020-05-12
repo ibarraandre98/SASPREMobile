@@ -1,0 +1,97 @@
+<ion-content>
+  <div class="background">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-buttons class="boton" (click)="salirSinArgumentos()">
+            <ion-back-button defaultHref="/"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="4">
+          <ion-label>
+            <p class="titulo_principal">Agregar cultivo</p>
+          </ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitCultivos()">
+            <ion-button>Agregar</ion-button>
+          </ion-buttons>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div class="plato">
+    <ion-label>
+      <p class="titulo_">Ingrese la siguiente información para continuar</p>
+    </ion-label>
+
+    <div class="imagen">
+      <ion-avatar class="borde">
+        <img src="/resources/maiz.jpg">
+      </ion-avatar>
+    </div>
+
+    <form #formulario="ngForm" (ngSubmit)="onSubmitCultivos()">
+
+
+      <ion-label>
+        <p class="titulo">Semilla</p>
+      </ion-label>
+      <ion-select [(ngModel)]="datos.idSemillas" type="number" name="idSemillas" required class="subtitulo"
+        value="Seleccione una semilla">
+        <ion-select-option value="1">Semilla 1</ion-select-option>
+        <ion-select-option value="2">Semilla 2 </ion-select-option>
+      </ion-select>
+
+      <ion-label>
+        <p class="titulo">Fecha de cultivo</p>
+      </ion-label>
+      <ion-datetime [(ngModel)]="datos.fechaPlantado" name="fechaPlantado" value="1990-02-19"
+        placeholder="Seleccione la fecha de cultivo "></ion-datetime>
+
+      <ion-label>
+        <p class="titulo">Fecha de cosecha</p>
+      </ion-label>
+      <ion-datetime [(ngModel)]="datos.fechaCosecha" name="fechaCosecha" value="1990-02-19"
+        placeholder="Seleccione la fecha tentativa de cosecha "></ion-datetime>
+
+      <ion-label>
+        <p class="titulo">Cantidad</p>
+      </ion-label>
+      <ion-input [(ngModel)]="datos.cantidad" type="number" name="cantidad" required class="subtitulo"
+        placeholder="Ingrese precio de la actividad"></ion-input>
+
+      <ion-label>
+        <p class="titulo">Estado</p>
+      </ion-label>
+      <ion-input [(ngModel)]="datos.estado" type="text" name="estado" required class="subtitulo"
+        placeholder="Ingrese el estado del cultivo"></ion-input>
+
+      <ion-label>
+        <p class="titulo">Cosechado</p>
+      </ion-label>
+      <ion-select [(ngModel)]="datos.cosechado" type="number" name="cosechado" required class="subtitulo"
+        value="Seleccione si o no">
+        <ion-select-option value="1">Si</ion-select-option>
+        <ion-select-option value="0">No</ion-select-option>
+      </ion-select>
+
+    </form>
+  </div>
+
+
+  <!-- 
+  <ion-button color="primary" expand="full">
+    Salir sin argumentos
+  </ion-button>
+
+
+  <ion-button color="secondary" expand="full">
+    Salir con argumentos
+  </ion-button>
+ -->
+
+</ion-content>

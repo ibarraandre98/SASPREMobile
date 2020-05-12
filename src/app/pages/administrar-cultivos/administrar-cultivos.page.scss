@@ -1,42 +1,20 @@
 .color-header {
-    --background: rgb(138, 195, 51);
-    --color: white;
-    text-align: center;
-  }
-  
-  .ion-padding {
-    background: white;
-  }
-  .my-custom-menu {
-    --width: 500px;
-  }
-  
-  .textoCentro {
-    text-align: left;
-    color: black;
-    padding: 3px;
-  }
-  
-  .input {
-    text-align: left;
-  }
-  
-  .ListaAlarma {
-    margin-top: 5px;
-    padding: 5px 5px;
-    background: rgb(104, 104, 104);
-    border-radius: 20px;
-    color: rgb(58, 58, 58);
-    text-align: left;
-  }
-  
-  ion-item:hover {
-    --background: green;
-    color: white;
-    --ion-icon-color: red;
-  }
-  
-  ion-item:hover ion-icon {
-    color: white;
-  }
-  
+  --background: rgb(255, 255, 255);
+  --color: rgb(24, 161, 8);
+  text-align: center;
+}
+
+.label1 {
+  color: rgb(139, 139, 139);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.label2 {
+  color: rgb(139, 139, 139);
+  font-size: 12px;
+}
+
+.label3 {
+  font-size: 10px;
+}
