@@ -13,7 +13,7 @@
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitCostos()">
             <ion-button>Agregar</ion-button>
           </ion-buttons>
         </ion-col>
@@ -34,19 +34,30 @@
       </ion-avatar>
     </div>
 
-    <ion-label>
-      <p class="titulo">Semilla</p>
-    </ion-label>
-    <ion-select class="subtitulo" value="Seleccione una semilla">
-      <ion-select-option value="cat">Semilla 1</ion-select-option>
-      <ion-select-option value="dog">Semilla 2 </ion-select-option>
-    </ion-select>
+    <form #formulario="ngForm" (ngSubmit)="onSubmitCostos()">
 
-    <ion-label>
-      <p class="titulo">Descripcion</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese descripción de la actividad"></ion-input>
 
+      <ion-label>
+        <p class="titulo">Semilla</p>
+      </ion-label>
+      <ion-select [(ngModel)]="datos.idSemillas" type="number" name="idSemillas" required
+        class="subtitulo" value="Seleccione una semilla">
+        <ion-select-option value="1">Semilla 1</ion-select-option>
+        <ion-select-option value="2">Semilla 2 </ion-select-option>
+      </ion-select>
+
+      <ion-label>
+        <p class="titulo">Precio</p>
+      </ion-label>
+      <ion-input [(ngModel)]="datos.precio" type="number" name="precio" required class="subtitulo" 
+        placeholder="Ingrese precio de la actividad"></ion-input>
+
+      <ion-label>
+        <p class="titulo">Descripcion</p>
+      </ion-label>
+      <ion-input [(ngModel)]="datos.descripcion" type="text" name="descripcion" required class="subtitulo"
+        placeholder="Ingrese descripción de la actividad"></ion-input>
+    </form>
   </div>
 
 

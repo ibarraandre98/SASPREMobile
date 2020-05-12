@@ -13,7 +13,7 @@
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitCalendarioActividades()">
             <ion-button>Agregar</ion-button>
           </ion-buttons>
         </ion-col>
@@ -24,30 +24,37 @@
   </div>
 
   <div class="plato">
-    <ion-label>
-      <p class="titulo_">Ingrese la siguiente información para continuar</p>
-    </ion-label>
 
-    <ion-label>
-      <p class="titulo">Nombre de la actividad</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre de de la actividad"></ion-input>
+    <form #formulario="ngForm" (ngSubmit)="onSubmitCalendarioActividades()">
 
-    <ion-label>
-      <p class="titulo">Descripcion</p>
-    </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese descripción de la actividad"></ion-input>
+      <ion-label>
+        <p class="titulo_">Ingrese la siguiente información para continuar</p>
+      </ion-label>
 
-    <ion-label>
-      <p class="titulo">Fecha de inicio</p>
-    </ion-label>
-    <ion-datetime value="1990-02-19" placeholder="Seleccione la fecha de inicio de la actividad "></ion-datetime>
+      <ion-label>
+        <p class="titulo">Nombre de la actividad</p>
+      </ion-label>
+      <ion-input [(ngModel)]="datos.nombreActividad" name="nombreActividad" required class="subtitulo" type="text"
+        placeholder="Ingrese nombre de de la actividad"></ion-input>
 
-    <ion-label>
-      <p class="titulo">Fecha de fin</p>
-    </ion-label>
-    <ion-datetime value="1990-02-19" placeholder="Seleccione la fecha de fin de la actividad "></ion-datetime>
+      <ion-label>
+        <p class="titulo">Descripcion</p>
+      </ion-label>
+      <ion-input [(ngModel)]="datos.descripcion" type="text" name="descripcion" required class="subtitulo"
+        placeholder="Ingrese descripción de la actividad"></ion-input>
 
+      <ion-label>
+        <p class="titulo">Fecha de inicio</p>
+      </ion-label>
+      <ion-datetime [(ngModel)]="datos.fechaInicio" name="fechaInicio" value="1990-02-19"
+        placeholder="Seleccione la fecha de inicio de la actividad "></ion-datetime>
+
+      <ion-label>
+        <p class="titulo">Fecha de fin</p>
+      </ion-label>
+      <ion-datetime [(ngModel)]="datos.fechaFin" name="fechaFin" required value="1990-02-19"
+        placeholder="Seleccione la fecha de fin de la actividad "></ion-datetime>
+    </form>
 
   </div>
 
