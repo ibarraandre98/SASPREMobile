@@ -13,7 +13,7 @@
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitFertilizantes()">
             <ion-button>Agregar</ion-button>
           </ion-buttons>
         </ion-col>
@@ -38,26 +38,62 @@
       <p class="titulo">Semilla</p>
     </ion-label>
 
-    <ion-select class="subtitulo" value="Seleccione una semilla">
-      <ion-select-option value="cat">Semilla 1</ion-select-option>
-      <ion-select-option value="dog">Semilla 2 </ion-select-option>
-    </ion-select>
+<form #formulario="ngForm" (ngSubmit)="onSubmitFertilizantes()">
 
-    <ion-label>
-      <p class="titulo">Fertilizante</p>
-    </ion-label>
+      
+    <ion-list>
 
-    <ion-select class="subtitulo" value="Seleccione un fertilizante">
-      <ion-select-option value="cat">Fertilizante 1</ion-select-option>
-      <ion-select-option value="dog">Fertilizante 2 </ion-select-option>
-    </ion-select>
+      <ion-item>
+
+        <ion-label position="floating">
+          Nombre del Fertilizante
+        </ion-label>
+        <ion-select class="subtitulo"
+        value="Seleccione una semilla"
+        [(ngModel)]="fertilizaciones.idCultivos"
+        name="idCultivos"
+        required>
+          <ion-select-option value="S1">Semilla 1</ion-select-option>
+          <ion-select-option value="S2">Semilla 2 </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label position="floating">
+          Seleccione un fertilizante
+        </ion-label>
+        
+        <ion-select class="subtitulo"
+        value="Seleccione un fertilizante"
+        name="idFertilizantes"
+        required
+        [(ngModel)]="fertilizaciones.idFertilizantes">
+          <ion-select-option value="F1">Fertilizante 1</ion-select-option>
+          <ion-select-option value="F2">Fertilizante 2 </ion-select-option>
+        </ion-select>
+
+      </ion-item>
 
 
-    <ion-label>
-      <p class="titulo">Fecha de realizacion</p>
-    </ion-label>
 
-    <ion-datetime placeholder="1 Abril 2020"></ion-datetime>
+      <ion-item>
+        <ion-label position="floating">
+          Fecha de realizacion
+        </ion-label>
+        <ion-datetime
+        placeholder="Dia Mes Año"
+          name="fecha"
+          required
+          [(ngModel)]="fertilizaciones.fecha"
+          ></ion-datetime>
+      </ion-item>
+
+    </ion-list>
+
+    </form>
+
+
 
   </div>
 

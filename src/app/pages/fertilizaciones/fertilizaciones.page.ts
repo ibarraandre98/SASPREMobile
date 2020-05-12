@@ -155,7 +155,7 @@ export class FertilizacionesPage implements OnInit {
   }
 
   insertarFertilizaciones() {
-    this.fertilizacionesService.insertarFertilizaciones()
+    this.fertilizacionesService.insertarFertilizaciones( null )
       .then(response => {
 
         console.log(response);
