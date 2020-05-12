@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { InsecticidasNuevoPageRoutingModule } from './insecticidas-nuevo-routing.module';
 
 import { InsecticidasNuevoPage } from './insecticidas-nuevo.page';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InsecticidasNuevoPageRoutingModule
+    ReactiveFormsModule,
+    InsecticidasNuevoPageRoutingModule,
   ],
   declarations: [InsecticidasNuevoPage]
 })
