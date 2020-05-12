@@ -1,5 +1,6 @@
+import { MostrarFertilizacionesService } from './../../services/mostrar-fertilizaciones.service';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-pop-opciones-fertilizaciones',
@@ -8,7 +9,16 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopOpcionesFertilizacionesComponent implements OnInit {
 
-  constructor(private popoverCtrl:PopoverController) { }
+  fertilizacion:any;
+
+  constructor(
+    private popoverCtrl:PopoverController,
+    private navParams:NavParams,
+    private fertilizacionesService:MostrarFertilizacionesService,
+    ) 
+    { 
+      this.fertilizacion = this.navParams.get('fertilizacion');
+    }
 
   ngOnInit() {}
 
@@ -21,7 +31,10 @@ export class PopOpcionesFertilizacionesComponent implements OnInit {
   }
 
   clickBorrar() {
-    console.log("Se oprimio borrar");
+    this.fertilizacionesService.borrarFertilizaciones(this.fertilizacion)
+    .then(response =>{
+      console.log(response);
+    });
     this.popoverCtrl.dismiss({
       item: "Borrar",
     });

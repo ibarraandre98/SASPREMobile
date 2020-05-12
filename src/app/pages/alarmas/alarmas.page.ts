@@ -148,9 +148,12 @@ export class AlarmasPage implements OnInit {
       });
   }
 
-  async mostrarPop( evento ) {
+  async mostrarPop( evento, alarma ) {
     const popover = await this.popCtrl.create({
       component: PopAlarmasComponent,
+      componentProps:{
+        alarma,
+      },
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
@@ -168,7 +171,7 @@ export class AlarmasPage implements OnInit {
         console.log("La clave es " + clave+ " y el valor es " + data[clave]);
 
         if( data[clave] ==  "Editar"){
-          this.editarAlarma();
+          this.editarAlarma(alarma);
         }else if( data [clave] == "Borrar"){
           this.borrarAlarma();
         }
@@ -207,17 +210,12 @@ export class AlarmasPage implements OnInit {
 
   }
 
-  async editarAlarma(){
+  async editarAlarma(alarma:any){
 
     const modal = await this.modalCtrl.create({
       component: AlarmasEditarPage,
       componentProps:{
-        semilla: 'maiz',
-        nombre: 'maiz',
-        descripcion: 'descripcion',
-        lapso: '2 dias',
-        temperatura_min: '23°',
-        temperatura_max:  '28°'
+        alarma,
       }
     });
 

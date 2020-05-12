@@ -1,6 +1,7 @@
+import { InsecticidasService } from './../../services/insecticidas.service';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-pop-insecticidas',
@@ -9,9 +10,16 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopInsecticidasComponent implements OnInit {
 
-  
+  insecticida:any;
 
-  constructor(private popoverCtrl:PopoverController) { }
+  constructor(
+    private popoverCtrl:PopoverController,
+    private navParams:NavParams,
+    private insecticidasService:InsecticidasService,
+    ) 
+    { 
+      this.insecticida = this.navParams.get('insecticida');
+    }
 
   ngOnInit() {}
 
@@ -24,7 +32,10 @@ export class PopInsecticidasComponent implements OnInit {
   }
 
   clickBorrar(){
-    console.log('Se oprimio borrar');
+    this.insecticidasService.deleteInsecticidas(this.insecticida)
+    .then(response =>{
+      console.log(response);
+    });
     this.popoverCtrl.dismiss({
       item: 'Borrar'
     });

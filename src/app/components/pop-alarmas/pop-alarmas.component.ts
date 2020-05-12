@@ -1,6 +1,7 @@
+import { AlarmasService } from './../../services/alarmas.service';
 import { Component, OnInit } from "@angular/core";
 import { AppComponent } from "src/app/app.component";
-import { PopoverController } from "@ionic/angular";
+import { PopoverController,NavParams } from "@ionic/angular";
 
 @Component({
   selector: "app-pop-alarmas",
@@ -8,7 +9,15 @@ import { PopoverController } from "@ionic/angular";
   styleUrls: ["./pop-alarmas.component.scss"],
 })
 export class PopAlarmasComponent implements OnInit {
-  constructor(private popoverCtrl:PopoverController) {}
+  
+  alarma:any;
+  constructor(
+    private popoverCtrl:PopoverController,
+    private navParams:NavParams,
+    private alarmasService:AlarmasService,
+    ) {
+      this.alarma = this.navParams.get('alarma');
+    }
 
   ngOnInit() {}
 
@@ -20,7 +29,10 @@ export class PopAlarmasComponent implements OnInit {
   }
 
   clickBorrar() {
-    console.log("Se oprimio borrar");
+    this.alarmasService.deleteAlarma(this.alarma)
+    .then(response => {
+      console.log(response);
+    });
     this.popoverCtrl.dismiss({
       item: "Borrar",
     });

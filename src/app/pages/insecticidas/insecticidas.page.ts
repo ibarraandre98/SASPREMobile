@@ -35,9 +35,12 @@ export class InsecticidasPage implements OnInit {
     descripcion: 'te mueres'
   }
 
-  async mostrarPop( evento ) {
+  async mostrarPop( evento,insecticida ) {
     const popover = await this.popCtrl.create({
       component: PopInsecticidasComponent,
+      componentProps:{
+        insecticida,
+      },
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
@@ -55,7 +58,7 @@ export class InsecticidasPage implements OnInit {
         console.log("La clave es " + clave+ " y el valor es " + data[clave]);
 
         if( data[clave] ==  "Editar"){
-          this.editarInsecticida();
+          this.editarInsecticida(insecticida);
         }else if( data [clave] == "Borrar"){
           this.borrarInsecticida();
         }
@@ -91,13 +94,12 @@ export class InsecticidasPage implements OnInit {
 
   }
 
-  async editarInsecticida(){
+  async editarInsecticida(insecticida:any){
 
     const modal = await this.modalCtrl.create({
       component: InsecticidasEditarPage,
       componentProps:{
-        nombre: 'nombre',
-        precio: 100
+        insecticida,
       }
     });
 

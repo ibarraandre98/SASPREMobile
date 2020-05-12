@@ -167,9 +167,12 @@ export class CalendarioActividadesPage implements OnInit {
     await alert.present();
   }
 
-  async mostrarPop( evento ) {
+  async mostrarPop( evento,actividad ) {
     const popover = await this.popCtrl.create({
       component: PopCalendarioActividadesComponent,
+      componentProps:{
+        actividad,
+      },
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
@@ -187,7 +190,7 @@ export class CalendarioActividadesPage implements OnInit {
         console.log("La clave es " + clave+ " y el valor es " + data[clave]);
 
         if( data[clave] ==  "Editar"){
-          this.editarCalendarioActividades();
+          this.editarCalendarioActividades(actividad);
         }else if( data [clave] == "Borrar"){
           this.borrarCalendarioActividades();
         }
@@ -223,14 +226,11 @@ export class CalendarioActividadesPage implements OnInit {
     console.log("Retorno del modal", data);
   }
 
-  async editarCalendarioActividades() {
+  async editarCalendarioActividades(actividad:any) {
     const modal = await this.modalCtrl.create({
       component: CalendarioActividadesEditarPage,
       componentProps: {
-        nombre: "ac1",
-        descripcion: "dasdbnawbn",
-        fecha_inicio: "23 04 2020",
-        fecha_fin: "25 05 2020",
+        actividad,
       },
     });
 

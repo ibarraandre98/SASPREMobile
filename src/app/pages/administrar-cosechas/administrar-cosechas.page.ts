@@ -1,3 +1,4 @@
+
 import { environment } from "./../../../environments/environment";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user";
@@ -83,19 +84,22 @@ export class AdministrarCosechasPage {
   }
 
 
-  async mostrarPop( evento ){
+  async mostrarPop( evento,cosecha ){
     const popover = await this.popCtrl.create({
       component: PopCosechasComponent,
+      componentProps:{
+        cosecha,
+      },
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
       translucent: true
     });
+
     return await popover.present();
 
     const {data} = await popover.onDidDismiss(); //Para recibir los datos cuando se cierre el pop
     // const {data} = await popover.onWillDismiss();  Para que se dispare rápido sin esperar que e cierre el pop
-
     for (var clave in data){
       // Controlando que json realmente tenga esa propiedad
       if (data.hasOwnProperty(clave)) {

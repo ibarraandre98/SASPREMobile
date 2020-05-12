@@ -1,6 +1,7 @@
+import { CostosService } from './../../services/costos.service';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-pop-costos',
@@ -9,7 +10,16 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopCostosComponent implements OnInit {
 
-  constructor(private popoverCtrl:PopoverController) { }
+  costo:any;
+
+  constructor(
+    private popoverCtrl:PopoverController,
+    private navParams:NavParams,
+    private costosService:CostosService,
+    ) 
+    {
+      this.costo = this.navParams.get('costo');
+    }
 
   ngOnInit() {}
 
@@ -21,7 +31,10 @@ export class PopCostosComponent implements OnInit {
   }
 
   clickBorrar(){
-    console.log('Se oprimio borrar');
+    this.costosService.deleteCostos(this.costo)
+    .then(response =>{
+      console.log(response);
+    });
     this.popoverCtrl.dismiss({
       item: 'Borrar'
     });

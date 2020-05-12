@@ -1,6 +1,7 @@
+import { CalendarioActividadesService } from './../../services/calendario-actividades.service';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-pop-calendario-actividades',
@@ -9,7 +10,16 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopCalendarioActividadesComponent implements OnInit {
 
-  constructor(private popoverCtrl:PopoverController) { }
+  actividad:any;
+
+  constructor(
+    private popoverCtrl:PopoverController,
+    private navParams:NavParams,
+    private calendarioActividadesService:CalendarioActividadesService,
+    ) 
+    { 
+      this.actividad = this.navParams.get('alarma');
+    }
 
   ngOnInit() {}
 
@@ -21,7 +31,10 @@ export class PopCalendarioActividadesComponent implements OnInit {
   }
 
   clickBorrar(){
-    console.log('Se oprimio borrar');
+    this.calendarioActividadesService.deleteCalendarioActividades(this.actividad)
+    .then(response =>{
+      console.log(response);
+    });
     this.popoverCtrl.dismiss({
       item: 'Borrar'
     });

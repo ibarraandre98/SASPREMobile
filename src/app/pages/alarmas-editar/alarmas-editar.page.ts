@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-alarmas-editar',
@@ -8,14 +9,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class AlarmasEditarPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  alarma:any;
 
-  @Input() semilla;
-  @Input() nombre;
-  @Input() descripcion;
-  @Input() lapso;
-  @Input() temperatura_min;
-  @Input() temperatura_max;
+  constructor(private modalCtrl: ModalController,
+    private navParams:NavParams,
+    )
+    {
+      this.alarma = this.navParams.get('alarma');
+    }
 
   ngOnInit() {
   }

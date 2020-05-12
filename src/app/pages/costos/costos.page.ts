@@ -151,9 +151,12 @@ export class CostosPage implements OnInit {
 
   }
 
-  async mostrarPop( evento ) {
+  async mostrarPop( evento, costo ) {
     const popover = await this.popCtrl.create({
       component: PopCostosComponent,
+      componentProps:{
+        costo,
+      },
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
@@ -171,7 +174,7 @@ export class CostosPage implements OnInit {
         console.log("La clave es " + clave+ " y el valor es " + data[clave]);
 
         if( data[clave] ==  "Editar"){
-          this.editarCosto();
+          this.editarCosto(costo);
         }else if( data [clave] == "Borrar"){
           this.borrarCosto();
         }
@@ -206,13 +209,12 @@ export class CostosPage implements OnInit {
 
   }
 
-  async editarCosto(){
+  async editarCosto(costo:any){
 
     const modal = await this.modalCtrl.create({
       component: CostosEditarPage,
       componentProps:{
-        semilla: 'maiz',
-        descripcion: 'descripcion',
+        costo,
       }
     });
 

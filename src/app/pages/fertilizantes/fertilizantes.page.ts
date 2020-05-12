@@ -46,9 +46,12 @@ export class FertilizantesPage implements OnInit {
     return await popover.present();
   }
 
-  async mostrarPop( evento ) {
+  async mostrarPop( evento, fertilizante ) {
     const popover = await this.popCtrl.create({
       component: PopOpcionesFertilizanteComponent,
+      componentProps:{
+        fertilizante,
+      },
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
@@ -66,7 +69,7 @@ export class FertilizantesPage implements OnInit {
         console.log("La clave es " + clave+ " y el valor es " + data[clave]);
 
         if( data[clave] ==  "Editar"){
-          this.popEditarFertilizantes();
+          this.popEditarFertilizantes(fertilizante);
         }else if( data [clave] == "Borrar"){
           this.popBorrarFertilizaciones();
         }
@@ -78,17 +81,11 @@ export class FertilizantesPage implements OnInit {
     console.log('Padre:', data);
   }
 
-  async popEditarFertilizantes(){
+  async popEditarFertilizantes(fertilizante:any){
     const modal = await this.modalCtrl.create({
       component: FertilizantesEditarPage,
       componentProps:{
-        nombre: 'nombre',
-        apellidos: 'apellidos',
-        usuario: 'usuario',
-        correo: 'correo',
-        contraseña:'contraseña',
-        cargo:'cargo',
-        empresa: 'empresa'
+        fertilizante,
       }
     });
 
@@ -144,44 +141,6 @@ export class FertilizantesPage implements OnInit {
   insertarFertilizantes() {
     this.fertilizantesService.insertarFertilizantes( null )
       .then(response => {
-        console.log(response);
-
-        let data = JSON.parse(response.data);
-        if (data.result == 'failed'){
-          console.log('fertilizantes no mostradas');
-          this.showAlert('Error', 'fertilizantes no mostradas');
-        } else if (data.result=='success'){
-          console.log('fertilizantes mostradas');
-        }
-      }
-      ).catch(error => {
-        this.showAlert('Error', JSON.stringify(error));
-      });
-  }
-
-  borrarFertilizantes() {
-    this.fertilizantesService.borrarFertilizantes()
-      .then(response => {
-        console.log('Response recived');
-        console.log(response);
-
-        let data = JSON.parse(response.data);
-        if (data.result == 'failed'){
-          console.log('fertilizantes no mostradas');
-          this.showAlert('Error', 'fertilizantes no mostradas');
-        } else if (data.result=='success'){
-          console.log('fertilizantes mostradas');
-        }
-      }
-      ).catch(error => {
-        this.showAlert('Error', JSON.stringify(error));
-      });
-  }
-
-  editarFertilizantes() {
-    this.fertilizantesService.editarFertilizantes()
-      .then(response => {
-        console.log('Response recived');
         console.log(response);
 
         let data = JSON.parse(response.data);

@@ -1,5 +1,7 @@
+import { MostrarCosechasService } from 'src/app/services/mostrar-cosechas.service';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavParams } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-pop-cosechas',
@@ -8,14 +10,27 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopCosechasComponent implements OnInit {
 
-  constructor(public popoverCtrl:PopoverController) { }
+  cosecha:any;
+
+  constructor(
+    public popoverCtrl:PopoverController,
+    private navParams:NavParams,
+    private serviceCosechas:MostrarCosechasService,
+    ) {
+      this.cosecha = this.navParams.get('cosecha');
+     }
 
   ngOnInit() {}
 
   clickEliminar(){
+    this.serviceCosechas.deleteCosechas(this.cosecha)
+    .then(response =>{
+      console.log(response);
+      //this.navParams.get("parentPage").someFnToRefreshParent();
+    } );
     console.log('Se oprimio borrar');
     this.popoverCtrl.dismiss({
-      item: 'Borrar'
+      
     });
   }
 }
