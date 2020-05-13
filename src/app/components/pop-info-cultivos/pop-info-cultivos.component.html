@@ -1,0 +1,34 @@
+<ion-content>
+  <div id="contaier">
+    <div class="plato">
+      <ion-label>
+        <h1 class="titulo_principal">Cultivo</h1>
+        <h2 class="subtitulo">{{cultivo.nombreSemilla}}</h2>
+      </ion-label>
+    </div>
+
+    <div class="info">
+      <div class="imagen">
+        <ion-avatar class="borde">
+          <img src="/resources/maiz.jpg">
+        </ion-avatar>
+      </div>
+      <ion-label>
+        <p class="titulo">Cantidad</p>
+        <p class="descripcion">${{cultivo.cantidad}}</p>
+
+        <p class="titulo">Usuario</p>
+        <p class="descripcion">{{cultivo.idUSuario}}</p>
+
+        <p class="titulo">Fecha cultivo</p>
+        <p class="descripcion">{{cultivo.fechaPlantado}}</p>
+
+        <p class="titulo">Fecha tentativa de cosecha</p>
+        <p class="descripcion">{{cultivo.fechaCosecha}}</p>
+
+        <p class="titulo">Estado</p>
+        <p style="border-bottom: 50px;" class="descripcion">{{cultivo.estado}}</p>
+      </ion-label>
+    </div>
+  </div>
+</ion-content>

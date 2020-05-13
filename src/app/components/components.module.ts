@@ -17,7 +17,8 @@ import { PopInfoFertilizacionesComponent } from './pop-info-fertilizaciones/pop-
 import { PopInfoFertilizanteComponent } from './pop-info-fertilizante/pop-info-fertilizante.component';
 import { PopOpcionesFertilizacionesComponent } from './pop-opciones-fertilizaciones/pop-opciones-fertilizaciones.component';
 import { PopOpcionesFertilizanteComponent } from './pop-opciones-fertilizante/pop-opciones-fertilizante.component';
-
+import { PopInfoCultivosComponent } from './pop-info-cultivos/pop-info-cultivos.component';
+import { PopCultivosComponent } from './pop-cultivos/pop-cultivos.component';
 
 
 
@@ -38,7 +39,10 @@ import { PopOpcionesFertilizanteComponent } from './pop-opciones-fertilizante/po
     PopInfoFertilizacionesComponent,
     PopInfoFertilizanteComponent,
     PopOpcionesFertilizacionesComponent,
-    PopOpcionesFertilizanteComponent],
+    PopOpcionesFertilizanteComponent,
+    PopCultivosComponent,
+    PopInfoCultivosComponent,
+  ],
   exports: [
     PopInsecticidasComponent,
     PopInfoInsecticidasComponent,
