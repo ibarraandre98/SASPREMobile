@@ -9,12 +9,12 @@
         </ion-col>
         <ion-col size="4">
           <ion-label>
-            <p class="titulo_principal">Nuevo fertilizante</p>
+            <p class="titulo_principal">Editar fertilizante</p>
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
-            <ion-button>Agregar</ion-button>
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitFertilizantes()">
+            <ion-button>Editar</ion-button>
           </ion-buttons>
         </ion-col>
 
@@ -31,21 +31,39 @@
     <ion-label>
       <p class="titulo">Nombre del fertilizante</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre del fertilizante"></ion-input>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre del fertilizante"
+      [(ngModel)]="fertilizante.nombreFertilizante"
+      type="text"
+      name="nombreFertilizante"
+      required
+    >
+    </ion-input>
 
     <ion-label>
       <p class="titulo">Dosis</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"></ion-input>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"
+    [(ngModel)]="fertilizante.dosis"
+    type="text"
+    name="dosis"
+    required
+    ></ion-input>
 
     <ion-label>
       <p class="titulo">Descripción</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"></ion-input>
+    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"
+    [(ngModel)]="fertilizante.descripcionAplicacion"
+    type="text"
+    name="descripcionAplicacion"
+    required
+    ></ion-input>
 
 
   </div>
 
+
+ 
 
   <!-- 
   <ion-button color="primary" expand="full">
