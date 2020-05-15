@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CalendarioActividadesEditarPageRoutingModule } from './calendario-actividades-editar-routing.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarioActividadesEditarPage } from './calendario-actividades-editar.page';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { CalendarioActividadesEditarPage } from './calendario-actividades-editar
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     CalendarioActividadesEditarPageRoutingModule
   ],
   declarations: [CalendarioActividadesEditarPage]

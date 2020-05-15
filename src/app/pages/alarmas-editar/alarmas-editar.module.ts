@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AlarmasEditarPageRoutingModule } from './alarmas-editar-routing.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AlarmasEditarPage } from './alarmas-editar.page';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { AlarmasEditarPage } from './alarmas-editar.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     AlarmasEditarPageRoutingModule
   ],
   declarations: [AlarmasEditarPage]
