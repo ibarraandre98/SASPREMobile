@@ -24,6 +24,8 @@
   </div>
 
   <div class="plato">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitFertilizantes()">
+
     <ion-label>
       <p class="titulo_">Ingrese la siguiente información para continuar</p>
     </ion-label>
@@ -31,49 +33,39 @@
     <ion-label>
       <p class="titulo">Nombre del fertilizante</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre del fertilizante"
-      [(ngModel)]="fertilizante.nombreFertilizante"
-      type="text"
-      name="nombreFertilizante"
-      required
-    >
+    <ion-input  formControlName="nombreFertilizante" class="subtitulo" type="text" placeholder="Ingrese nombre del fertilizante">
     </ion-input>
+
+    <div class="error" *ngFor="let error of errorMessages.nombreFertilizante">
+      <ng-container *ngIf="nombreFertilizante.hasError(error.type) && (nombreFertilizante.dirty || nombreFertilizante.touched)">
+          <small class="error-message">{{error.message}}</small>
+      </ng-container>
+     </div>
 
     <ion-label>
       <p class="titulo">Dosis</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"
-    [(ngModel)]="fertilizante.dosis"
-    type="text"
-    name="dosis"
-    required
-    ></ion-input>
+    <ion-input formControlName="dosis" class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita">
+    </ion-input>
+
+    <div class="error" *ngFor="let error of errorMessages.dosis">
+      <ng-container *ngIf="dosis.hasError(error.type) && (dosis.dirty || dosis.touched)">
+          <small class="error-message">{{error.message}}</small>
+      </ng-container>
+     </div>
 
     <ion-label>
       <p class="titulo">Descripción</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese la dosis del fertilizante que se necesita"
-    [(ngModel)]="fertilizante.descripcionAplicacion"
-    type="text"
-    name="descripcionAplicacion"
-    required
-    ></ion-input>
+    <ion-input formControlName="descripcionAplicacion" class="subtitulo" type="text" placeholder="Ingrese una descripcion del fertilizante">      
+    </ion-input>
 
+    <div class="error" *ngFor="let error of errorMessages.descripcionAplicacion">
+      <ng-container *ngIf="descripcionAplicacion.hasError(error.type) && (descripcionAplicacion.dirty || descripcionAplicacion.touched)">
+          <small class="error-message">{{error.message}}</small>
+      </ng-container>
+     </div>
 
+    </form>
   </div>
-
-
- 
-
-  <!-- 
-  <ion-button color="primary" expand="full">
-    Salir sin argumentos
-  </ion-button>
-
-
-  <ion-button color="secondary" expand="full">
-    Salir con argumentos
-  </ion-button>
- -->
-
 </ion-content>

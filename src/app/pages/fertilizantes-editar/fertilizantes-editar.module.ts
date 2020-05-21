@@ -8,11 +8,14 @@ import { FertilizantesEditarPageRoutingModule } from './fertilizantes-editar-rou
 
 import { FertilizantesEditarPage } from './fertilizantes-editar.page';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     FertilizantesEditarPageRoutingModule
   ],
   declarations: [FertilizantesEditarPage]

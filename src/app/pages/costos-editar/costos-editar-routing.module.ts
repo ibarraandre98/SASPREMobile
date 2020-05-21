@@ -3,15 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CostosEditarPage } from './costos-editar.page';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: CostosEditarPage
-  }
-];
+
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [],
   exports: [RouterModule],
 })
 export class CostosEditarPageRoutingModule {}
