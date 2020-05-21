@@ -12,10 +12,16 @@
         <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
     </ion-toolbar>
 
+    <ion-refresher slot="fixed" (ionRefresh)="refreshUsuarios($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Desliza para actualizar" refreshingSpinner="circles" refreshingText="Actualizando...">
+
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-list>
         <ion-item *ngFor="let item of arrayUsuarios">
             <ion-avatar slot="start" (click)="mostrarPopInfo(item)">
-                <img src="/resources/user.jpg">
+                <img src="../../assets/icon/semillas/user.png">
             </ion-avatar>
             <ion-grid (click)="mostrarPopInfo(item)">
                 <ion-row>

@@ -83,7 +83,7 @@ export class AdministrarCultivosPage implements OnInit {
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
-
+    this.mostrarCultivos();
     console.log("Retorno del modal", data);
   }
 
@@ -105,7 +105,7 @@ export class AdministrarCultivosPage implements OnInit {
       if (data.hasOwnProperty(clave)) {
         // Mostrando en pantalla la clave junto a su valor
         console.log("La clave es " + clave + " y el valor es " + data[clave]);
-
+        
         if (data[clave] == "Editar") {
           this.editarCultivo();
         } else if (data[clave] == "Borrar") {
@@ -115,7 +115,7 @@ export class AdministrarCultivosPage implements OnInit {
       }
 
     }
-
+    this.mostrarCultivos();
     console.log('Padre:', data);
 
 
@@ -161,4 +161,12 @@ export class AdministrarCultivosPage implements OnInit {
     console.log('Se esta buscando en el filtro:');
     console.log(event.detail.value);
   }
+
+  refreshCultivos(event){
+    this.mostrarCultivos();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
+  }
+
 }

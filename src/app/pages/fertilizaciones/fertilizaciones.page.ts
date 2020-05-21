@@ -95,7 +95,7 @@ export class FertilizacionesPage implements OnInit {
       }
 
     }
-
+    this.mostrarFertilizaciones();
     console.log('Padre:', data);
   }
 
@@ -133,7 +133,7 @@ export class FertilizacionesPage implements OnInit {
     await modal.present();
 
     const {data} = await modal.onDidDismiss();
-
+    this.mostrarFertilizaciones();
     console.log("Retorno del modal", data);
   }
 
@@ -187,6 +187,13 @@ export class FertilizacionesPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  refreshFertilizaciones(event){
+    this.mostrarFertilizaciones();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
   }
 
 }

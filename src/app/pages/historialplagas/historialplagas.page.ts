@@ -160,4 +160,11 @@ deleteInsecticidas() {
     await alert.present();
   }
 
+  refreshHistorial(event){
+    this.mostrarHistorialplagas();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
+  }
+
 }

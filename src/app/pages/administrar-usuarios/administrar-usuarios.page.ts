@@ -85,5 +85,12 @@ export class AdministrarUsuariosPage  {
     await alert.present();
   }
 
-
+  refreshUsuarios(event){
+    this.mostrarUsuarios();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
   }
+
+
+}

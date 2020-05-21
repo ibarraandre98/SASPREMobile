@@ -19,6 +19,12 @@
         <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
     </ion-toolbar>
 
+    <ion-refresher slot="fixed" (ionRefresh)="refreshFertilizantes($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Desliza para actualizar" refreshingSpinner="circles" refreshingText="Actualizando...">
+
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-list>
         <ion-item *ngFor="let item of arrayFertilizantes">
 

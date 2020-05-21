@@ -19,10 +19,16 @@
         <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
     </ion-toolbar>
 
+    <ion-refresher slot="fixed" (ionRefresh)="refreshCultivos($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Desliza para actualizar" refreshingSpinner="circles" refreshingText="Actualizando...">
+
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-list>
         <ion-item *ngFor="let item of arrayCultivos">
             <ion-avatar slot="start" (click)="mostrarPopInfo(item)">
-                <img src="/resources/maiz.jpg">
+                <img src="../../assets/icon/semillas/{{item.nombreSemilla|lowercase}}.png">
             </ion-avatar>
             <ion-grid (click)="mostrarPopInfo(item)">
                 <ion-row>

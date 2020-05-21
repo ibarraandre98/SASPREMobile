@@ -77,7 +77,7 @@ export class FertilizantesPage implements OnInit {
       }
 
     }
-
+    this.mostrarFertilizantes();
     console.log('Padre:', data);
   }
 
@@ -115,7 +115,7 @@ export class FertilizantesPage implements OnInit {
     await modal.present();
 
     const {data} = await modal.onDidDismiss();
-
+    this.mostrarFertilizantes();
     console.log("Retorno del modal", data);
 
   }
@@ -168,4 +168,12 @@ export class FertilizantesPage implements OnInit {
 
     await alert.present();
   }
+
+  refreshFertilizantes(event){
+    this.mostrarFertilizantes();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
+  }
+
 }

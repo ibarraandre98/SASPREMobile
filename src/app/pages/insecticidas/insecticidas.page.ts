@@ -66,7 +66,7 @@ export class InsecticidasPage implements OnInit {
       }
 
     }
-
+    this.mostrarInsecticidas();
     console.log('Padre:', data);
 
 
@@ -89,7 +89,7 @@ export class InsecticidasPage implements OnInit {
       await modal.present();
 
       const {data} = await modal.onDidDismiss();
-
+      this.mostrarInsecticidas();
       console.log("Retorno del modal", data);
 
   }
@@ -243,6 +243,13 @@ export class InsecticidasPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  refreshInsecticidas(event){
+    this.mostrarInsecticidas();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
   }
 
 }

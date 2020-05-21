@@ -182,7 +182,7 @@ export class CostosPage implements OnInit {
       }
 
     }
-
+    this.mostrarCostos();
     console.log('Padre:', data);
 
 
@@ -204,7 +204,7 @@ export class CostosPage implements OnInit {
       await modal.present();
 
       const {data} = await modal.onDidDismiss();
-
+      this.mostrarCostos();
       console.log("Retorno del modal", data);
 
   }
@@ -248,4 +248,12 @@ export class CostosPage implements OnInit {
     console.log('Se esta buscando en el filtro:');
     console.log(event.detail.value);
   }
+
+  refreshCostos(event){
+    this.mostrarCostos();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
+  }
+
 }

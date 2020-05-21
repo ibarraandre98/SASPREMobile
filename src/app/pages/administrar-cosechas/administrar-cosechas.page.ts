@@ -19,6 +19,7 @@ import { PopInfoCosechasComponent } from 'src/app/components/pop-info-cosechas/p
 export class AdministrarCosechasPage {
 
   arrayCosechas:any;
+  image;
 
   constructor(
     public mostrarCosechasService: MostrarCosechasService,
@@ -26,7 +27,9 @@ export class AdministrarCosechasPage {
     private alertController: AlertController,
     private popCtrl: PopoverController
   ) {
+    this.image = 'maíz';
     this.mostrarCosechas();
+    
   }
 
   ngOnInit() {
@@ -96,7 +99,7 @@ export class AdministrarCosechasPage {
       translucent: true
     });
 
-    return await popover.present();
+    
 
     const {data} = await popover.onDidDismiss(); //Para recibir los datos cuando se cierre el pop
     // const {data} = await popover.onWillDismiss();  Para que se dispare rápido sin esperar que e cierre el pop
@@ -104,19 +107,19 @@ export class AdministrarCosechasPage {
       // Controlando que json realmente tenga esa propiedad
       if (data.hasOwnProperty(clave)) {
         // Mostrando en pantalla la clave junto a su valor
-        console.log("La clave es " + clave+ " y el valor es " + data[clave]);
-
+        /* console.log("La clave es " + clave+ " y el valor es " + data[clave]);
+        
         if( data[clave] ==  "Editar"){
           console.log("Se oprimio eliminar")
-        }
-          
+        } */
+          this.mostrarCosechas();
 
       }
 
     }
 
     console.log('Padre:', data);
-
+    return await popover.present();
   }
 
 
@@ -194,4 +197,12 @@ export class AdministrarCosechasPage {
         this.showAlert("Error", "Ha ocurrido un error " + error);
       });
   }
+
+  refreshCosechas(event){
+    this.mostrarCosechas();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
+  }
+  
 }

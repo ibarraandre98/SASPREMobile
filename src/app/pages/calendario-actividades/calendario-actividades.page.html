@@ -21,6 +21,12 @@
         <ion-searchbar placeholder="Buscar" animated></ion-searchbar>
     </ion-toolbar>
 
+    <ion-refresher slot="fixed" (ionRefresh)="refreshCalendarioActividades($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Desliza para actualizar" refreshingSpinner="circles" refreshingText="Actualizando...">
+
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-list>
         <ion-item *ngFor="let item of arrayCalendario">
             <ion-grid (click)="mostrarPopInfo(item)">

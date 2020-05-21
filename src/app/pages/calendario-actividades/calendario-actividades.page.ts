@@ -198,7 +198,7 @@ export class CalendarioActividadesPage implements OnInit {
       }
 
     }
-
+    this.mostrarCalendarioActividades();
     console.log('Padre:', data);
 
 
@@ -222,7 +222,7 @@ export class CalendarioActividadesPage implements OnInit {
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
-
+    this.mostrarCalendarioActividades();
     console.log("Retorno del modal", data);
   }
 
@@ -257,4 +257,12 @@ export class CalendarioActividadesPage implements OnInit {
     });
     return await popover.present();
   }
+
+  refreshCalendarioActividades(event){
+    this.mostrarCalendarioActividades();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
+  }
+
 }

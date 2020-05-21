@@ -179,9 +179,8 @@ export class AlarmasPage implements OnInit {
       }
 
     }
-
-    console.log('Padre:', data);
-
+    
+    this.mostrarAlarmas();
 
   }
 
@@ -205,7 +204,7 @@ export class AlarmasPage implements OnInit {
       await modal.present();
 
       const {data} = await modal.onDidDismiss();
-
+      this.mostrarAlarmas();
       console.log("Retorno del modal", data);
 
   }
@@ -255,5 +254,12 @@ export class AlarmasPage implements OnInit {
 
   clickFab(){
     this.nuevoAlarma();
+  }
+
+  refreshAlarmas(event){
+    this.mostrarAlarmas();
+    setTimeout(()=>{
+      event.target.complete();
+    },2000);
   }
 }
