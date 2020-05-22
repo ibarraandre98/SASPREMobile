@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {FormBuilder, Validators} from '@angular/forms'
+import {FormBuilder, Validators} from '@angular/forms';
 import { InsecticidasService } from '../../services/insecticidas.service';
 import { AlertController } from '@ionic/angular';
 import { Alerts } from './../../models/alerts';

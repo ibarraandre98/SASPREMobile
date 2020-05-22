@@ -13,7 +13,7 @@
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;" (click)="salirConArgumentos()">
+          <ion-buttons class="boton" style="padding-top: 5px;" (click)="updateCalendarioActividades()">
             <ion-button>Agregar</ion-button>
           </ion-buttons>
         </ion-col>
@@ -24,6 +24,7 @@
   </div>
 
   <div class="plato">
+    <form [formGroup]="registerForm" (ngSubmit)="updateCalendarioActividades()">
     <ion-label>
       <p class="titulo_">Edite la siguiente información para continuar</p>
     </ion-label>
@@ -31,24 +32,34 @@
     <ion-label>
       <p class="titulo">Nombre de la actividad</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese nombre de de la actividad"></ion-input>
+    <ion-input formControlName="actividadNombre" class="subtitulo" type="text" placeholder="Ingrese nombre de de la actividad"></ion-input>
+    <div class="error" *ngFor="let error of errorMessages.actividadNombre">
+      <ng-container *ngIf="actividadNombre.hasError(error.type) && (actividadNombre.dirty || actividadNombre.touched)">
+          <small class="error-message">{{error.message}}</small>
+      </ng-container>
+     </div>
 
     <ion-label>
       <p class="titulo">Descripcion</p>
     </ion-label>
-    <ion-input class="subtitulo" type="text" placeholder="Ingrese descripción de la actividad"></ion-input>
-
+    <ion-input formControlName="actividadDescripcion" class="subtitulo" type="text" placeholder="Ingrese descripción de la actividad"></ion-input>
+    <div class="error" *ngFor="let error of errorMessages.actividadDescripcion">
+      <ng-container *ngIf="actividadDescripcion.hasError(error.type) && (actividadDescripcion.dirty || actividadDescripcion.touched)">
+          <small class="error-message">{{error.message}}</small>
+      </ng-container>
+     </div>
+    </form>
     <ion-label>
       <p class="titulo">Fecha de inicio</p>
     </ion-label>
-    <ion-datetime value="1990-02-19" placeholder="Seleccione la fecha de inicio de la actividad "></ion-datetime>
+    <ion-datetime [(ngModel)]="actividad.fechaInicio" id="finicio" placeholder="Seleccione la fecha de inicio de la actividad "></ion-datetime>
 
     <ion-label>
       <p class="titulo">Fecha de fin</p>
     </ion-label>
-    <ion-datetime value="1990-02-19" placeholder="Seleccione la fecha de fin de la actividad "></ion-datetime>
+    <ion-datetime [(ngModel)]="actividad.fechaFin" placeholder="Seleccione la fecha de fin de la actividad "></ion-datetime>
 
-
+  
   </div>
 
 
