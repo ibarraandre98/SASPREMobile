@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CultivosService } from 'src/app/services/cultivos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-administrar-cultivos-agregar',
@@ -10,7 +11,9 @@ import { CultivosService } from 'src/app/services/cultivos.service';
 export class AdministrarCultivosAgregarPage implements OnInit {
 
   constructor(private modalCtrl: ModalController,
-    public administrarCultivosService: CultivosService, ) { }
+    public administrarCultivosService: CultivosService,
+    private router: Router,
+  ) { }
 
   datos = {
     idSemillas: '',
@@ -40,20 +43,11 @@ export class AdministrarCultivosAgregarPage implements OnInit {
 
   salirSinArgumentos() {
     this.modalCtrl.dismiss();
+
+    //this.router.navigate(['/administrar-cultivos']);
+
+    console.log("SALIENDO")
   }
 
-  salirConArgumentos() {
-    console.log("Form submit");
-    console.log(this.datos);
-    this.modalCtrl.dismiss({
-      semilla: this.datos.idSemillas,
-      usuario: this.datos.idUSuario,
-      fechaPla: this.datos.fechaPlantado,
-      fechaCos: this.datos.fechaCosecha,
-      can: this.datos.cantidad,
-      estad: this.datos.estado,
-      cose: this.datos.cosechado,
-
-    });
-  }
+ 
 }
