@@ -1,11 +1,13 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import {AlarmasService} from '../../services/alarmas.service';
+import {SemillasService} from '../../services/semillas.service';
 import {FormBuilder, Validators} from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController ,  PopoverController} from '@ionic/angular';
 import { Alerts } from './../../models/alerts';
-
+import {Platform} from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { isDate } from 'util';
 @Component({
   selector: 'app-alarmas-editar',
   templateUrl: './alarmas-editar.page.html',
@@ -15,16 +17,22 @@ export class AlarmasEditarPage implements OnInit {
   alertas:Alerts;
   alarma:any;
   registerForm:any;
-
+  data:any[]=[];
+  selectVal:Number=103;
+  arrayAlarmas:any;
+  semillas:any;
   constructor(private modalCtrl: ModalController,
     private servicesShared:AlarmasService,
+    private semillasservices:SemillasService,
     private navParams:NavParams,
     public toastController:ToastController,
     private formBuilder: FormBuilder,
-    
+    private popCtrl: PopoverController,
+    private platform:Platform,
     private alertController:AlertController,
     )
     {
+     
       //:-------------------- cometela prro
       this.alertas = new Alerts(toastController,alertController);
       this.alarma = this.navParams.get('alarma');
@@ -32,9 +40,40 @@ export class AlarmasEditarPage implements OnInit {
         nombreAlarm:[this.alarma.nombreAlarma,[Validators.required,Validators.maxLength(50)]],
         descripcionAlarm:[this.alarma.descripcion ,[Validators.required,Validators.maxLength(100)]],
         tempMi:[this.alarma.tempMinAlarma,[Validators.required,Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")]],
-        tempMa:[this.alarma.tempMaxAlarma,[Validators.required,Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")]]
+        tempMa:[this.alarma.tempMaxAlarma,[Validators.required,Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")]],
+        lapsodias:[this.alarma.lapsoDias,[Validators.required,Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")]]
         });
+        
+        this.semillas=this.alarma.idSemillas;
+      
+        this.mostrarSemillas();
     }
+onChange(event){
+  //alert("tu seleccionaste id= "+event.target.value);
+  this.semillas=event.target.value;
+  console.log(event.target.value);
+}
+mostrarSemillas() {
+  console.log("uno");
+  this.semillasservices
+  .mostrarIdSemillas()
+    .then((response) => {
+      console.log(response);
+      let data = JSON.parse(response.data);
+      if (data.resultado == "failed") {
+        console.log("Alarmas no mostradas");
+        //this.showAlert("Error", "Alarmas no mostradas");
+      } else if (data.resultado == "success") {
+        let datosAlarmas = data.data;
+      //  this.arrayAlarmas = datosAlarmas;
+        this.data =datosAlarmas;
+      }
+    })
+    .catch((error) => {
+     // this.showAlert("Error", JSON.stringify(error));
+    });
+    console.log(this.arrayAlarmas);
+}
 
   ngOnInit() {
 
@@ -56,6 +95,9 @@ export class AlarmasEditarPage implements OnInit {
     get tempMa(){
       return this.registerForm.get('tempMa');
     }
+    get lapsodias(){
+      return this.registerForm.get('lapsodias');
+    }
     public errorMessages = {
       nombreAlarm:[
         {type:'required', message:'Nombre es requerido'},
@@ -70,6 +112,9 @@ export class AlarmasEditarPage implements OnInit {
 
       tempMa:[{type:'required', message:'Valor requerido'},
       {type: 'pattern', message:'Valor no valido'}],
+      
+      lapsodias:[{type:'required', message:'Valor requerido'},
+      {type: 'pattern', message:'Valor no valido'}]
     };
     private datos2 = {
       idAlarmas: "",
@@ -82,11 +127,11 @@ export class AlarmasEditarPage implements OnInit {
     };
     guardarDatos(){
       this.datos2.idAlarmas=this.alarma.idAlarmas;
-      this.datos2.idSemillas=this.alarma.idSemillas;
+      this.datos2.idSemillas=this.semillas;
       this.datos2.nombreAlarma=this.registerForm.value.nombreAlarm;
       this.datos2.tempMaxAlarma=this.registerForm.value.tempMa;
       this.datos2.tempMinAlarma=this.registerForm.value.tempMi;
-      this.datos2.lapsoDias=this.alarma.lapsoDias;
+      this.datos2.lapsoDias=this.registerForm.value.lapsodias;
       this.datos2.descripcion=this.registerForm.value.descripcionAlarm;
     }
     onSubmitAlarmas() {
@@ -117,20 +162,6 @@ export class AlarmasEditarPage implements OnInit {
         });
     }
 
-  nojala(){
-    this.servicesShared.updateAlarma(this.alarma).then( Response => {
-      let data = JSON.parse(Response.data);
-      let datosalarma = data.result;
-      if( datosalarma == 'success'){
-        console.log("Se ha editado con exito");
-        //this.alertas.toast('Exito', 'Fertilizante actualizado con exito');
-
-      }else{
-        console.log("No se ha editado con exito");
-      }
-    });
-    this.salirSinArgumentos();
-  }
   salirSinArgumentos(){
     this.modalCtrl.dismiss();
   }
