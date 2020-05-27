@@ -70,14 +70,7 @@ export class AdministrarCultivosPage implements OnInit {
   async nuevoCultivo() {
     const modal = await this.modalCtrl.create({
       component: AdministrarCultivosAgregarPage,
-      componentProps: {
-        idSemillas: '',
-        idUSuario: '',
-        fechaPlantado: '',
-        fechaCosecha: '',
-        cantidad: '',
-        estado: ''
-      },
+      
     });
 
     await modal.present();
@@ -87,9 +80,10 @@ export class AdministrarCultivosPage implements OnInit {
     console.log("Retorno del modal", data);
   }
 
-  async mostrarPop(evento) {
+  async mostrarPop(evento,cultivo) {
     const popover = await this.popCtrl.create({
       component: PopCultivosComponent,
+      componentProps:{cultivo},
       event: evento,
       mode: 'ios',
       backdropDismiss: true,
@@ -107,7 +101,7 @@ export class AdministrarCultivosPage implements OnInit {
         console.log("La clave es " + clave + " y el valor es " + data[clave]);
         
         if (data[clave] == "Editar") {
-          this.editarCultivo();
+          this.editarCultivo(cultivo);
         } else if (data[clave] == "Borrar") {
           this.borrarCultivo();
         }
@@ -125,13 +119,13 @@ export class AdministrarCultivosPage implements OnInit {
     console.log("Se borro costo");
   }
 
-  async editarCultivo() {
+  async editarCultivo(cultivo:any) {
 
+    console.log(cultivo);
     const modal = await this.modalCtrl.create({
       component: AdministrarCultivosEditarPage,
       componentProps: {
-        semilla: 'maiz',
-        descripcion: 'descripcion',
+       cultivo,
       }
     });
 
@@ -143,11 +137,11 @@ export class AdministrarCultivosPage implements OnInit {
     console.log("Retorno del modal", data);
   }
 
-  async mostrarPopInfo(costo:any) {
+  async mostrarPopInfo(cultivos:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoCultivosComponent,
       componentProps:{
-        costo,
+        cultivos,
       },
       mode: "md",
       backdropDismiss: true,

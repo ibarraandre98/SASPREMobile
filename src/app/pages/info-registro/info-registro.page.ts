@@ -43,7 +43,7 @@ export class InfoRegistroPage implements OnInit {
   ) {
     this.alertas = new Alerts(this.toastController,this.alertController);
    }
-
+ 
    get nombre(){
      return this.infoForm.get('nombre');
    }
