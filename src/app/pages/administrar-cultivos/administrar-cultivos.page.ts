@@ -143,11 +143,11 @@ export class AdministrarCultivosPage implements OnInit {
     console.log("Retorno del modal", data);
   }
 
-  async mostrarPopInfo(costo:any) {
+  async mostrarPopInfo(cultivo:any) {
     const popover = await this.popCtrl.create({
       component: PopInfoCultivosComponent,
       componentProps:{
-        costo,
+        cultivo,
       },
       mode: "md",
       backdropDismiss: true,
