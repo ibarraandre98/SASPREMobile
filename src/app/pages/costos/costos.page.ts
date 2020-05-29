@@ -143,7 +143,7 @@ export class CostosPage implements OnInit {
 
   async showAlert(title: string, content: string) {
     const alert = await this.alertController.create({
-      header: title,
+      header: title, 
       message: content,
       buttons: ["Ok"],
     });

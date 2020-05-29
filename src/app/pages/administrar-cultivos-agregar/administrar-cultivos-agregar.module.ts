@@ -7,14 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { AdministrarCultivosAgregarPageRoutingModule } from './administrar-cultivos-agregar-routing.module';
 
 import { AdministrarCultivosAgregarPage } from './administrar-cultivos-agregar.page';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdministrarCultivosAgregarPageRoutingModule
+    AdministrarCultivosAgregarPageRoutingModule,
+    ReactiveFormsModule
+
   ],
   declarations: [AdministrarCultivosAgregarPage]
 })
 export class AdministrarCultivosAgregarPageModule {}
+
