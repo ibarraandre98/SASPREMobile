@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Alerts } from './../../models/alerts';
 import { UserService } from './../../services/user.service';
@@ -29,6 +30,7 @@ export class RecuperarPassPage implements OnInit {
     private userService:UserService,
     private toastController:ToastController,
     private alertController:AlertController,
+    private router:Router,
   ) {
     this.image.src = "../../assets/icon/logo.png";
     this.alertas = new Alerts(toastController,alertController);
@@ -97,7 +99,9 @@ export class RecuperarPassPage implements OnInit {
             this.recoverForm.setValue({
               correo:'',
             });
+            
             this.disableButton = false;
+            this.router.navigate(['/home']);
           }).catch(
             error =>
             {

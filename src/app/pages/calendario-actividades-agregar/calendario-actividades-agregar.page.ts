@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { CalendarioActividadesService } from "src/app/services/calendario-actividades.service";
@@ -13,7 +14,7 @@ export class CalendarioActividadesAgregarPage implements OnInit {
   ) { }
 
   datos = {
-    idUsuario: '',
+    idUsuario: environment.idUsuario,
     nombreActividad: '',
     descripcion: '',
     fechaInicio: '',

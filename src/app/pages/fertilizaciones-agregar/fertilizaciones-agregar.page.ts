@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MostrarFertilizacionesService } from '../../services/mostrar-fertilizaciones.service';
@@ -18,7 +19,7 @@ export class FertilizacionesAgregarPage implements OnInit {
   fertilizaciones = {
     idCultivos: '',
     idFertilizantes:'',
-    idUsuario:'SUPER',
+    idUsuario:environment.idUsuario,
     fecha: Date
   };
 
