@@ -42,9 +42,11 @@
         <p class="titulo">Semilla</p>
       </ion-label>
 
-      <ion-select [(ngModel)]="datos.idSemillas" name="idSemillas" required class="subtitulo" value="Seleccione una semilla">
-        <ion-select-option value="1">1</ion-select-option>
-        <ion-select-option value="2">2</ion-select-option>
+      <ion-select class="subtitulo" value="Selecione el lapso de días"
+      (ionChange)="onChange($event)">
+      <ion-select-option  *ngFor="let item of data" [value]="item.idSemillas" >
+        {{item.nombreSemilla}}
+        </ion-select-option>
       </ion-select>
 
       <ion-label>
@@ -61,10 +63,7 @@
         <p class="titulo">Lapso de días</p>
       </ion-label>
 
-      <ion-select [(ngModel)]="datos.lapsoDias" name="lapsoDias"  class="subtitulo" value="Selecione el lapso de días">
-        <ion-select-option value="1">1</ion-select-option>
-        <ion-select-option value="2">2</ion-select-option>
-      </ion-select>
+      <ion-input [(ngModel)]="datos.lapsoDias" name="descripcion" required class="subtitulo" type="text" placeholder="Ingrese una lapso de dias para la alarma"></ion-input>
 
       <ion-grid>
         <ion-row>

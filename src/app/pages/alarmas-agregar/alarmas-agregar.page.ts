@@ -2,15 +2,26 @@ import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { AlarmasService } from "../../services/alarmas.service";
 
+import {SemillasService} from '../../services/semillas.service';
+
 @Component({
   selector: "app-alarmas-agregar",
   templateUrl: "./alarmas-agregar.page.html",
   styleUrls: ["./alarmas-agregar.page.scss"],
 })
 export class AlarmasAgregarPage implements OnInit {
+
+  
+  data:any[]=[];
+  arrayAlarmas:any;
   constructor(private modalCtrl: ModalController,
+    
+    private semillasservices:SemillasService,
     public alarmasService: AlarmasService,
-  ) { }
+  ) { 
+    this.mostrarSemillas();
+
+  }
 
   datos = {
     idSemillas: '',
@@ -23,7 +34,11 @@ export class AlarmasAgregarPage implements OnInit {
 
 
   ngOnInit() { }
-
+  onChange(event){
+    //alert("tu seleccionaste id= "+event.target.value);
+    this.datos.idSemillas=event.target.value;
+    console.log(event.target.value);
+  }
   onSubmitAlarmas() {
     this.alarmasService.insertAlarma(this.datos).then(Response => {
       let data = JSON.parse(Response.data);
@@ -36,7 +51,27 @@ export class AlarmasAgregarPage implements OnInit {
     });
     this.salirSinArgumentos();
   }
-
+  mostrarSemillas() {
+    console.log("uno");
+    this.semillasservices
+    .mostrarIdSemillas()
+      .then((response) => {
+        console.log(response);
+        let data = JSON.parse(response.data);
+        if (data.resultado == "failed") {
+          console.log("Alarmas no mostradas");
+          //this.showAlert("Error", "Alarmas no mostradas");
+        } else if (data.resultado == "success") {
+          let datosAlarmas = data.data;
+        //  this.arrayAlarmas = datosAlarmas;
+          this.data =datosAlarmas;
+        }
+      })
+      .catch((error) => {
+       // this.showAlert("Error", JSON.stringify(error));
+      });
+      console.log(this.arrayAlarmas);
+  }
   salirSinArgumentos() {
     this.modalCtrl.dismiss();
   }

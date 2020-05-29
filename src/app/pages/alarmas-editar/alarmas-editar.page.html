@@ -40,9 +40,11 @@
       <p class="titulo">Semilla</p>
     </ion-label>
 
-    <ion-select class="subtitulo" value="Seleccione una semilla">
-      <ion-select-option value="cat">Semilla 1</ion-select-option>
-      <ion-select-option value="dog">Semilla 2 </ion-select-option>
+    <ion-select class="subtitulo" value="Selecione el lapso de días"
+    (ionChange)="onChange($event)">
+    <ion-select-option  *ngFor="let item of data" [value]="item.idSemillas" >
+      {{item.nombreSemilla}}
+      </ion-select-option>
     </ion-select>
 
     <ion-label>
@@ -73,13 +75,14 @@
     <ion-label>
       <p class="titulo">Lapso de días</p>
     </ion-label>
-
-    <ion-select class="subtitulo" value="Selecione el lapso de días"
+    <ion-input formControlName="lapsodias" class="subtitulo" type="text" placeholder="Ingrese una lapse de dias para la alarma"
     
-    >
-      <ion-select-option value="cat">Semilla 1</ion-select-option>
-      <ion-select-option value="dog">Semilla 2 </ion-select-option>
-    </ion-select>
+    ></ion-input>
+    <div class="error" *ngFor="let error of errorMessages.lapsodias">
+      <ng-container *ngIf="lapsodias.hasError(error.type) && (lapsodias.dirty || lapsodias.touched)">
+          <small class="error-message">{{error.message}}</small>
+      </ng-container>
+     </div>
 
     <ion-grid>
       <ion-row>
