@@ -222,7 +222,7 @@ export class AlarmasPage implements OnInit {
 
 
     const {data} = await modal.onDidDismiss();
-
+    this.mostrarAlarmas();
     console.log("Retorno del modal", data);
   }
 

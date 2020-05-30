@@ -1,111 +1,81 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-
-import {FormBuilder, Validators} from '@angular/forms'
+import { ModalController, NavParams } from '@ionic/angular';
 import { InsecticidasService } from '../../services/insecticidas.service';
-import { AlertController } from '@ionic/angular';
 import { Alerts } from './../../models/alerts';
 
-import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-insecticidas-editar',
   templateUrl: './insecticidas-editar.page.html',
   styleUrls: ['./insecticidas-editar.page.scss'],
 })
 export class InsecticidasEditarPage implements OnInit {
-
-  alertas:Alerts;
   
-  registerForm = this.formBuilder.group({
-    nombree:['',[Validators.required,Validators.maxLength(50)]],
-    precioo:['',Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")],
-    descripcionn:['',[Validators.required,Validators.maxLength(100)]]
-    });
+  insecticida;
  
   constructor(private modalCtrl:ModalController,
     public insecticidasService: InsecticidasService,
-    public toastController:ToastController,
-    private alertController:AlertController,
-    private formBuilder: FormBuilder ) {
-      this.alertas = new Alerts(toastController,alertController);
-     }
+    private alerts:Alerts,
+    private navParams:NavParams,
+    ) 
+    {
+      this.insecticida = this.navParams.get('insecticida');
+      this.insecticidas.idInsecticidas = this.insecticida.idInsecticidas;
+      this.insecticidas.nombreInsecticida = this.insecticida.nombreInsecticida;
+      this.insecticidas.precio = this.insecticida.precio;
+      this.insecticidas.descripcion = this.insecticida.descripcion;
+    }
     
-      /*Para enviar datos del padre al hijo (modal) */
-      @Input() nombre;
-      @Input() precio;
-      @Input() descripcion;
-      
-      private datos = {
-        idInsecticidas:'16',
-        nombreInsecticida: '1',
-        precio: '1',
-        descripcion: '1'
-      }
+    insecticidas = {
+      idInsecticidas:'',
+      nombreInsecticida:'',
+      precio:'',
+      descripcion:'',
+    }
+
   ngOnInit() {
   }
-  get nombree(){
-    return this.registerForm.get('nombree');
-  }
-
-  get precioo(){
-    return this.registerForm.get('precioo');
-  }
-
-  get descripcionn(){
-    return this.registerForm.get('descripcionn');
-  }
-  public errorMessages = {
-    nombree:[
-      {type:'required', message:'Nombre es requerido'},
-      {type: 'maxlength', message:'Se exedio el numero de caracteres'}
-    ],
-    precioo:[
-      {type:'required', message:'precio es requerido'},
-      {type: 'pattern', message:'Valor no valido'}],
-
-    descripcionn:[{type:'required', message:'Descripcion requerida'},
-    {type: 'maxlength', message:'Se exedio el numero de caracteres'}],
-  };
 
 
   salirSinArgumentos(){
     this.modalCtrl.dismiss();
   }
   onSubmitInsecticida(){
-    this.datos.nombreInsecticida=this.registerForm.value.nombree;
-    this.datos.precio=this.registerForm.value.precioo;
-    this.datos.descripcion= this.registerForm.value.descripcionn;
+    console.log(this.insecticidas);
+    if(this.insecticidas.idInsecticidas == '' ||this.insecticidas.nombreInsecticida == '' || this.insecticidas.precio == '' 
+    || this.insecticidas.descripcion == ''){
+      this.alerts.showAlert('Error','Faltan campos por completar');
+      return;
+    }
     this.updateInsecticidas();
   }
   salirConArgumentos(){
     this.modalCtrl.dismiss({
-
-      nombre:'nombre desde hijo',
-      precio:'precio desde hijo',
-      descripcion:'descripcion desde hijo'
     });
   }
   updateInsecticidas() {
-    this.insecticidasService.updateInsecticidas(this.datos)
+    this.insecticidasService.updateInsecticidas(this.insecticidas)
       .then(response => {
         console.log(response);
         let data = JSON.parse(response.data);
 
         if (data.result == 'success') {
-          this.datos.idInsecticidas = '';
-          this.datos.nombreInsecticida = '';
-          this.datos.precio = '';
-          this.datos.descripcion = '';
+          this.insecticidas.idInsecticidas = '';
+          this.insecticidas.nombreInsecticida = '';
+          this.insecticidas.precio = '';
+          this.insecticidas.descripcion = '';
 
-          this.alertas.toast('Exito', 'Insecticida actualizada con exito');
+          this.alerts.toast('Exito', 'Insecticida actualizada con exito');
           //this.router.navigateByUrl('/menu');
         } else {
           console.log(data.message);
+          this.alerts.showAlert('Error', 'Ha ocurrido un error');
         }
       }
       )
       .catch(error => {
-       this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
-      })
+       this.alerts.showAlert('Error', 'Ha ocurrido un error ' + error);
+      });
+
+      this.salirSinArgumentos();
   }
 }

@@ -107,7 +107,7 @@ export class InsecticidasPage implements OnInit {
 
 
     const {data} = await modal.onDidDismiss();
-
+    this.mostrarInsecticidas();
     console.log("Retorno del modal", data);
   }
 

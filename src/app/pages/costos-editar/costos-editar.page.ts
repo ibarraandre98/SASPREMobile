@@ -1,3 +1,4 @@
+import { SemillasService } from './../../services/semillas.service';
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController, NavParams } from "@ionic/angular";
 import {CostosService} from '../../services/costos.service';
@@ -14,17 +15,34 @@ import { ToastController } from '@ionic/angular';
 })
 export class CostosEditarPage implements OnInit {
 
-  alertas:Alerts;
   costos:any;
   registerForm:any;
+  arraySemillas;
+
   constructor(private modalCtrl: ModalController,
     private servicesShared:CostosService,
     private navParams:NavParams,
     public toastController:ToastController,
     private formBuilder:FormBuilder,
-    private alertController:AlertController,    
+    private alertController:AlertController,
+    private semillasService:SemillasService,
+    private alerts:Alerts,    
     ) {
-      this.alertas= new Alerts(toastController,alertController);
+
+      this.semillasService.mostrarIdSemillas()
+      .then(response =>{
+        let data = JSON.parse(response.data);
+        if (data.resultado == 'failed') {
+          console.log('Costos no mostrados');
+
+        } else if (data.resultado == 'success') {
+          let datosSemillas = data.data;
+          this.arraySemillas = datosSemillas;
+          console.log(this.arraySemillas);
+        }
+        
+      });
+
       this.costos=this.navParams.get('costo');
       console.log(this.costos);
       this.registerForm=this.formBuilder.group({
@@ -44,7 +62,7 @@ export class CostosEditarPage implements OnInit {
         {type: 'maxlength', message:'Se exedio el numero de caracteres'}],
     };
 
-    private datos = {
+    public datos = {
       idCostos: "",
       idSemillas: "",
       precio: "",
@@ -60,6 +78,10 @@ export class CostosEditarPage implements OnInit {
 
     onSubmitCostos(){
       this.guardarDatos();
+      if(this.datos.idCostos == '' || this.datos.idSemillas == '' || this.datos.precio == '' || this.datos.descripcion == ''){
+        this.alerts.showAlert('Error','Faltan campos por rellenar');
+        return;
+      }
       this.servicesShared
       .updateCostos(this.datos)
       .then((response)=>{
@@ -72,14 +94,14 @@ export class CostosEditarPage implements OnInit {
           this.datos.precio="";
           this.datos.descripcion="";
 
-          this.alertas.toast("Exito","Costo actualizado con exito");
+          this.alerts.toast("Exito","Costo actualizado con exito");
           this.salirSinArgumentos();
         }else{
           console.log(data.message);
         }
       })
       .catch((error)=>{
-      this.alertas.showAlert("Error","Ha ocurrido un error "+ error);
+      this.alerts.showAlert("Error","Ha ocurrido un error "+ error);
       });
     }
 

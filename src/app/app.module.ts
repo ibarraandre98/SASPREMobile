@@ -1,3 +1,4 @@
+import { Alerts } from './models/alerts';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -24,6 +25,7 @@ import { PipesModule } from './pipes/pipes.module';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,PipesModule],
   providers: [
     HTTP,
+    Alerts,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

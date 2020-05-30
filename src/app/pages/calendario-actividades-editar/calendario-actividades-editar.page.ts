@@ -12,7 +12,6 @@ import {CalendarioActividadesService} from '../../services/calendario-actividade
   styleUrls: ["./calendario-actividades-editar.page.scss"],
 })
 export class CalendarioActividadesEditarPage implements OnInit {
-  alertas:Alerts;
   actividad:any;
   registerForm:any;
   fechainiciado:any;
@@ -23,15 +22,13 @@ export class CalendarioActividadesEditarPage implements OnInit {
     private navParams:NavParams,
     private alertController:AlertController,
     public toastController:ToastController,
+    private alerts:Alerts,
     private servicesShared:CalendarioActividadesService) {
-
-      this.alertas = new Alerts(toastController,alertController);
       this.actividad = this.navParams.get('actividad');
     this.registerForm = this.formBuilder.group({
       actividadNombre:[this.actividad.nombreActividad,[Validators.required,Validators.maxLength(50)]],
       actividadDescripcion:[this.actividad.descripcion ,[Validators.required,Validators.maxLength(100)]]
       });
-//    console.log(this.actividad);
   
   }
   get actividadNombre(){
@@ -53,12 +50,12 @@ export class CalendarioActividadesEditarPage implements OnInit {
      
   };
   private datos2 = {
-    idCalendarioActividades: "",
-    idUsuario: "",
-    nombreActividad: "",
-    descripcion: "",
-    fechaInicio: "",
-    fechaFin: "",
+    idCalendarioActividades: '',
+    idUsuario: '',
+    nombreActividad: '',
+    descripcion: '',
+    fechaInicio: '',
+    fechaFin: '',
   };
   guardarDatos(){
    this.datos2.idCalendarioActividades=this.actividad.idCalendarioActividades;
@@ -67,12 +64,17 @@ export class CalendarioActividadesEditarPage implements OnInit {
    this.datos2.descripcion=this.registerForm.value.actividadDescripcion;
    this.datos2.fechaInicio=this.actividad.fechaInicio;
    this.datos2.fechaFin=this.actividad.fechaFin;
-  
-   
   }
   updateCalendarioActividades() {
+
     //document.getElementById("finicio").innerHTML;
     this.guardarDatos();
+
+    if(this.datos2.idCalendarioActividades == '' || this.datos2.idUsuario  == '' || this.datos2.nombreActividad  == ''
+    || this.datos2.descripcion  == '' || this.datos2.fechaInicio  == '' || this.datos2.fechaFin  == ''){
+      this.alerts.showAlert('Error','Faltan campos por rellenar');
+      return;
+    }
     this.servicesShared.updateCalendarioActividades(this.datos2)
       .then((response) => {
         console.log(response);
@@ -86,21 +88,18 @@ export class CalendarioActividadesEditarPage implements OnInit {
           this.datos2.fechaInicio = "";
           this.datos2.fechaFin = "";
 
-          this.alertas.toast("Exito", "Calendario de actividades actualizada con exito");
+          this.alerts.toast("Exito", "Calendario de actividades actualizada con exito");
           this.salirSinArgumentos();
         } else {
           console.log(data.message);
         }
       })
       .catch((error) => {
-        this.alertas.showAlert("Error", "Ha ocurrido un error " + error);
+        this.alerts.showAlert("Error", "Ha ocurrido un error " + error);
       });
   }
 
-  @Input() nombre;
-  @Input() descripcion;
-  @Input() fecha_inicio;
-  @Input() fecha_fin;
+  
   ngOnInit() {}
 
   salirSinArgumentos() {

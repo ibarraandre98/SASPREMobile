@@ -14,7 +14,6 @@ import { isDate } from 'util';
   styleUrls: ['./alarmas-editar.page.scss'],
 })
 export class AlarmasEditarPage implements OnInit {
-  alertas:Alerts;
   alarma:any;
   registerForm:any;
   data:any[]=[];
@@ -27,14 +26,10 @@ export class AlarmasEditarPage implements OnInit {
     private navParams:NavParams,
     public toastController:ToastController,
     private formBuilder: FormBuilder,
-    private popCtrl: PopoverController,
-    private platform:Platform,
-    private alertController:AlertController,
+    private alerts:Alerts,
     )
     {
      
-      //:-------------------- cometela prro
-      this.alertas = new Alerts(toastController,alertController);
       this.alarma = this.navParams.get('alarma');
       this.registerForm = this.formBuilder.group({
         nombreAlarm:[this.alarma.nombreAlarma,[Validators.required,Validators.maxLength(50)]],
@@ -151,14 +146,14 @@ mostrarSemillas() {
             this.datos2.lapsoDias = "";
             this.datos2.descripcion = "";
   
-            this.alertas.toast("Exito", "Alerta actualizada con exito");
+            this.alerts.toast("Exito", "Alerta actualizada con exito");
             this.salirSinArgumentos();
           } else {
             console.log(data.message);
           }
         })
         .catch((error) => {
-          this.alertas.showAlert("Error", "Ha ocurrido un error " + error);
+          this.alerts.showAlert("Error", "Ha ocurrido un error " + error);
         });
     }
 

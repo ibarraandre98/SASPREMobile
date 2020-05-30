@@ -1,124 +1,115 @@
 <ion-content>
-  <div class="background">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <ion-buttons class="boton" (click)="salirSinArgumentos()">
-            <ion-back-button defaultHref="alarmas"></ion-back-button>
-          </ion-buttons>
-        </ion-col>
-        <ion-col size="4">
-          <ion-label>
-            <p class="titulo_principal">Editar alarma</p>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <ion-buttons class="boton" style="padding-top: 5px;"  (click)="onSubmitAlarmas()">
-            <ion-button>Guardar</ion-button>
-          </ion-buttons>
-        </ion-col>
+    <div class="background">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4">
+                    <ion-buttons class="boton" (click)="salirSinArgumentos()">
+                        <ion-back-button defaultHref="alarmas"></ion-back-button>
+                    </ion-buttons>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-label>
+                        <p class="titulo_principal">Editar alarma</p>
+                    </ion-label>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitAlarmas()">
+                        <ion-button>Guardar</ion-button>
+                    </ion-buttons>
+                </ion-col>
 
-      </ion-row>
+            </ion-row>
 
-    </ion-grid>
-  </div>
-
-  <div class="plato">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmitAlarmas()">
-
-    <ion-label>
-      <p class="titulo_">Edite la siguiente información para continuar</p>
-    </ion-label>
-
-    <div class="imagen">
-      <ion-avatar class="borde">
-        <img src="/resources/maiz.jpg">
-      </ion-avatar>
+        </ion-grid>
     </div>
 
-    <ion-label>
-      <p class="titulo">Semilla</p>
-    </ion-label>
-
-    <ion-select class="subtitulo" value="Selecione el lapso de días"
-    (ionChange)="onChange($event)">
-    <ion-select-option  *ngFor="let item of data" [value]="item.idSemillas" >
-      {{item.nombreSemilla}}
-      </ion-select-option>
-    </ion-select>
-
-    <ion-label>
-      <p class="titulo">Nombre</p>
-    </ion-label>
-    <ion-input formControlName="nombreAlarm" class="subtitulo" type="text" placeholder="Ingrese el nombre del cultivo"
-   
-    ></ion-input>
-    <div class="error" *ngFor="let error of errorMessages.nombreAlarm">
-      <ng-container *ngIf="nombreAlarm.hasError(error.type) && (nombreAlarm.dirty || nombreAlarm.touched)">
-          <small class="error-message">{{error.message}}</small>
-      </ng-container>
-     </div>
-
-    <ion-label>
-      <p class="titulo">Descripción</p>
-    </ion-label>
-    <ion-input formControlName="descripcionAlarm" class="subtitulo" type="text" placeholder="Ingrese una descripción para la alarma"
-    
-    ></ion-input>
-    <div class="error" *ngFor="let error of errorMessages.descripcionAlarm">
-      <ng-container *ngIf="descripcionAlarm.hasError(error.type) && (descripcionAlarm.dirty || descripcionAlarm.touched)">
-          <small class="error-message">{{error.message}}</small>
-      </ng-container>
-     </div>
+    <div class="plato">
 
 
-    <ion-label>
-      <p class="titulo">Lapso de días</p>
-    </ion-label>
-    <ion-input formControlName="lapsodias" class="subtitulo" type="text" placeholder="Ingrese una lapse de dias para la alarma"
-    
-    ></ion-input>
-    <div class="error" *ngFor="let error of errorMessages.lapsodias">
-      <ng-container *ngIf="lapsodias.hasError(error.type) && (lapsodias.dirty || lapsodias.touched)">
-          <small class="error-message">{{error.message}}</small>
-      </ng-container>
-     </div>
+        <ion-label>
+            <p class="titulo_">Edite la siguiente información para continuar</p>
+        </ion-label>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-label>
-            <p class="titulo">Temperatura mínima</p>
-          </ion-label>
-          <ion-input formControlName="tempMi" class="subtitulo" type="text" placeholder="Ingrese temperatura"
-          ></ion-input>
-          <div class="error" *ngFor="let error of errorMessages.tempMi">
-            <ng-container *ngIf="tempMi.hasError(error.type) && (tempMi.dirty || tempMi.touched)">
-                <small class="error-message">{{error.message}}</small>
-            </ng-container>
-           </div>
-        </ion-col>
+        <div class="imagen">
+            <ion-avatar class="borde">
+                <img src="/resources/maiz.jpg">
+            </ion-avatar>
+        </div>
 
-        <ion-col size="6">
-          <ion-label>
-            <p class="titulo">Temperatura máxima</p>
-          </ion-label>
-          <ion-input formControlName="tempMa" class="subtitulo" type="text" placeholder="Ingrese temperatura"
-          ></ion-input>
-          <div class="error" *ngFor="let error of errorMessages.tempMa">
-            <ng-container *ngIf="tempMa.hasError(error.type) && (tempMa.dirty || tempMa.touched)">
-                <small class="error-message">{{error.message}}</small>
-            </ng-container>
-           </div>
-        </ion-col>
-        
-      </ion-row>
-    </ion-grid>
-    </form>
-  </div>
+        <ion-label>
+            <p class="titulo">Semilla</p>
+        </ion-label>
+
+        <ion-select [(ngModel)]="alarma.idSemillas" class="subtitulo" placeholder="Seleccione un cultivo" value="1" (ionChange)="onChange($event)">
+            <ion-select-option *ngFor="let item of data" [value]="item.idSemillas">
+                {{item.nombreSemilla}}
+            </ion-select-option>
+        </ion-select>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitAlarmas()">
+            <ion-label>
+                <p class="titulo">Nombre</p>
+            </ion-label>
+            <ion-input formControlName="nombreAlarm" class="subtitulo" type="text" placeholder="Ingrese el nombre del cultivo"></ion-input>
+            <div class="error" *ngFor="let error of errorMessages.nombreAlarm">
+                <ng-container *ngIf="nombreAlarm.hasError(error.type) && (nombreAlarm.dirty || nombreAlarm.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+
+            <ion-label>
+                <p class="titulo">Descripción</p>
+            </ion-label>
+            <ion-input formControlName="descripcionAlarm" class="subtitulo" type="text" placeholder="Ingrese una descripción para la alarma"></ion-input>
+            <div class="error" *ngFor="let error of errorMessages.descripcionAlarm">
+                <ng-container *ngIf="descripcionAlarm.hasError(error.type) && (descripcionAlarm.dirty || descripcionAlarm.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
 
 
-  <!-- 
+            <ion-label>
+                <p class="titulo">Lapso de días</p>
+            </ion-label>
+            <ion-input formControlName="lapsodias" class="subtitulo" type="text" placeholder="Ingrese una lapse de dias para la alarma"></ion-input>
+            <div class="error" *ngFor="let error of errorMessages.lapsodias">
+                <ng-container *ngIf="lapsodias.hasError(error.type) && (lapsodias.dirty || lapsodias.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-label>
+                            <p class="titulo">Temperatura mínima</p>
+                        </ion-label>
+                        <ion-input formControlName="tempMi" class="subtitulo" type="text" placeholder="Ingrese temperatura"></ion-input>
+                        <div class="error" *ngFor="let error of errorMessages.tempMi">
+                            <ng-container *ngIf="tempMi.hasError(error.type) && (tempMi.dirty || tempMi.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </ion-col>
+
+                    <ion-col size="6">
+                        <ion-label>
+                            <p class="titulo">Temperatura máxima</p>
+                        </ion-label>
+                        <ion-input formControlName="tempMa" class="subtitulo" type="text" placeholder="Ingrese temperatura"></ion-input>
+                        <div class="error" *ngFor="let error of errorMessages.tempMa">
+                            <ng-container *ngIf="tempMa.hasError(error.type) && (tempMa.dirty || tempMa.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </ion-col>
+
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+
+
+    <!-- 
   <ion-button color="primary" expand="full">
     Salir sin argumentos
   </ion-button>

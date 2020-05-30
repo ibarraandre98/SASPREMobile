@@ -1,94 +1,93 @@
 <ion-content>
-  <div class="background">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <ion-buttons class="boton" (click)="salirSinArgumentos()">
-            <ion-back-button defaultHref="administrar-cultivos"></ion-back-button>
-          </ion-buttons>
-        </ion-col>
-        <ion-col size="4">
-          <ion-label>
-            <p class="titulo_principal">Agregar cultivo</p>
-          </ion-label>
-        </ion-col>
-       
-      </ion-row>
+    <div class="background">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4">
+                    <ion-buttons class="boton" (click)="salirSinArgumentos()">
+                        <ion-back-button defaultHref="administrar-cultivos"></ion-back-button>
+                    </ion-buttons>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-label>
+                        <p class="titulo_principal">Agregar cultivo</p>
+                    </ion-label>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-buttons class="boton" style="padding-top: 5px;" (click)="onSubmitCultivos()">
+                        <ion-button>Agregar</ion-button>
+                    </ion-buttons>
+                </ion-col>
+            </ion-row>
 
-    </ion-grid>
-  </div> 
-
-  <div class="plato">
-
-    <ion-label>
-      <p class="titulo_">Ingrese la siguiente información para continuar</p>
-    </ion-label>
-
-    <div class="imagen">
-      <ion-avatar class="borde">
-        <img src="/resources/maiz.jpg">
-      </ion-avatar>
+        </ion-grid>
     </div>
-    <form [formGroup]="infoForm" (ngSubmit)="onSubmitCultivos()">
 
-      <ion-label>
-        <p class="titulo">Semilla</p>
-      </ion-label>
-      <ion-select class="subtitulo" value="Seleccione una semilla">
-        <ion-select-option value="1">Semilla 1</ion-select-option>
-        <ion-select-option value="2">Semilla 2 </ion-select-option>
-      </ion-select>
+    <div class="plato">
 
-      <ion-label>
-        <p class="titulo">Fecha de cultivo</p>
-      </ion-label> 
-      <ion-datetime value="2000-01-01" placeholder="Seleccione la fecha de cultivo "></ion-datetime>
+        <ion-label>
+            <p class="titulo_">Ingrese la siguiente información para continuar</p>
+        </ion-label>
 
-      <ion-label>
-        <p class="titulo">Fecha de cosecha</p>
-      </ion-label>
-      <ion-datetime value="2000-01-01" placeholder="Seleccione la fecha tentativa de cosecha "></ion-datetime>
+        <div class="imagen">
+            <ion-avatar class="borde">
+                <img src="/resources/maiz.jpg">
+            </ion-avatar>
+        </div>
+        <form [formGroup]="infoForm" (ngSubmit)="onSubmitCultivos()">
 
-      <ion-label>
-        <p class="titulo">Cantidad</p>
-      </ion-label>
-      <ion-input type="number" formControlName="cantidad" class="subtitulo" placeholder="Ingrese precio de la actividad"></ion-input>
-      
-      <div class="error" *ngFor="let error of errorMessages.cantidad">
-        <ng-container *ngIf="cantidad.hasError(error.type) && (cantidad.dirty || cantidad.touched)">
-            <small class="error-message">{{error.message}}</small>
-        </ng-container>
-      </div>
+            <ion-label>
+                <p class="titulo">Semilla</p>
+            </ion-label>
 
-      <ion-label>
-        <p class="titulo">Estado</p>
-      </ion-label>
-      <ion-input type="text" formControlName="estado" class="subtitulo" placeholder="Ingrese el estado del cultivo"></ion-input>
+            <ion-select formControlName="idSemillas" class="subtitulo" placeholder="Selecciona una semilla">
+                <ion-select-option *ngFor="let item of arraySemillas" [value]="item.idSemillas">{{item.nombreSemilla}}</ion-select-option>
+            </ion-select>
 
-      <div class="error" *ngFor="let error of errorMessages.estado">
-        <ng-container *ngIf="estado.hasError(error.type) && (estado.dirty || estado.touched)">
-            <small class="error-message">{{error.message}}</small>
-        </ng-container>
-      </div>
+            <ion-item>
+                <ion-label>
+                    <p class="titulo">Seleccione fecha de cultivo</p>
+                </ion-label>
+                <ion-datetime formControlName="fechaPlantado" placeholder="Fecha cultivo"></ion-datetime>
+            </ion-item>
 
-      
+            <ion-item>
+                <ion-label>
+                    <p class="titulo">Seleccione fecha de cosechado</p>
+                </ion-label>
+                <ion-datetime formControlName="fechaCosechado" placeholder="Fecha cosecha"></ion-datetime>
+            </ion-item>
 
-      <ion-label>
-        <p class="titulo">Cosechado</p>
-      </ion-label>
-      <ion-select class="subtitulo" value="Seleccione si o no">
-        <ion-select-option value="1">Si</ion-select-option>
-        <ion-select-option value="0">No</ion-select-option>
-      </ion-select>
-
-      <ion-button type="submit" expand="block" shape="undefined" class="boton-login">Editar</ion-button>
-
-    </form>
-
-  </div>
+            <ion-label>
+                <p class="titulo">Fecha de cosecha</p>
+            </ion-label>
 
 
-  <!-- 
+            <ion-label>
+                <p class="titulo">Cantidad</p>
+            </ion-label>
+            <ion-input type="number" formControlName="cantidad" class="subtitulo" placeholder="Ingrese precio de la actividad"></ion-input>
+
+            <div class="error" *ngFor="let error of errorMessages.cantidad">
+                <ng-container *ngIf="cantidad.hasError(error.type) && (cantidad.dirty || cantidad.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+
+            <ion-label>
+                <p class="titulo">Estado</p>
+            </ion-label>
+            <ion-input type="text" formControlName="estado" class="subtitulo" placeholder="Ingrese el estado del cultivo"></ion-input>
+
+            <div class="error" *ngFor="let error of errorMessages.estado">
+                <ng-container *ngIf="estado.hasError(error.type) && (estado.dirty || estado.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- 
   <ion-button color="primary" expand="full">
     Salir sin argumentos
   </ion-button>

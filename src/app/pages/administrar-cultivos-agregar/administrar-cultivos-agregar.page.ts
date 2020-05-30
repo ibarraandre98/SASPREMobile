@@ -1,3 +1,5 @@
+import { environment } from './../../../environments/environment';
+import { SemillasService } from './../../services/semillas.service';
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController, NavParams } from "@ionic/angular";
 import {CultivosService} from '../../services/cultivos.service';
@@ -13,10 +15,9 @@ import { ToastController } from '@ionic/angular';
 })
 export class AdministrarCultivosAgregarPage implements OnInit {
 
-  alertas:Alerts;
   cultivos:any;
   registerForm:any;
-
+  arraySemillas;
 
   
 
@@ -24,11 +25,28 @@ export class AdministrarCultivosAgregarPage implements OnInit {
     private servicesShared:CultivosService,
     public toastController: ToastController,
     private formBuilder: FormBuilder,
+    private semillasService:SemillasService,
+    private alerts:Alerts,
     ) { 
-      this.alertas= new Alerts(toastController,AlertController);
-      
+      this.semillasService.mostrarIdSemillas()
+      .then(response =>{
+        let data = JSON.parse(response.data);
+        if (data.resultado == 'failed') {
+          console.log('Costos no mostrados');
+
+        } else if (data.resultado == 'success') {
+          let datosSemillas = data.data;
+          this.arraySemillas = datosSemillas;
+          console.log(this.arraySemillas);
+        }
+        
+      });
     }
     infoForm = this.formBuilder.group({
+      idSemillas:[''],
+      idUsuario:environment.idUsuario,
+      fechaPlantado:[''],
+      fechaCosechado:[''],
       cantidad:['',Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")],
       estado:['',[Validators.required,Validators.maxLength(100)]]
     });
@@ -43,14 +61,13 @@ export class AdministrarCultivosAgregarPage implements OnInit {
         {type: 'maxlength', message:'Se exedio el numero de caracteres'}],
     };
 
-  private datos = {
-    idSemillas: "",
-    idUsuario: "", 
-    fechaPlantado: "",
-    fechaCosechado: "",
-    cantidad: "",
-    estado: "",
-    cosechado: "",
+  public datos = {
+    idSemillas: '',
+    idUsuario: '', 
+    fechaPlantado: '',
+    fechaCosechado: '',
+    cantidad: '',
+    estado: '',
   };
 
   get cantidad(){
@@ -62,13 +79,13 @@ export class AdministrarCultivosAgregarPage implements OnInit {
   }
 
   guardarDatos(){
-    this.datos.idSemillas=this.cultivos.idSemillas;
-    this.datos.idUsuario=this.cultivos.idUsuario;
-    this.datos.fechaPlantado=this.cultivos.fechaPlantado;
-    this.datos.fechaCosechado=this.cultivos.fechaCosechado;
-    this.datos.cantidad=this.infoForm.value.cantidad;
-    this.datos.estado=this.infoForm.value.estado;
-    this.datos.cosechado=this.cultivos.cosechado;
+    this.datos.idSemillas = this.infoForm.value.idSemillas;
+    this.datos.idUsuario = environment.idUsuario;
+    this.datos.cantidad = this.infoForm.value.cantidad;
+    this.datos.estado = this.infoForm.value.estado;
+    this.datos.fechaPlantado = this.infoForm.value.fechaPlantado;
+    this.datos.fechaCosechado = this.infoForm.value.fechaCosechado;
+    console.log(this.datos);
   }
 
 
@@ -90,6 +107,15 @@ export class AdministrarCultivosAgregarPage implements OnInit {
 
   onSubmitCultivos() {
     this.guardarDatos();
+    if(this.datos.cantidad == '0'){
+      this.alerts.showAlert('Error','La cantidad no puede ser 0');
+      return;
+    }
+    if(this.datos.idSemillas == '' || this.datos.idUsuario == '' || this.datos.cantidad == '' || this.datos.estado == ''
+    || this.datos.fechaPlantado == '' || this.datos.fechaCosechado == ''){
+      this.alerts.showAlert('Error','Faltan campos por rellenar');
+      return;
+    }
     this.servicesShared
     .insertCultivos(this.datos)
     .then((response)=>{
@@ -103,16 +129,15 @@ export class AdministrarCultivosAgregarPage implements OnInit {
       this.datos.fechaCosechado="";
       this.datos.cantidad="";
       this.datos.estado="";
-      this.datos.cosechado="";
 
-      this.alertas.toast("Exito","Cultivo actualizado con exito");
+      this.alerts.toast("Exito","Cultivo agregado con exito");
       this.salirSinArgumentos();
       }else{
         console.log(data.message);
       }
     })
     .catch((error)=>{
-      this.alertas.showAlert("Error","Ha ocurrido un error "+error);
+      this.alerts.showAlert("Error","Ha ocurrido un error "+error);
     });
   }
   }

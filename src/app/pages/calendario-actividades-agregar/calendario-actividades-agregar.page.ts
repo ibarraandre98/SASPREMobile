@@ -1,3 +1,4 @@
+import { Alerts } from './../../models/alerts';
 import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
@@ -11,6 +12,7 @@ import { CalendarioActividadesService } from "src/app/services/calendario-activi
 export class CalendarioActividadesAgregarPage implements OnInit {
   constructor(private modalCtrl: ModalController,
     public calendarioActividadesService: CalendarioActividadesService,
+    private alerts:Alerts,
   ) { }
 
   datos = {
@@ -24,6 +26,11 @@ export class CalendarioActividadesAgregarPage implements OnInit {
   ngOnInit() { }
 
   onSubmitCalendarioActividades() {
+    console.log(this.datos);
+    if(this.datos.nombreActividad == '' || this.datos.descripcion == '' || this.datos.fechaInicio == '' || this.datos.fechaFin == ''){
+      this.alerts.showAlert('Error','Faltan campos por rellenar');
+      return;
+    }
     this.calendarioActividadesService.insertCalendarioActividades(this.datos).then(Response => {
       let data = JSON.parse(Response.data);
       let datosCalendarioActividades = data.result;

@@ -222,7 +222,7 @@ export class CostosPage implements OnInit {
 
 
     const {data} = await modal.onDidDismiss();
-
+    this.mostrarCostos();
     console.log("Retorno del modal", data);
   }
 

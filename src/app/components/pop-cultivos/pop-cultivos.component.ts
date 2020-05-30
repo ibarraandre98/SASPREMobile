@@ -1,5 +1,7 @@
+import { MostrarFertilizacionesService } from './../../services/mostrar-fertilizaciones.service';
+import { CultivosService } from './../../services/cultivos.service';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-pop-cultivos',
@@ -8,7 +10,17 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopCultivosComponent implements OnInit {
 
-  constructor(private popoverCtrl: PopoverController) { }
+
+  cultivo: any;
+
+  constructor(
+    private popoverCtrl: PopoverController,
+    private cultivosService:CultivosService,
+    private navParams:NavParams,
+    private mostrarFertilizacionesService:MostrarFertilizacionesService,
+    ) { 
+      this.cultivo = this.navParams.get('cultivo');
+    }
 
   ngOnInit() { }
 
@@ -20,9 +32,19 @@ export class PopCultivosComponent implements OnInit {
   }
 
   clickBorrar() {
+
+    this.cultivosService.deleteCultivos(this.cultivo)
+    .then(response => {
+      console.log(response);
+    });
+
     console.log('Se oprimio borrar');
     this.popoverCtrl.dismiss({
       item: 'Borrar'
     });
-  } f
+  }
+
+  clickFertilizacion(){
+   
+  }
 }

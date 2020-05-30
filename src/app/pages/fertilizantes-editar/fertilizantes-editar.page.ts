@@ -8,9 +8,6 @@ import { AlertController } from '@ionic/angular';
 import { Alerts } from './../../models/alerts';
 import { ToastController } from '@ionic/angular';
 
-
-
-
 @Component({
   selector: 'app-fertilizantes-editar',
   templateUrl: './fertilizantes-editar.page.html',
@@ -18,7 +15,6 @@ import { ToastController } from '@ionic/angular';
 })
 export class FertilizantesEditarPage implements OnInit {
 
-  alertas:Alerts;
   fertilizante:any;
   registerForm:any;
 
@@ -27,18 +23,12 @@ export class FertilizantesEditarPage implements OnInit {
     private navParams:NavParams,
     public toastController:ToastController,
     private formBuilder: FormBuilder,
-
     private alertController:AlertController,
+    private alerts:Alerts,
     )
     {
-      this.alertas=new Alerts(toastController,alertController);
       this.fertilizante=this.navParams.get('fertilizante');
-
-      this.registerForm=this.formBuilder.group({
-        nombreFertilizante:[this.fertilizante.nombreFertilizante,[Validators.required,Validators.maxLength(100)]],
-        dosis:[this.fertilizante.dosis,[Validators.required,Validators.maxLength(100)]],
-        descripcionAplicacion:[this.fertilizante.descripcionAplicacion,[Validators.required,Validators.maxLength(100)]]         
-  });
+      this.guardarDatos();
 }
 
  
@@ -69,19 +59,20 @@ public errorMessages = {
   {type: 'pattern', message:'Valor no valido'}],
 };
 
-private datos={
-  idFertilizantes:"",
-  nombreFertilizante:"",
-  dosis:"",
-  descripcionAplicacion:"",
+
+ datosFertilizante = {
+  idFertilizantes:'',
+  nombreFertilizante: '',
+  dosis: '',
+  descripcionAplicacion:''
 };
 
 
   guardarDatos(){
-    this.datos.idFertilizantes=this.fertilizante.idFertilizantes;
-    this.datos.nombreFertilizante=this.registerForm.value.nombreFertilizante;
-    this.datos.dosis=this.registerForm.value.dosis;
-    this.datos.descripcionAplicacion=this.registerForm.value.descripcionAplicacion;
+    this.datosFertilizante.idFertilizantes=this.fertilizante.idFertilizantes;
+    this.datosFertilizante.nombreFertilizante=this.fertilizante.nombreFertilizante;
+    this.datosFertilizante.dosis=this.fertilizante.dosis;
+    this.datosFertilizante.descripcionAplicacion=this.fertilizante.descripcionAplicacion;
 
   }
 
@@ -90,26 +81,31 @@ private datos={
   }
 
   onSubmitFertilizantes(){
-    this.guardarDatos();
+
+    if(this.datosFertilizante.nombreFertilizante == '' || this.datosFertilizante.dosis == '' || this.datosFertilizante.descripcionAplicacion == ''){
+      this.alerts.showAlert('Error','Faltan campos por completar');
+      return;
+    }
     this.servicesShared
-    .editarFertilizantes(this.datos)
+    .editarFertilizantes(this.datosFertilizante)
     .then((response)=>{
       console.log(response);
       let data =JSON.parse(response.data);
 
       if(data.result=="success"){
-        this.datos.idFertilizantes="";
-        this.datos.nombreFertilizante="";
-        this.datos.dosis="";
-        this.datos.descripcionAplicacion="";
-        this.alertas.toast("Exito","Fertilizante actualizado con exito");
+        this.datosFertilizante.idFertilizantes="";
+        this.datosFertilizante.nombreFertilizante="";
+        this.datosFertilizante.dosis="";
+        this.datosFertilizante.descripcionAplicacion="";
+        this.alerts.toast("Exito","Fertilizante actualizado con exito");
         this.salirSinArgumentos();  
       }else{
         console.log(data.message);
+        this.alerts.showAlert("Error","Ha ocurrido un error");
       }
     })
     .catch((error)=>{
-      this.alertas.showAlert("Error","Ha ocurrido un error "+ error);      
+      this.alerts.showAlert("Error","Ha ocurrido un error "+ error);      
     });
 
   }

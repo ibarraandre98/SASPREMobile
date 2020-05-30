@@ -111,7 +111,7 @@ export class FertilizacionesPage implements OnInit {
 
 
     const {data} = await modal.onDidDismiss();
-
+    this.mostrarFertilizaciones();
     console.log("Retorno del modal", data);
   }
 

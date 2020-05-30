@@ -1,5 +1,5 @@
+import { CultivosService } from './../../services/cultivos.service';
 import { Component, OnInit } from '@angular/core';
-import { CultivosService } from 'src/app/services/cultivos.service';
 import { Alerts } from 'src/app/models/alerts';
 import { Router } from '@angular/router';
 import { AlertController, ToastController, PopoverController, ModalController } from '@ionic/angular';
@@ -8,7 +8,6 @@ import { PopCultivosComponent } from 'src/app/components/pop-cultivos/pop-cultiv
 import { AdministrarCultivosEditarPage } from '../administrar-cultivos-editar/administrar-cultivos-editar.page';
 import { PopInfoCultivosComponent } from 'src/app/components/pop-info-cultivos/pop-info-cultivos.component';
 
-
 @Component({
   selector: 'app-administrar-cultivos',
   templateUrl: './administrar-cultivos.page.html',
@@ -16,7 +15,6 @@ import { PopInfoCultivosComponent } from 'src/app/components/pop-info-cultivos/p
   providers: [CultivosService]
 })
 export class AdministrarCultivosPage implements OnInit {
-  alertas: Alerts;
   arrayCultivos: any;
   constructor(
     public cultivosService: CultivosService,
@@ -24,9 +22,9 @@ export class AdministrarCultivosPage implements OnInit {
     private alertController: AlertController,
     public toastController: ToastController,
     private popCtrl: PopoverController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private alerts:Alerts,
   ) {
-    this.alertas = new Alerts(toastController, alertController);
     this.mostrarCultivos();
   }
 
@@ -42,26 +40,17 @@ export class AdministrarCultivosPage implements OnInit {
         let data = JSON.parse(response.data);
         if (data.resultado == 'failed') {
           console.log('Costos no mostrados');
-          this.showAlert('Error', 'Costos no mostrados');
+          this.alerts.showAlert('Error', 'Costos no mostrados');
         } else if (data.resultado == 'success') {
           let datosCultivos = data.data;
           this.arrayCultivos = datosCultivos;
         }
       }
       ).catch(error => {
-        this.showAlert('Error', JSON.stringify(error));
+        this.alerts.showAlert('Error', JSON.stringify(error));
       });
   }
 
-  async showAlert(title: string, content: string) {
-    const alert = await this.alertController.create({
-      header: title,
-      message: content,
-      buttons: ["Ok"],
-    });
-    await alert.present();
-
-  }
 
   clickFab() {
     this.nuevoCultivo();
@@ -116,7 +105,7 @@ export class AdministrarCultivosPage implements OnInit {
   }
 
   borrarCultivo() {
-    console.log("Se borro costo");
+
   }
 
   async editarCultivo(cultivo:any) {
@@ -133,7 +122,7 @@ export class AdministrarCultivosPage implements OnInit {
 
 
     const { data } = await modal.onDidDismiss();
-
+    this.mostrarCultivos();
     console.log("Retorno del modal", data);
   }
 

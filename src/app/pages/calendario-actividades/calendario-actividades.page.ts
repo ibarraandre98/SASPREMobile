@@ -237,7 +237,7 @@ export class CalendarioActividadesPage implements OnInit {
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
-
+    this.mostrarCalendarioActividades();
     console.log("Retorno del modal", data);
   }
 

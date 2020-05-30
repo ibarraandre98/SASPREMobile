@@ -12,66 +12,39 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ["./insecticidas-nuevo.page.scss"],
 })
 export class InsecticidasNuevoPage implements OnInit {
-  alertas:Alerts;
   
-  registerForm = this.formBuilder.group({
-    nombree:['',[Validators.required,Validators.maxLength(50)]],
-    precioo:['',Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")],
-    descripcionn:['',[Validators.required,Validators.maxLength(100)]]
-    });
- 
+
   constructor(private modalCtrl:ModalController,
     public insecticidasService: InsecticidasService,
-    public toastController:ToastController,
-    private alertController:AlertController,
-    private formBuilder: FormBuilder ) {
-      this.alertas = new Alerts(toastController,alertController);
-     }
-    
-      /*Para enviar datos del padre al hijo (modal) */
-      @Input() nombre;
-      @Input() precio;
-      @Input() descripcion;
+    private formBuilder: FormBuilder,
+    private alerts:Alerts,
+    ) 
+    {
       
-      private datos = {
-        nombreInsecticida: 'prueba13',
-        precio: '200',
-        descripcion: 'te mueres'
-      }
+    }
+    
+    insecticidas = {
+      nombreInsecticida:'',
+      precio:'',
+      descripcion:'',
+    }
+      
   ngOnInit() {
-  }
-  get nombree(){
-    return this.registerForm.get('nombree');
+
   }
 
-  get precioo(){
-    return this.registerForm.get('precioo');
-  }
-
-  get descripcionn(){
-    return this.registerForm.get('descripcionn');
-  }
-  public errorMessages = {
-    nombree:[
-      {type:'required', message:'Nombre es requerido'},
-      {type: 'maxlength', message:'Se exedio el numero de caracteres'}
-    ],
-    precioo:[
-      {type:'required', message:'precio es requerido'},
-      {type: 'pattern', message:'Valor no valido'}],
-
-    descripcionn:[{type:'required', message:'Descripcion requerida'},
-    {type: 'maxlength', message:'Se exedio el numero de caracteres'}],
-  };
 
 
   salirSinArgumentos(){
     this.modalCtrl.dismiss();
   }
   onSubmitInsecticida(){
-    this.datos.nombreInsecticida=this.registerForm.value.nombree;
-    this.datos.precio=this.registerForm.value.precioo;
-    this.datos.descripcion= this.registerForm.value.descripcionn;
+
+    if(this.insecticidas.nombreInsecticida == '' || this.insecticidas.precio == '' || this.insecticidas.descripcion == ''){
+      this.alerts.showAlert('Error','Faltan campos por completar');
+      return;
+    }
+
     this.insertInsecticidas();
   }
   salirConArgumentos(){
@@ -82,25 +55,27 @@ export class InsecticidasNuevoPage implements OnInit {
     });
   }
   insertInsecticidas() {
-    this.insecticidasService.insertInsecticidas(this.datos)
+    this.insecticidasService.insertInsecticidas(this.insecticidas)
       .then(response => {
         console.log(response);
         let data = JSON.parse(response.data);
 
         if (data.result == 'success') {
-          this.datos.nombreInsecticida = '';
-          this.datos.precio = '';
-          this.datos.descripcion = '';
-
-          this.alertas.toast('Exito', 'Insecticida registrada con exito');
-         // this.router.navigateByUrl('/menu');
+          this.insecticidas.nombreInsecticida = '';
+          this.insecticidas.precio = '';
+          this.insecticidas.descripcion = '';
+          this.alerts.toast('Exito', 'Insecticida registrada con exito');
         } else {
           console.log(data.message);
+          this.alerts.showAlert('Error', 'Ha ocurrido un error');
         }
       }
       )
       .catch(error => {
-        this.alertas.showAlert('Error', 'Ha ocurrido un error ' + error);
-      })
+        this.alerts.showAlert('Error', 'Ha ocurrido un error ' + error);
+      });
+
+      this.salirSinArgumentos();
+
   }
 }

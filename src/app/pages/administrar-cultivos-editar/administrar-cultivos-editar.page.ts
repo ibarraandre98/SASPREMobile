@@ -1,3 +1,4 @@
+import { SemillasService } from './../../services/semillas.service';
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController, NavParams } from "@ionic/angular";
 import {CultivosService} from '../../services/cultivos.service';
@@ -7,6 +8,7 @@ import { Alerts } from './../../models/alerts';
 import { ToastController } from '@ionic/angular';
 
 
+
 @Component({
   selector: 'app-administrar-cultivos-editar',
   templateUrl: './administrar-cultivos-editar.page.html',
@@ -14,9 +16,9 @@ import { ToastController } from '@ionic/angular';
 })
 export class AdministrarCultivosEditarPage implements OnInit {
 
-  alertas:Alerts;
   cultivos:any;
   registerForm:any;
+  arraySemillas;
 
   constructor(private modalCtrl:ModalController,
     private servicesShared:CultivosService,
@@ -24,14 +26,31 @@ export class AdministrarCultivosEditarPage implements OnInit {
     public toastController: ToastController,
     private formBuilder: FormBuilder,
     private alertController:AlertController,
+    private alerts:Alerts,
+    private semillasService:SemillasService,
     ) { 
-      this.alertas= new Alerts(toastController,AlertController);
+      this.semillasService.mostrarIdSemillas()
+      .then(response =>{
+        let data = JSON.parse(response.data);
+        if (data.resultado == 'failed') {
+          console.log('Costos no mostrados');
+
+        } else if (data.resultado == 'success') {
+          let datosSemillas = data.data;
+          this.arraySemillas = datosSemillas;
+          console.log(this.arraySemillas);
+        }
+        
+      });
       this.cultivos=this.navParams.get('cultivo');
+
       console.log(this.cultivos);
       this.registerForm=this.formBuilder.group({
         cantidad:[this.cultivos.cantidad,[Validators.required,Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$")]],
-        estado:[this.cultivos.estado,[Validators.required,Validators.maxLength(100)]]
+        estado:[this.cultivos.estado,[Validators.required,Validators.maxLength(100)]],
       });
+
+      console.log(this.registerForm);
     }
 
     public errorMessages = {
@@ -45,14 +64,14 @@ export class AdministrarCultivosEditarPage implements OnInit {
     };
 
     private datos={
-      idCultivos:"",
-      idSemillas:"",
-      idUsuario:"",
-      fechaPlantado:"",
-      fechaCosechado:"",
-      cantidad:"",
-      estado:"",
-      cosechado:"",
+      idCultivos:'',
+      idSemillas:'',
+      idUsuario:'',
+      fechaPlantado:'',
+      fechaCosechado:'',
+      cantidad:'',
+      estado:'',
+      cosechado:'',
     };
 
     guardarDatos(){
@@ -61,9 +80,22 @@ export class AdministrarCultivosEditarPage implements OnInit {
       this.datos.idUsuario=this.cultivos.idUsuario;
       this.datos.fechaPlantado=this.cultivos.fechaPlantado;
       this.datos.fechaCosechado=this.cultivos.fechaCosechado;
-      this.datos.cantidad=this.registerForm.value.cantidad;
-      this.datos.estado=this.registerForm.value.estado;
+      this.datos.cantidad=this.cultivos.cantidad;
+      this.datos.estado=this.cultivos.estado;
       this.datos.cosechado=this.cultivos.cosechado;
+      console.log(this.datos);
+    }
+
+    get idSemillas(){
+      return this.registerForm.get('idSemillas');
+    }
+
+    get fechaPlantado(){
+      return this.registerForm.get('fechaPlantado');
+    }
+
+    get fechaCosechado(){
+      return this.registerForm.get('fechaCosechado');
     }
 
     get estado(){
@@ -73,6 +105,11 @@ export class AdministrarCultivosEditarPage implements OnInit {
     get cantidad(){
       return this.registerForm.get('cantidad');
     }
+
+    get cosechado(){
+      return this.registerForm.get('cosechado');
+    }
+
   salirSinArgumentos() { 
     this.modalCtrl.dismiss();
   }
@@ -89,8 +126,19 @@ export class AdministrarCultivosEditarPage implements OnInit {
   ngOnInit() {
   }
 
+  
+
   onSubmitCultivos(){
     this.guardarDatos();
+    if(this.datos.cantidad == '0'){
+      this.alerts.showAlert('Error','La cantidad no puede ser 0');
+      return;
+    }
+    if(this.datos.idSemillas == '' || this.datos.idUsuario == '' || this.datos.cantidad == '' || this.datos.estado == ''
+    || this.datos.fechaPlantado == '' || this.datos.fechaCosechado == ''){
+      this.alerts.showAlert('Error','Faltan campos por rellenar');
+      return;
+    }
     this.servicesShared
     .updateCultivos(this.datos)
     .then((response)=>{
@@ -107,14 +155,14 @@ export class AdministrarCultivosEditarPage implements OnInit {
       this.datos.estado="";
       this.datos.cosechado="";
 
-      this.alertas.toast("Exito","Cultivo actualizado con exito");
+      this.alerts.toast("Exito","Cultivo actualizado con exito");
       this.salirSinArgumentos();
       }else{
         console.log(data.message);
       }
     })
     .catch((error)=>{
-      this.alertas.showAlert("Error","Ha ocurrido un error "+error);
+      this.alerts.showAlert("Error","Ha ocurrido un error "+error);
     });
   }
 }
