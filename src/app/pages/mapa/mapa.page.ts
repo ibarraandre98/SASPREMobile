@@ -21,9 +21,16 @@ export class MapaPage implements OnInit {
   infoWindows: any = [];
   markers: any = [
     {
-      id:"Prueba de render",
-      lat:  "22.705968",
-      lng:  "-99.006415"
+      id:"Cultivo 1",
+      lat:  "22.702712895514054",
+      lng:  "-99.01178928184662",
+      desc: "Se sembró maíz"
+    },
+    {
+      id:"Cultivo 2",
+      lat:  "22.70408195707651",
+      lng:  "-99.0107567448716",
+      desc: "Se sembró chile"
     }
   ];
 
@@ -44,7 +51,8 @@ export class MapaPage implements OnInit {
         position:position,
         title: marker.id,
         latitude: marker.lat,
-        longitude: marker.lng
+        longitude: marker.lng,
+        descripcion: marker.desc
       });
 
       mapMarker.setMap(this.map);
@@ -55,8 +63,7 @@ export class MapaPage implements OnInit {
   addInfoWindowToMarker(marker){
     let infoWindowContent = '<div id="content">'+
                             '<h2 id="firstHeading" class="firstHeading">' + marker.title + '</h2>'+
-                            '<p>Lat: '+ marker.latitude + '</p>'+
-                            '<p>Lng: '+ marker.longitude + '</p>'+
+                            '<p>Descripción: '+ marker.descripcion + '</p>'+
                             '</div>';
 
     let infoWindow = new google.maps.InfoWindow({
