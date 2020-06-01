@@ -18,7 +18,7 @@
     </ion-fab>
 
     <ion-toolbar>
-        <ion-searchbar placeholder="Buscar" animated></ion-searchbar>
+        <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
     </ion-toolbar>
 
     <ion-refresher slot="fixed" (ionRefresh)="refreshAlarmas($event)">
@@ -28,7 +28,7 @@
     </ion-refresher>
 
     <ion-list>
-        <ion-item *ngFor="let item of arrayAlarmas">
+        <ion-item *ngFor="let item of arrayAlarmas | filtro: textoBuscar : 'nombreAlarma'">
             <ion-avatar slot="start" (click)="mostrarPopInfo(item)">
                 <img src="../../assets/icon/semillas/{{item.nombreSemilla|lowercase}}.png">
             </ion-avatar>

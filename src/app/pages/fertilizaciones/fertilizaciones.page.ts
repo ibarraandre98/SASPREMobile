@@ -18,6 +18,8 @@ import { FormBuilder } from '@angular/forms';
 export class FertilizacionesPage implements OnInit {
 
   arrayFertilizaciones:any;
+  textoBuscar = '';
+
 
   constructor(
     public fertilizacionesService: MostrarFertilizacionesService,
@@ -49,6 +51,7 @@ export class FertilizacionesPage implements OnInit {
     //this.textoBuscar = evento.detail.value;
     console.log('Se esta buscando en el filtro:');
     console.log(event.detail.value);
+    this.textoBuscar = event.detail.value;
   }
 
   async mostrarPopInfo(fertilizacion:any) {

@@ -31,6 +31,8 @@ export class AdministrarCultivosPage implements OnInit {
   ngOnInit() {
   }
 
+  
+
   mostrarCultivos() {
     console.log('uno');
     this.cultivosService.mostrarCultivos()
@@ -139,10 +141,12 @@ export class AdministrarCultivosPage implements OnInit {
     return await popover.present();
   }
 
+  textoBuscar = '';
   buscar( event ){
     //this.textoBuscar = evento.detail.value;
     console.log('Se esta buscando en el filtro:');
     console.log(event.detail.value);
+    this.textoBuscar =  event.detail.value;
   }
 
   refreshCultivos(event){

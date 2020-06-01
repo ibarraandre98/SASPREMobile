@@ -19,6 +19,7 @@ import { PopInfoCosechasComponent } from 'src/app/components/pop-info-cosechas/p
 export class AdministrarCosechasPage {
 
   arrayCosechas:any;
+  textoBuscar = '';
   image;
 
   constructor(
@@ -84,6 +85,7 @@ export class AdministrarCosechasPage {
     //this.textoBuscar = evento.detail.value;
     console.log('Se esta buscando en el filtro:');
     console.log(event.detail.value);
+    this.textoBuscar = event.detail.value;
   }
 
 

@@ -258,6 +258,15 @@ export class CalendarioActividadesPage implements OnInit {
     return await popover.present();
   }
 
+  textoBuscar = '';
+
+  buscar( event ){
+    //this.textoBuscar = evento.detail.value;
+    console.log('Se esta buscando en el filtro:');
+    console.log(event.detail.value);
+    this.textoBuscar = event.detail.value;
+  }
+
   refreshCalendarioActividades(event){
     this.mostrarCalendarioActividades();
     setTimeout(()=>{

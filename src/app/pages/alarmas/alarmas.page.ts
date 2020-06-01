@@ -18,7 +18,7 @@ import { AlarmasEditarPage } from '../alarmas-editar/alarmas-editar.page';
 export class AlarmasPage implements OnInit {
   alertas: Alerts;
   arrayAlarmas:any;
-
+  textoBuscar = '';
   constructor(
     public alarmasService: AlarmasService,
     private router: Router,
@@ -237,6 +237,13 @@ export class AlarmasPage implements OnInit {
       translucent: true,
     });
     return await popover.present();
+  }
+
+  buscar( event ){
+    //this.textoBuscar = evento.detail.value;
+    console.log('Se esta buscando en el filtro:');
+    console.log(event.detail.value);
+    this.textoBuscar = event.detail.value;
   }
 
   ngOnInit() {

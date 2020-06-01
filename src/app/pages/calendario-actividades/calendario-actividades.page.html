@@ -18,7 +18,7 @@
     </ion-fab>
 
     <ion-toolbar>
-        <ion-searchbar placeholder="Buscar" animated></ion-searchbar>
+        <ion-searchbar placeholder="Buscar" animated (ionChange)="buscar($event)"></ion-searchbar>
     </ion-toolbar>
 
     <ion-refresher slot="fixed" (ionRefresh)="refreshCalendarioActividades($event)">
@@ -28,7 +28,7 @@
     </ion-refresher>
 
     <ion-list>
-        <ion-item *ngFor="let item of arrayCalendario">
+        <ion-item *ngFor="let item of arrayCalendario | filtro: textoBuscar : 'nombreActividad'">
             <ion-grid (click)="mostrarPopInfo(item)">
                 <ion-row>
                     <ion-col size="5">

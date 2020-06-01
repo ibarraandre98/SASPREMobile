@@ -47,11 +47,11 @@ async mostrarPopHistorial(plaga:any){
   return await popover.present();
 }
 
-
+textoBuscar = '';
 
 //Este es el search bar
 buscar( event ){
-  //this.textoBuscar = evento.detail.value;
+  this.textoBuscar = event.detail.value;
   console.log('Se esta buscando en el filtro:');
   console.log(event.detail.value);
 }

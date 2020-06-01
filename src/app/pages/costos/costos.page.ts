@@ -243,8 +243,10 @@ export class CostosPage implements OnInit {
     return await popover.present();
   }
 
+  textoBuscar = '';
+
   buscar( event ){
-    //this.textoBuscar = evento.detail.value;
+    this.textoBuscar = event.detail.value;
     console.log('Se esta buscando en el filtro:');
     console.log(event.detail.value);
   }

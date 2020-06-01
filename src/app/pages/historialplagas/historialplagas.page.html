@@ -19,7 +19,7 @@
     </ion-refresher>
 
     <ion-list>
-        <ion-item *ngFor="let item of arrayHistorial">
+        <ion-item *ngFor="let item of arrayHistorial | filtro: textoBuscar : 'nombreSemilla'">
             <ion-avatar slot="start" (click)="mostrarPopHistorial(item)">
                 <img src="../../assets/icon/semillas/{{item.nombreSemilla|lowercase}}.png">
             </ion-avatar>

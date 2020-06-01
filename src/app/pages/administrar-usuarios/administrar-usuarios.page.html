@@ -19,7 +19,7 @@
     </ion-refresher>
 
     <ion-list>
-        <ion-item *ngFor="let item of arrayUsuarios">
+        <ion-item *ngFor="let item of arrayUsuarios | filtro: textoBuscar : 'nombre'">
             <ion-avatar slot="start" (click)="mostrarPopInfo(item)">
                 <img src="../../assets/icon/semillas/user.png">
             </ion-avatar>
